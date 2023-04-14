@@ -1,0 +1,5 @@
+user-agent: *
+
+# Block all google tag manager tracking links
+
+Disallow: /*?_=*ga=
