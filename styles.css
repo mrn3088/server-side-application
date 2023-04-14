@@ -1,0 +1,23 @@
+.hw-content, aside {
+    background-color: gainsboro;
+    padding-top: 0;
+    margin-top: 0;
+}
+.hw-title {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+
+
+/* main {
+    position: absolute;
+} */
+
+aside {
+    float: right;
+    position: relative;
+    padding: 0 10px;
+    max-width: 20%;
+    max-height: 10%;
+}
