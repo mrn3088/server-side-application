@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/crud-styles.css">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2e0da2dabd.js" crossorigin="anonymous"></script>
+</head>
+
+
+<dialog id="dialog">
+    <label name="title">Title:
+        <input id="title-field" type="text"></label>
+    <br>
+    <label name="date">Date:
+        <input id="date-field" type="date" required></label>
+    <br>
+    <label name="summary">Summary:
+        <input id="summary-field" type="text"></label>
+    <br>
+    <div class="dialog-button-container">
+        <button id="post-btn">Post</button>
+        <button id="cancel-btn">Cancel</button>
+    </div>
+</dialog>
+
+<body>
+    <main display="flex" justify-content="center" align-items="center">
+        <h1 id="header">Blog</h1>
+        <h2 id="blog-header">Let's chat!</h2>
+        <div id="blog-list">
+        </div>
+        <div>
+            <button id="add-btn">Add Post</button>
+        </div>
+    </main>
+    <script async type="module" src="js/styledmain.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Native Dialogs</title>
+</head>
+
+<body>
+    <header>
+        <h1 id="header">Native Dialogs</h1>
+    </header>
+    <main>
+        <section>
+            <button id="alert">Alert</button>
+            <button id="confirm">Confirm</button>
+            <button id="prompt">Prompt</button>
+            <button id="safer-prompt">Safer Prompt</button>
+        </section>
+        <section>
+            <output id="output"></output>
+        </section>
+      
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.1/dist/purify.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', initAlertButton);
+        window.addEventListener('DOMContentLoaded', initConfirmButtion);
+        window.addEventListener('DOMContentLoaded', initPromptButton);
+        window.addEventListener('DOMContentLoaded', initSaferPromptButton);
+
+        function initAlertButton() {
+            const theAlertButton = document.getElementById('alert');
+            theAlertButton.addEventListener('click', () => {
+                window.alert('This is an alert dialog.');
+            });
+        }
+
+        function initConfirmButtion() {
+            const theConfirmButton = document.getElementById('confirm');
+            theConfirmButton.addEventListener('click', () => {
+                const theResult = window.confirm('Do you want to continue?');
+                document.getElementById('output').textContent = `The value returned by the confirm method is: ${theResult}`;
+            });
+        }
+
+        function initPromptButton() {
+            const thePromptButton = document.getElementById('prompt');
+            thePromptButton.addEventListener('click', () => {
+                const theResult = window.prompt('Please enter your name:');
+                const theOutput = document.getElementById('output');
+                if (theResult === null || theResult === '') {
+                    theOutput.innerHTML = 'User did not enter anything.';
+                } else {
+                    theOutput.innerHTML = `You entered: ${theResult}`;
+                }
+            });
+        }
+
+        function initSaferPromptButton() {
+            const saferPromptButton = document.getElementById('safer-prompt');
+            saferPromptButton.addEventListener('click', () => {
+                const theResult = window.prompt('Please enter a safe value:');
+                const theSanitizedInput = DOMPurify.sanitize(theResult);
+                const theOutput = document.getElementById('output');
+                if (theResult === null || theResult == '') {
+                    theOutput.innerHTML = 'User did not enter anything.';
+                } else {
+                    theOutput.innerHTML = `You entered: ${theSanitizedInput}`;
+                }
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

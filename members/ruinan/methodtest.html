@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Method Test</title>
+</head>
+
+<body>
+    <header>
+        <h1 id="header">Method Test</h1>
+    </header>
+
+    <main>
+        <h2>Request Type</h2>
+        <div>
+            <label for="xhr">XMLHttpRequest</label>
+            <input type="radio" id="xhr" name="requestType" value="xhr" checked><br />
+            <label for="fetch">Fetch</label>
+            <input type="radio" id="fetch" name="requestType" value="fetch">
+        </div>
+        <h2>Form</h2>
+        <div class="form-container">
+            <form id="form">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id"> <br />
+                <label for="article_name">Article Name:</label>
+                <input type="text" id="article_name" name="article_name"> <br />
+                <label for="article_body">Article Body:</label>
+                <textarea id="article_body" name="article_body"></textarea> <br />
+                <label for="date">Date:</label>
+                <input type="text" id="date" name="date" readonly><br>
+            </form>
+        </div>
+        <div class="button-container">
+            <button id="postBtn">Post</button>
+            <button id="getBtn">Get</button>
+            <button id="putBtn">Put</button>
+            <button id="deleteBtn">Delete</button>
+            <button id="clearBtn">Clear</button>
+        </div>
+        <h2 id="output-h">Output</h2>
+        <output id="output"></output>
+    </main>
+    <script async type="module" src="js/mainMethodTest.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+
+        table tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        table thead tr th {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+        }
+    </style>
+</body>
+
+</html>
