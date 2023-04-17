@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +11,32 @@
     <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/contact_mobile.css">
     <link rel="icon" href="fav_icon.png">
     <style></style>
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//cse135.monster/matomo/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-PW0FF1MSLF');
+    gtag('config', 'G-PW0FF1MSLF');
 </script>
+
 <body>
     <header>
         <nav>
@@ -37,52 +54,52 @@
     </header>
     <main>
         <section>
-                <!-- action? -->
-                <form>
-                    <fieldset>
-                        <legend>Please reach out to me!</legend>
-                        <label for="fname">First name:</label>
-                        <input type="text" id="fname" name="fname"><br /><br />
-                        <label for="lname">Last name:</label>
-                        <input type="text" id="lname" name="lname"><br /><br />
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email"><br /><br />
-                        <label for="date">Date:</label>
-                        <input type="date" id="date" name="date"><br /><br />
-                        
-                        <label for="type">What brings you here?</label>
-                        <select name="type" id="type">
-                            <optgroup label="Opportunities">
-                                <option value="intern">Intern</option>
-                                <option value="research">Research</option>
-                                <option value="part time">Part Time Job</option>
-                                <option value="full time">Full Time Job</option>
-                            </optgroup>
-                            <optgroup label="Nice to Know You">
-                                <option value="greeting">Greeting</option>
-                                <option value="question">Question</option>
-                                <option value="comment">Comment</option>
-                            </optgroup>
-                        </select>
-                        <br /><br />
+            <!-- action? -->
+            <form>
+                <fieldset>
+                    <legend>Please reach out to me!</legend>
+                    <label for="fname">First name:</label>
+                    <input type="text" id="fname" name="fname"><br /><br />
+                    <label for="lname">Last name:</label>
+                    <input type="text" id="lname" name="lname"><br /><br />
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"><br /><br />
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date"><br /><br />
 
-                        <label for="browser">Choose your browser from the list:</label>
-                        <input list="browsers" name="browser" id="browser">
-                        <datalist id="browsers">
-                            <option value="Chrome">
-                            <option value="Firefox">
-                            <option value="Safari">
-                            <option value="Edge">
-                            <option value="Opera">
-                        </datalist>
+                    <label for="type">What brings you here?</label>
+                    <select name="type" id="type">
+                        <optgroup label="Opportunities">
+                            <option value="intern">Intern</option>
+                            <option value="research">Research</option>
+                            <option value="part time">Part Time Job</option>
+                            <option value="full time">Full Time Job</option>
+                        </optgroup>
+                        <optgroup label="Nice to Know You">
+                            <option value="greeting">Greeting</option>
+                            <option value="question">Question</option>
+                            <option value="comment">Comment</option>
+                        </optgroup>
+                    </select>
+                    <br /><br />
 
-                        <p><label for="msg">Please leave a message for me:</label></p>
-                        <textarea name="msg" id="msg" cols="30" rows="4"></textarea>
-                        <br />
-                        <button type="submit" value="Submit">submit</button>
-                    </fieldset>
-                </form>
-            
+                    <label for="browser">Choose your browser from the list:</label>
+                    <input list="browsers" name="browser" id="browser">
+                    <datalist id="browsers">
+                        <option value="Chrome">
+                        <option value="Firefox">
+                        <option value="Safari">
+                        <option value="Edge">
+                        <option value="Opera">
+                    </datalist>
+
+                    <p><label for="msg">Please leave a message for me:</label></p>
+                    <textarea name="msg" id="msg" cols="30" rows="4"></textarea>
+                    <br />
+                    <button type="submit" value="Submit">submit</button>
+                </fieldset>
+            </form>
+
         </section>
     </main>
     <footer>
@@ -95,4 +112,5 @@
 
     </script>
 </body>
+
 </html>

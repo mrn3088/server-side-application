@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
-    
+
     <title>Custom Dialogs</title>
 </head>
+
 <body>
     <main>
         <h1>Custom Dialogs</h1>
@@ -23,17 +25,32 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.1/dist/purify.min.js"></script>
     <script type="module">
-        import {clickAlert, clickConfirm, clickSaferPrompt} from './js/customdialog.js';
+        import { clickAlert, clickConfirm, clickSaferPrompt } from './js/customdialog.js';
         // alert
         document.getElementById("alert").onclick = clickAlert;
 
         // confirm
         document.getElementById("confirm").onclick = clickConfirm;
-        
+
         // prompt
         document.getElementById("prompt").onclick = clickSaferPrompt;
-        
-    </script>    
+
+    </script>
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//cse135.monster/matomo/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
 </body>
 
 </html>

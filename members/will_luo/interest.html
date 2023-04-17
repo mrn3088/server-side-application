@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +11,32 @@
     <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/interest_mobile.css">
     <link rel="icon" href="fav_icon.png">
     <style></style>
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//cse135.monster/matomo/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-PW0FF1MSLF');
+    gtag('config', 'G-PW0FF1MSLF');
 </script>
+
 <body>
     <header>
         <nav>
@@ -56,8 +73,9 @@
                 <ol>
                     <li>
                         <picture>
-                            <source media="(min-width:640px)" srcset="image/music.jpeg" alt="Sorry, there is an error with the image.">
-                            <img src="image/musicS.jpeg" alt="Sorry, there is an error with the image.">    
+                            <source media="(min-width:640px)" srcset="image/music.jpeg"
+                                alt="Sorry, there is an error with the image.">
+                            <img src="image/musicS.jpeg" alt="Sorry, there is an error with the image.">
                         </picture>
                         <details>
                             <summary>Listen to music</summary>
@@ -66,18 +84,21 @@
                     </li>
                     <li>
                         <picture>
-                            <source media="(min-width:640px)" srcset="image/tennis.jpeg" alt="Sorry, there is an error with the image.">
-                            <img src="image/tennisS.jpeg" alt="Sorry, there is an error with the image.">    
+                            <source media="(min-width:640px)" srcset="image/tennis.jpeg"
+                                alt="Sorry, there is an error with the image.">
+                            <img src="image/tennisS.jpeg" alt="Sorry, there is an error with the image.">
                         </picture>
                         <details>
                             <summary>Play tennis</summary>
-                            <p>It takes me a few years to level up from a beginner, but it is so satisfying when you hit the ball!</p>
+                            <p>It takes me a few years to level up from a beginner, but it is so satisfying when you hit
+                                the ball!</p>
                         </details>
                     </li>
                     <li>
                         <picture>
-                            <source media="(min-width:640px)" srcset="image/gaming.jpeg" alt="Sorry, there is an error with the image.">
-                            <img src="image/gamingS.jpeg" alt="Sorry, there is an error with the image.">    
+                            <source media="(min-width:640px)" srcset="image/gaming.jpeg"
+                                alt="Sorry, there is an error with the image.">
+                            <img src="image/gamingS.jpeg" alt="Sorry, there is an error with the image.">
                         </picture>
                         <details>
                             <summary>Video games</summary>
@@ -86,8 +107,9 @@
                     </li>
                     <li>
                         <picture>
-                            <source media="(min-width:640px)" srcset="image/culinary.jpeg" alt="Sorry, there is an error with the image.">
-                            <img src="image/culinaryS.jpeg" alt="Sorry, there is an error with the image.">    
+                            <source media="(min-width:640px)" srcset="image/culinary.jpeg"
+                                alt="Sorry, there is an error with the image.">
+                            <img src="image/culinaryS.jpeg" alt="Sorry, there is an error with the image.">
                         </picture>
                         <details>
                             <summary>Culinary</summary>
@@ -143,4 +165,5 @@
         //}
     </script>
 </body>
+
 </html>

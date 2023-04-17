@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,27 +12,43 @@
     <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/index_mobile.css">
     <link rel="icon" href="fav_icon.png">
     <style></style>
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//cse135.monster/matomo/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-PW0FF1MSLF');
+    gtag('config', 'G-PW0FF1MSLF');
 </script>
+
 <body>
     <header>
         <nav>
             <ul class="navLinks">
-                <li><a href="/index.html">Will's Website!</a></li>
-                <li><a href="/Projects.html">My Project</a></li>
-                <li><a href="/Interest.html">My Interests</a></li>
-                <li><a href="/styledcrud.html">My Posts</a></li>
-                <li><a href="/Contact.html">Contact Me!</a></li>
-                <li><a href="/methodtest.html">MethodTest</a></li>
-                <li><a href="/webcomponent.html">Web Component</a></li>
+                <li><a href="/members/will_luo/index.html">Will's Website!</a></li>
+                <li><a href="/members/will_luo/Projects.html">My Project</a></li>
+                <li><a href="/members/will_luo/Interest.html">My Interests</a></li>
+                <li><a href="/members/will_luo/styledcrud.html">My Posts</a></li>
+                <li><a href="/members/will_luo/Contact.html">Contact Me!</a></li>
+                <li><a href="/members/will_luo/methodtest.html">MethodTest</a></li>
+                <li><a href="/members/will_luo/webcomponent.html">Web Component</a></li>
             </ul>
         </nav>
         <h1 id="mainTitle">Hey, I'm Will Luo</h1>
@@ -46,7 +63,8 @@
                         <!-- <source media="(min-width:768px)" srcset="image/me.jpg">
                         <source media="(min-width:640px)" srcset="image/meS.jpg">
                         <img src="image/meXS.jpg" alt="image/ImageNotFound.jpeg"> -->
-                        <source media="(min-width:640px)" srcset="image/me.jpg" alt="Sorry, there is an error with the image.">
+                        <source media="(min-width:640px)" srcset="image/me.jpg"
+                            alt="Sorry, there is an error with the image.">
                         <img src="image/meS.jpg" alt="Sorry, there is an error with the image.">
                     </picture>
                 </figure>
@@ -54,9 +72,12 @@
             <article class="myIntro">
                 <p>
                     Hi there! This is Will Luo, a second-year Computer Science student at UC San Diego. <br />
-                    I grew up in Shanghai, China, and I traveled to the U.S. when I was 15 to study at a high school in Charlotte, NC.<br />
-                    I have been playing with codes for around five years, and I am still loving it! No matter what I am coding for, <br />
-                    such as for researching, for gaming, for engineering and so on, there is always lots of fun in my work that I will <br />
+                    I grew up in Shanghai, China, and I traveled to the U.S. when I was 15 to study at a high school in
+                    Charlotte, NC.<br />
+                    I have been playing with codes for around five years, and I am still loving it! No matter what I am
+                    coding for, <br />
+                    such as for researching, for gaming, for engineering and so on, there is always lots of fun in my
+                    work that I will <br />
                     never get bored!
                 </p>
                 <p>
@@ -139,8 +160,10 @@
             <article class="skills">
                 <p>I work with Java for the longest time. It is also my <code>Hello World</code> language. <br />
                     To me, Java is used mainly for the backend of a program or a website.</p>
-                <p>Python is also a familiar tool to me, where I used it for doing image research and building games.</p>
-                <p>I have learned HTML, CSS, JS, and Git a few years ago, and I am glad now I have a deeper understanding <br />
+                <p>Python is also a familiar tool to me, where I used it for doing image research and building games.
+                </p>
+                <p>I have learned HTML, CSS, JS, and Git a few years ago, and I am glad now I have a deeper
+                    understanding <br />
                     of them now by taking CSE 110 and CSE 134B.</p>
             </article>
         </section>
@@ -155,4 +178,5 @@
 
     </script>
 </body>
+
 </html>

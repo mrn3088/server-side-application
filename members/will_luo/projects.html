@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +11,33 @@
     <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/projects_mobile.css">
     <link rel="icon" href="fav_icon.png">
     <style></style>
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//cse135.monster/matomo/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-PW0FF1MSLF');
+    gtag('config', 'G-PW0FF1MSLF');
 </script>
+
 <body>
     <header>
         <nav>
@@ -41,7 +59,8 @@
                 <h2>UB-Cornell Medical AI Research, Researcher</h2>
                 <figure>
                     <picture>
-                        <source media="(min-width:640px)" srcset="image/proj1.png" alt="Sorry, there is an error with the image.">
+                        <source media="(min-width:640px)" srcset="image/proj1.png"
+                            alt="Sorry, there is an error with the image.">
                         <img src="image/proj1S.png" alt="Sorry, there is an error with the image.">
                     </picture>
                     <figcaption>My published research essay.</figcaption>
@@ -62,12 +81,13 @@
                         Modified algorithm by analyzing data in order to improve accuracy
                     </li>
                     <li>
-                        Contributed to the research paper which has been published by IEEE Visual Communication 
+                        Contributed to the research paper which has been published by IEEE Visual Communication
                         and Image Processing Conference 2021
                     </li>
                     <!-- <a id="essayBtn" href="https://ieeexplore.ieee.org/document/9675332">Click to see the essay.</a> -->
                     <li class="btnLi">
-                        <a id="essayBtn" href="https://ieeexplore.ieee.org/document/9675332" target="_blank">Click to see the essay.</a>
+                        <a id="essayBtn" href="https://ieeexplore.ieee.org/document/9675332" target="_blank">Click to
+                            see the essay.</a>
                     </li>
                 </ul>
             </article>
@@ -76,14 +96,17 @@
         <section class="panel2">
             <article class="proj2_left">
                 <h2>Software Engineering Project, Team Lead</h2>
-                <iframe src="https://alien-traveler.github.io/cse110-fa22-group39/webapp/" allowfullscreen="true" loading="lazy"></iframe>
+                <iframe src="https://alien-traveler.github.io/cse110-fa22-group39/webapp/" allowfullscreen="true"
+                    loading="lazy"></iframe>
             </article>
             <article class="proj2_right">
                 <p>Sep 2022 - Dec 2022</p>
                 <ul>
                     <li>
-                        In <i>CSE 110</i>, an engineering software engineering class, I co-lead with another team lead <br />
-                        to have a 10-people group to complete a web software project adopting <em>Agile methodology</em>.
+                        In <i>CSE 110</i>, an engineering software engineering class, I co-lead with another team lead
+                        <br />
+                        to have a 10-people group to complete a web software project adopting <em>Agile
+                            methodology</em>.
                     </li>
                     <li>
                         As a team lead, I keep track of the work through daily stand-up surveys, weekly <br />
@@ -109,17 +132,20 @@
                 <p>Nov 2019</p>
                 <ul>
                     <li>
-                        Just a video game created in Python with Pygame module. I love video games, so I made this game for fun :)
+                        Just a video game created in Python with Pygame module. I love video games, so I made this game
+                        for fun :)
                     </li>
                     <li>
-                        Since this is my first coding project, I name my github account as <strong>Alien-Traveler</strong> after this Alien-Invasion game.
+                        Since this is my first coding project, I name my github account as
+                        <strong>Alien-Traveler</strong> after this Alien-Invasion game.
                     </li>
                     <li>
                         <pre>You can play this game too!</pre>
                     </li>
                     <!-- <a id="gameBtn" href="https://github.com/alien-traveler/Alien-Invasion">Click to play the game!</a> -->
                     <li class="btnLi">
-                        <a id="gameBtn" href="https://github.com/alien-traveler/Alien-Invasion" target="_blank">Click to play the game!</a>
+                        <a id="gameBtn" href="https://github.com/alien-traveler/Alien-Invasion" target="_blank">Click to
+                            play the game!</a>
                     </li>
                 </ul>
             </article>
@@ -135,4 +161,5 @@
 
     </script>
 </body>
+
 </html>
