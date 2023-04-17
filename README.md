@@ -4,7 +4,9 @@ Ruinan Ma, Haochen Jiang, Will Luo
 
 ---
 ## Grader Account:
-We use SSH to log in to our server, so please download the `grader_key` and use `ssh -i {/path/to/private_key}/grader_key grader@134.209.213.47` to log into the server. The `sudo` password is `Cse135grader`.
+We use SSH to log in to our server, so please download the `grader_key` and use `ssh -i {/path/to/private_key}/grader_key grader@134.209.213.47` to log into the server. If it prompts to ask you to continue connecting, just type `yes`.
+
+The `sudo` password is `cse135grader`.
 
 ---
 ## Our Website:
@@ -27,6 +29,8 @@ hw1/report.html: [https://cse135.monster/hw1/report.html](https://cse135.monster
 
 ---
 ## Username/password info for logging into the site:
+Username: `grader`.
+Password: `Cse135Grader`
 
 ---
 ## Summary of changes to HTML file in DevTools after compression: 
