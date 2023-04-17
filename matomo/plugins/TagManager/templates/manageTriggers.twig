@@ -1,0 +1,10 @@
+{% extends '@TagManager/tagmanager.twig' %}
+
+{% set title = 'TagManager_Triggers'|translate %}
+
+{% block content %}
+    <div piwik-trigger-manage id-container="{{ container.idcontainer }}"
+         id-container-version="{{ idcontainerversion }}"
+         triggers-help-text="{{ triggersHelpText }}">
+    </div>
+{% endblock %}

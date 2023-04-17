@@ -1,0 +1,16 @@
+{% extends 'admin.twig' %}
+
+{% set title %}{{ 'LanguagesManager_TranslationSearch'|translate }}{% endset %}
+
+{% block content %}
+
+    <div
+        vue-entry="CoreHome.ContentBlock"
+        vue-components="LanguagesManager.TranslationSearch"
+        content-title="{{ title|json_encode|e('html_attr') }}"
+        feature="{{ 'true'|json_encode }}"
+    >
+        <translation-search />
+    </div>
+
+{% endblock %}
