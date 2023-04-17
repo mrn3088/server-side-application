@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+img.profile {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section h3 {
+    cursor: pointer;
+}
+
+.section-content {
+    display: none;
+}
