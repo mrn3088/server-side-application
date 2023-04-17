@@ -1,22 +1,158 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Will</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <p>Hello</p>
-        <script src="" async defer></script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will's Website</title>
+    <!-- <link rel="stylesheet" href="css/index_pc.css"> -->
+    <link rel="stylesheet" media="screen and (min-width: 768px)" href="css/index_pc.css">
+    <link rel="stylesheet" media="screen and (min-width: 640px) and (max-width: 767px)" href="css/index_tablet.css">
+    <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/index_mobile.css">
+    <link rel="icon" href="fav_icon.png">
+    <style></style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PW0FF1MSLF');
+</script>
+<body>
+    <header>
+        <nav>
+            <ul class="navLinks">
+                <li><a href="/index.html">Will's Website!</a></li>
+                <li><a href="/Projects.html">My Project</a></li>
+                <li><a href="/Interest.html">My Interests</a></li>
+                <li><a href="/styledcrud.html">My Posts</a></li>
+                <li><a href="/Contact.html">Contact Me!</a></li>
+                <li><a href="/methodtest.html">MethodTest</a></li>
+                <li><a href="/webcomponent.html">Web Component</a></li>
+            </ul>
+        </nav>
+        <h1 id="mainTitle">Hey, I'm Will Luo</h1>
+    </header>
+    <main>
+        <!-- My background -->
+        <section class="panel1">
+            <article class="myPhoto">
+                <h2>A Little About Myself</h2>
+                <figure>
+                    <picture>
+                        <!-- <source media="(min-width:768px)" srcset="image/me.jpg">
+                        <source media="(min-width:640px)" srcset="image/meS.jpg">
+                        <img src="image/meXS.jpg" alt="image/ImageNotFound.jpeg"> -->
+                        <source media="(min-width:640px)" srcset="image/me.jpg" alt="Sorry, there is an error with the image.">
+                        <img src="image/meS.jpg" alt="Sorry, there is an error with the image.">
+                    </picture>
+                </figure>
+            </article>
+            <article class="myIntro">
+                <p>
+                    Hi there! This is Will Luo, a second-year Computer Science student at UC San Diego. <br />
+                    I grew up in Shanghai, China, and I traveled to the U.S. when I was 15 to study at a high school in Charlotte, NC.<br />
+                    I have been playing with codes for around five years, and I am still loving it! No matter what I am coding for, <br />
+                    such as for researching, for gaming, for engineering and so on, there is always lots of fun in my work that I will <br />
+                    never get bored!
+                </p>
+                <p>
+                    Fun fact about me: I don't like raw onions in my burger, but I like <b>crispy onions</b>!
+                </p>
+            </article>
+        </section>
+        <hr>
+        <!-- My education -->
+        <section class="panel2">
+            <article class="myEd">
+                <h2>My College Progress</h2>
+                <p>
+                    At UC San Diego, I have taken those CS classes so far:
+                </p>
+                <ul>
+                    <li>CSE 11. Introduction to Programming and Computational Problem-Solving: Accelerated Pace</li>
+                    <li>CSE 12. Basic Data Structures and Object-Oriented Design</li>
+                    <li>CSE 15L. Software Tools and Techniques Laboratory</li>
+                    <li>CSE 20. Discrete Mathematics</li>
+                    <li>CSE 21. Mathematics for Algorithms and Systems</li>
+                    <li>CSE 30. Computer Organization and Systems Programming</li>
+                    <li>CSE 100. Advanced Data Structures</li>
+                    <li>CSE 103. A Practical Introduction to Probability and Statistics</li>
+                    <li>CSE 110. Software Engineering</li>
+                </ul>
+            </article>
+            <aside>
+                <h3>I am currently taking those classes:</h3>
+                <ul>
+                    <li>CSE 134B. Web Client Languages</li>
+                    <li>CSE 140. Components and Design Techniques for Digital Systems</li>
+                    <li>CSE 140L. Digital Systems Laboratory</li>
+                    <li>CSE 152A. Introduction to Computer Vision I</li>
+                </ul>
+            </aside>
+        </section>
+        <hr>
+        <!-- My Skills -->
+        <section class="panel3">
+            <article class="skillTb">
+                <h2>My SkillSet</h2>
+                <table>
+                    <caption>Coding Langauges</caption>
+                    <colgroup>
+                        <col id="impCol" span="2">
+                    </colgroup>
+                    <tr>
+                        <th>Languages</th>
+                        <th>Experience Level</th>
+                        <th>Number of Projects</th>
+                    </tr>
+                    <tr>
+                        <td>Java</td>
+                        <td>Proficient</td>
+                        <td>~10</td>
+                    </tr>
+                    <tr>
+                        <td>Python</td>
+                        <td>Proficient</td>
+                        <td>~8</td>
+                    </tr>
+                    <tr>
+                        <td>C/C++</td>
+                        <td>Proficient</td>
+                        <td>~3</td>
+                    </tr>
+                    <tr>
+                        <td>HTML, CSS, JS</td>
+                        <td>Competent</td>
+                        <td>~4</td>
+                    </tr>
+                    <tr>
+                        <td>Git</td>
+                        <td>Competent</td>
+                        <td>~10</td>
+                    </tr>
+                </table>
+            </article>
+            <article class="skills">
+                <p>I work with Java for the longest time. It is also my <code>Hello World</code> language. <br />
+                    To me, Java is used mainly for the backend of a program or a website.</p>
+                <p>Python is also a familiar tool to me, where I used it for doing image research and building games.</p>
+                <p>I have learned HTML, CSS, JS, and Git a few years ago, and I am glad now I have a deeper understanding <br />
+                    of them now by taking CSE 110 and CSE 134B.</p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <div>
+            <p>Author: Will Luo</p>
+            <p>Copyright © 2023 Will Luo</p>
+        </div>
+    </footer>
+    <script>
+
+    </script>
+</body>
 </html>

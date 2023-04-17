@@ -1,0 +1,212 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    
+} */
+
+header {
+    grid-area: header;
+}
+
+body {
+    display: grid;
+    grid:
+    "header header"
+    "main main"
+    "footer footer";
+    background-color: beige;
+    grid-gap: 2%;
+    margin: 0;
+}
+
+main {
+    grid-area: main;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    list-style: none;
+}
+
+.navLinks > li {
+    list-style: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    background-color: teal;
+    color: #fff;
+}
+
+.navLinks li a{
+    color: #fff;
+    background-color: teal;
+}
+
+.navLinks li a:hover {
+    text-decoration: underline;
+    transition: 0.3s ease;   
+}
+
+.navLinks {
+    display: flex;
+    gap: 2em;
+    font-size: 18px;
+    background-color: teal;
+}
+
+#mainTitle {
+    display: flex;
+    justify-content: center;
+    margin: 5% 5% 0;
+    font-style: italic;
+    /* border: 1px solid; */
+}
+
+footer {
+    grid-area: footer;
+    padding: 20px;
+    text-align: right;
+}
+
+/* Panel 1 */
+
+.panel1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3em;
+    margin-bottom: 5%;
+    flex-wrap: wrap;
+}
+
+.proj1_left, .proj1_right {
+    margin: 2%;
+}
+
+.proj1_left h2 {
+    font-size: x-large;
+    margin: 10% auto;
+    text-align: center;
+}
+
+.proj1_right {
+    max-width: 70ch;
+    line-height: 2rem;
+    font-size: medium;
+}
+
+.proj1_right p {
+    font-style: italic;
+    font-size: large;
+}
+
+figcaption {
+    text-align: center;
+}
+
+/* Panel 2 */
+
+.panel2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3em;
+    margin-bottom: 5%;
+    flex-wrap: wrap;
+}
+
+.proj2_left, .proj2_right {
+    margin: 2%;
+}
+
+.proj2_left h2 {
+    font-size: x-large;
+    margin: 10% auto;
+    text-align: center;
+}
+
+.proj2_right {
+    max-width: 70ch;
+    line-height: 2rem;
+    font-size: medium;
+}
+
+.proj2_right p {
+    font-style: italic;
+    font-size: large;
+}
+
+iframe {
+    width: 610px;
+    height: 600px;
+}
+
+/* Panel 3 */
+
+.panel3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3em;
+    margin-bottom: 5%;
+    flex-wrap: wrap;
+}
+
+.proj3_left, .proj3_right {
+    margin: 2%;
+}
+
+.proj3_left h2 {
+    font-size: x-large;
+    margin: 10% auto;
+    text-align: center;
+}
+
+.proj3_right {
+    max-width: 70ch;
+    line-height: 2rem;
+    font-size: medium;
+}
+
+.proj3_right p {
+    font-style: italic;
+    font-size: large;
+}
+
+#essayBtn, #gameBtn {
+    background-color: teal;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 0 5px 0 rgb(0, 69, 69);
+}
+
+#essayBtn:hover {
+    background-color: rgb(19, 86, 86);
+}
+
+#gameBtn:hover {
+    background-color: rgb(19, 86, 86);
+}
+
+#essayBtn:active {
+    box-shadow: none;
+    top: 5px;
+}
+
+#gameBtn:active {
+    box-shadow: none;
+    top: 5px;
+}
+
+.btnLi {
+    list-style: none;
+    margin: 2rem;
+    /* vertical-align: center; */
+}

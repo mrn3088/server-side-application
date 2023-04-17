@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen and (min-width: 768px)" href="css/styledcrud_pc.css">
+    <link rel="stylesheet" media="screen and (min-width: 640px) and (max-width: 767px)" href="css/styledcrud_tablet.css">
+    <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/styledcrud_mobile.css">
+    <title>Styled Blog CRUD</title>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PW0FF1MSLF');
+</script>
+<body>
+    <header>
+        <nav>
+            <ul class="navLinks">
+                <li><a href="/index.html">Will's Website!</a></li>
+                <li><a href="/Projects.html">My Project</a></li>
+                <li><a href="/Interest.html">My Interests</a></li>
+                <li><a href="/styledcrud.html">My Posts</a></li>
+                <li><a href="/Contact.html">Contact Me!</a></li>
+                <li><a href="/methodtest.html">MethodTest</a></li>
+                <li><a href="/webcomponent.html">Web Component</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Big List of Blogs</h1>
+        <ul id="blogList">
+            <template>
+                <dialog id="myDialog" open></dialog>
+            </template>
+        </ul>
+        <button id="addBlogBtn">Add Blog</button>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.1/dist/purify.min.js"></script>
+    <!-- <script src="/node_modules/dompurify/dist/purify.js"></script> -->
+
+    <script type="module">
+        import {init, addBlog} from "./js/blog2.js";
+        window.addEventListener("DOMContentLoaded", init);
+        document.getElementById("addBlogBtn").onclick = addBlog;
+    </script>
+</body>
+</html>

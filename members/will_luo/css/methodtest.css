@@ -1,0 +1,78 @@
+body {
+    margin: 5% 10%;
+}
+
+nav {
+    border: 1px solid red;
+    padding: 2%;
+    margin: 3% 0;
+    max-width: fit-content;
+}
+
+h2 {
+    color: cadetblue;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse; 
+    
+ }
+ td, th {
+    padding: 10px;
+    
+ }
+
+fieldset {
+    border: 1px solid teal;
+}
+
+input[type=text], input[type=number], input[type=date],#browser {
+    padding: 5px;
+    margin:10px 0;
+    background-color: #fafafa;
+    border:0;
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
+}
+
+input[type=text]:hover, input[type=number]:hover, input[type=date]:hover, textarea:hover, select:hover, datalist:hover{
+    box-shadow:0 0 4px rgba(0,0,0,0.5);
+}
+
+input, textarea {
+    font-family:inherit;
+    font-size: inherit;
+}
+
+/* p     { display: table-row;  }
+label { display: table-cell; text-align: right; }
+input { display: table-cell; } */
+
+textarea {
+    width:100%;
+    resize: vertical;
+    padding:5px;
+    border-radius:5px;
+    border:0;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    height:150px;
+}
+
+button {
+    padding:10px;
+    border:none;
+    background-color:teal;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width: 15%;
+    height: 10%;
+    /* margin: 5%; */
+    
+}
+
+button:hover {
+    background-color: rgb(19, 86, 86);
+    cursor: pointer;
+}

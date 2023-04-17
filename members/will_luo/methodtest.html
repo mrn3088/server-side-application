@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/methodtest.css">
+    
+    <title>Method Test</title>
+</head>
+<body>
+    <nav>
+        <a href="/index.html">Home</a>
+    </nav>
+    <!--  method="post" action="https://httpbin.org/post" -->
+    <form id="form_">
+        <fieldset>
+            <legend>Form</legend>
+            <!-- ID -->
+            <label for="record_id">Record ID: </label>
+            <input type="number" name="record_id" id="record_id"><br><br>
+            <!-- Name -->
+            <label for="article_name">Article Name: </label>
+            <input type="text" name="article_name" id="article_name"><br><br>
+            <!-- Body -->
+            <label for="article_body">Article Body: </label><br>
+            <textarea name="article_body" id="article_body"></textarea>
+            <!-- Date, but hidden -->
+            <label for="date" hidden>Current Date: </label><br>
+            <input type="date" name="date" id="date" hidden><br><br>
+            <!-- <button id="postBtn" type="submit">Post Button</button> -->
+            
+        </fieldset>
+    </form>
+    <br>
+    <div>
+        <input type="radio" id="XMLHttpRequest" name="send_method" value="XMLHttpRequest" checked>
+        <label for="XMLHttpRequest">XMLHttpRequest</label>
+        <input type="radio" id="fetch" name="send_method" value="fetch">
+        <label for="fetch">fetch</label><br><br>
+    </div>
+    <div>
+        <button id="postBtn">Post Button</button>
+        <button id="getBtn">Get Button</button>
+        <button id="putBtn">Put Button</button>
+        <button id="deleteBtn">Delete Button</button>
+    </div>
+    <output id="response"></output>
+    <script type="module">
+        import {postClick, getClick, putClick, deleteClick} from "./js/methodtest.js";
+        const postBtn = document.getElementById("postBtn");
+        postBtn.addEventListener("click", postClick);
+        const getBtn = document.getElementById("getBtn");
+        getBtn.addEventListener("click", getClick);
+        const putBtn = document.getElementById("putBtn");
+        putBtn.addEventListener("click", putClick);
+        const deleteBtn = document.getElementById("deleteBtn");
+        deleteBtn.addEventListener("click", deleteClick);
+    </script>
+</body>
+</html>

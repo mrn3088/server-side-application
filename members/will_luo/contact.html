@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" media="screen and (min-width: 768px)" href="css/contact_pc.css">
+    <link rel="stylesheet" media="screen and (min-width: 640px) and (max-width: 767px)" href="css/contact_tablet.css">
+    <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/contact_mobile.css">
+    <link rel="icon" href="fav_icon.png">
+    <style></style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PW0FF1MSLF');
+</script>
+<body>
+    <header>
+        <nav>
+            <ul class="navLinks">
+                <li><a href="/index.html">Will's Website!</a></li>
+                <li><a href="/Projects.html">My Project</a></li>
+                <li><a href="/Interest.html">My Interests</a></li>
+                <li><a href="/styledcrud.html">My Posts</a></li>
+                <li><a href="/Contact.html">Contact Me!</a></li>
+                <li><a href="/methodtest.html">MethodTest</a></li>
+                <li><a href="/webcomponent.html">Web Component</a></li>
+            </ul>
+        </nav>
+        <h1 id="mainTitle">Contact me!</h1>
+    </header>
+    <main>
+        <section>
+                <!-- action? -->
+                <form>
+                    <fieldset>
+                        <legend>Please reach out to me!</legend>
+                        <label for="fname">First name:</label>
+                        <input type="text" id="fname" name="fname"><br /><br />
+                        <label for="lname">Last name:</label>
+                        <input type="text" id="lname" name="lname"><br /><br />
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email"><br /><br />
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date"><br /><br />
+                        
+                        <label for="type">What brings you here?</label>
+                        <select name="type" id="type">
+                            <optgroup label="Opportunities">
+                                <option value="intern">Intern</option>
+                                <option value="research">Research</option>
+                                <option value="part time">Part Time Job</option>
+                                <option value="full time">Full Time Job</option>
+                            </optgroup>
+                            <optgroup label="Nice to Know You">
+                                <option value="greeting">Greeting</option>
+                                <option value="question">Question</option>
+                                <option value="comment">Comment</option>
+                            </optgroup>
+                        </select>
+                        <br /><br />
+
+                        <label for="browser">Choose your browser from the list:</label>
+                        <input list="browsers" name="browser" id="browser">
+                        <datalist id="browsers">
+                            <option value="Chrome">
+                            <option value="Firefox">
+                            <option value="Safari">
+                            <option value="Edge">
+                            <option value="Opera">
+                        </datalist>
+
+                        <p><label for="msg">Please leave a message for me:</label></p>
+                        <textarea name="msg" id="msg" cols="30" rows="4"></textarea>
+                        <br />
+                        <button type="submit" value="Submit">submit</button>
+                    </fieldset>
+                </form>
+            
+        </section>
+    </main>
+    <footer>
+        <div>
+            <p>Author: Will Luo</p>
+            <p>Copyright © 2023 Will Luo</p>
+        </div>
+    </footer>
+    <script>
+
+    </script>
+</body>
+</html>

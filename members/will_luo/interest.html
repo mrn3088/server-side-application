@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest</title>
+    <link rel="stylesheet" media="screen and (min-width: 768px)" href="css/interest_pc.css">
+    <link rel="stylesheet" media="screen and (min-width: 640px) and (max-width: 767px)" href="css/interest_tablet.css">
+    <link rel="stylesheet" media="screen and (max-width: 639px)" href="css/interest_mobile.css">
+    <link rel="icon" href="fav_icon.png">
+    <style></style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PW0FF1MSLF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PW0FF1MSLF');
+</script>
+<body>
+    <header>
+        <nav>
+            <ul class="navLinks">
+                <li><a href="/index.html">Will's Website!</a></li>
+                <li><a href="/Projects.html">My Project</a></li>
+                <li><a href="/Interest.html">My Interests</a></li>
+                <li><a href="/styledcrud.html">My Posts</a></li>
+                <li><a href="/Contact.html">Contact Me!</a></li>
+                <li><a href="/methodtest.html">MethodTest</a></li>
+                <li><a href="/webcomponent.html">Web Component</a></li>
+            </ul>
+        </nav>
+        <h1 id="mainTitle">I Like To ... Do A Lot of Things!</h1>
+    </header>
+    <main>
+        <section class="int1">
+            <h2>Enjoy <i>Yellow</i> from <span>Coldplay</span>!</h2>
+            <div id="coldPlay">
+                <figure>
+                    <img src="image/coldplay-yellow.jpeg" alt="image/ImageNotFound.jpeg">
+                </figure>
+                <br />
+                <audio controls>
+                    <source src="audio/Coldplay-Yellow.mp3" type="audio/mpeg">
+                    Your browser does not support the audio tag.
+                </audio>
+            </div>
+        </section>
+        <hr>
+        <section class="int2">
+            <div>
+                <h3>There are lots of fun things to do!</h3>
+                <ol>
+                    <li>
+                        <picture>
+                            <source media="(min-width:640px)" srcset="image/music.jpeg" alt="Sorry, there is an error with the image.">
+                            <img src="image/musicS.jpeg" alt="Sorry, there is an error with the image.">    
+                        </picture>
+                        <details>
+                            <summary>Listen to music</summary>
+                            <p>Western and eastern pop, Chinese, Japanese... And of course, Coldplay!</p>
+                        </details>
+                    </li>
+                    <li>
+                        <picture>
+                            <source media="(min-width:640px)" srcset="image/tennis.jpeg" alt="Sorry, there is an error with the image.">
+                            <img src="image/tennisS.jpeg" alt="Sorry, there is an error with the image.">    
+                        </picture>
+                        <details>
+                            <summary>Play tennis</summary>
+                            <p>It takes me a few years to level up from a beginner, but it is so satisfying when you hit the ball!</p>
+                        </details>
+                    </li>
+                    <li>
+                        <picture>
+                            <source media="(min-width:640px)" srcset="image/gaming.jpeg" alt="Sorry, there is an error with the image.">
+                            <img src="image/gamingS.jpeg" alt="Sorry, there is an error with the image.">    
+                        </picture>
+                        <details>
+                            <summary>Video games</summary>
+                            <p>First Person Shooting is my favorite. Never get bored.</p>
+                        </details>
+                    </li>
+                    <li>
+                        <picture>
+                            <source media="(min-width:640px)" srcset="image/culinary.jpeg" alt="Sorry, there is an error with the image.">
+                            <img src="image/culinaryS.jpeg" alt="Sorry, there is an error with the image.">    
+                        </picture>
+                        <details>
+                            <summary>Culinary</summary>
+                            <p>Self learner of Chinese food and western food. Also taking a big step into desserts.</p>
+                        </details>
+                    </li>
+                    <!-- <li>
+                        <details>
+                            <summary>Taste</summary>
+                            <p>I am not just eating good food, but I am tasting the meaning behind them. Thanks to our diverse community, <br>
+                            I am able to try out food from different culture. There are always some good flavors waiting for me.</p>
+                        </details>
+                    </li> -->
+                </ol>
+            </div>
+        </section>
+        <!-- <section class="int3">
+            <div>
+                <h3>Explore Area</h3>
+                <canvas id="myCanvas">Your browser does not support the canvas tag.</canvas>
+                <br />
+                <svg width="200" height="100">
+                    <rect x="20" y="10" rx="20" ry="20" width="50" height="50" style="fill:red;stroke:black;stroke-width:5;opacity:0.5"></rect>
+                </svg>
+                <br />
+                <button onclick="">Show hidden content</button>
+                <template>
+                    <p>There is nothing left!</p>
+                    <img src="image/cozy.webp" alt="image/ImageNotFound.jpeg">
+                </template>
+            </div>
+        </section> -->
+    </main>
+    <footer>
+        <div>
+            <p>Author: Will Luo</p>
+            <p>Copyright © 2023 Will Luo</p>
+        </div>
+    </footer>
+    <script>
+        var myCanvas = document.getElementById("myCanvas");
+        var context = myCanvas.getContext("2d");
+        context.fillStyle = "rgb(200, 0, 0)";
+        context.fillRect(10, 10, 50, 50);
+        context.fillStyle = "rgba(0, 0, 200, 0.5)";
+        context.fillRect(30, 30, 50, 50);
+
+        //function showContent() {
+        //    var temp = document.getElementsByTagName("template")[0];
+        //    var clon = temp.content.cloneNode(true);
+        //    var main = document.getElementsByTagName("main")[0];
+        //    main.appendChild(clon);
+        //}
+    </script>
+</body>
+</html>

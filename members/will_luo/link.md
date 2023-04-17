@@ -1,0 +1,5 @@
+1. [Github link](https://github.com/alien-traveler/cse134-hw5)
+2. [Netlify link](https://thunderous-heliotrope-69089f.netlify.app)
+3. Part 1: [link](https://thunderous-heliotrope-69089f.netlify.app/methodtest.html)
+3. Part 2: [link](https://thunderous-heliotrope-69089f.netlify.app/webcomponent.html)
+4. Part 3: [link](https://thunderous-heliotrope-69089f.netlify.app/extracredit.html)

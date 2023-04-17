@@ -1,0 +1,157 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    
+} */
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+header {
+    grid-area: header;
+}
+
+body {
+    display: grid;
+    grid:
+    "header header"
+    "main main"
+    "footer footer";
+    background-color: azure;
+    grid-gap: 2%;
+    margin: 0;
+}
+
+main {
+    grid-area: main;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    list-style: none;
+}
+
+.navLinks > li {
+    list-style: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    background-color: teal;
+    color: #fff;
+}
+
+.navLinks li a{
+    color: #fff;
+    background-color: teal;
+}
+
+.navLinks li a:hover {
+    text-decoration: underline;
+    transition: 0.3s ease;   
+}
+
+.navLinks {
+    display: flex;
+    gap: 2em;
+    font-size: 18px;
+    background-color: teal;
+}
+
+#mainTitle {
+    display: flex;
+    justify-content: center;
+    margin: 5% 5% 0;
+    font-style: italic;
+    /* border: 1px solid; */
+}
+
+/* Form */
+
+form {
+    margin: auto 20%;
+    /* display: table; */
+}
+
+fieldset {
+    border: 1px solid teal;
+}
+
+input[type=text], input[type=email], input[type=date], #browser {
+    padding: 5px;
+    margin:10px 0;
+    background-color: #fafafa;
+    border:0;
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
+}
+
+input[type=text]:hover, input[type=email]:hover, input[type=date]:hover, textarea:hover, select:hover, datalist:hover{
+    box-shadow:0 0 4px rgba(0,0,0,0.5);
+}
+
+input, textarea {
+    font-family:inherit;
+    font-size: inherit;
+}
+
+/* p     { display: table-row;  }
+label { display: table-cell; text-align: right; }
+input { display: table-cell; } */
+
+textarea {
+    width:100%;
+    resize: vertical;
+    padding:5px;
+    border-radius:5px;
+    border:0;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    height:150px;
+}
+
+select {
+    padding:5px;
+    /* border-radius:10px; */
+    background-color: #fafafa;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border: 0;
+}
+
+datalist {
+    padding:10px;
+    /* border-radius:10px; */
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border: 0;
+}
+
+button {
+    padding:10px;
+    border:none;
+    background-color:teal;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width: auto;
+    margin: 5%;
+    width: 15%;
+    height: 10%;
+}
+
+button:hover {
+    background-color: rgb(19, 86, 86);
+    cursor: pointer;
+}
+
+
+/* Footer */
+
+footer {
+    grid-area: footer;
+    padding: 20px;
+    text-align: right;
+}

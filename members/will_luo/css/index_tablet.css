@@ -1,0 +1,178 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    
+} */
+
+header {
+    grid-area: header;
+}
+
+body {
+    display: grid;
+    grid:
+    "header header"
+    "main main"
+    "footer footer";
+    background-color: beige;
+    grid-gap: 2%;
+    margin: 0;
+}
+
+main {
+    grid-area: main;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    list-style: none;
+}
+
+.navLinks > li {
+    list-style: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    background-color: teal;
+    color: #fff;
+}
+
+.navLinks li a{
+    color: #fff;
+    background-color: teal;
+}
+
+.navLinks li a:hover {
+    text-decoration: underline;
+    transition: 0.3s ease;   
+}
+
+.navLinks {
+    display: flex;
+    gap: 2em;
+    font-size: 18px;
+    background-color: teal;
+}
+
+#mainTitle {
+    display: flex;
+    justify-content: center;
+    margin: 15% 5% 0;
+    font-style: italic;
+    /* border: 1px solid; */
+}
+
+.panel1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 5%;
+    flex-wrap: wrap;
+}
+
+.myPhoto, .myIntro{
+    margin: 2%;
+    /* border: 1px solid black; */
+}
+
+.myPhoto h2 {
+    font-size: x-large;
+    margin: 2ch auto;
+    text-align: center;
+}
+
+.myIntro {
+    max-width: 50ch;
+    line-height: 2rem;
+    font-size: large;
+}
+
+.myIntro p {
+    margin: 0 12% 12%;
+}
+
+.panel2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 5%;
+    flex-wrap: wrap;
+}
+
+.myEd, aside {
+    margin: 2%;
+    max-width: 50ch;
+    line-height: 2rem;
+    font-size: large;
+}
+
+.myEd h2 {
+    font-size: x-large;
+    margin: 2ch auto;
+    text-align: center;
+}
+
+.myEd p {
+    margin: 5% auto;
+}
+
+aside {
+    float: right;
+    border: 2px solid red;
+    border-radius: 10%;
+    padding: 1%;
+    background-color: rgb(255, 253, 240);
+}
+
+aside li {
+    list-style: none;
+}
+
+.panel3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+.skillTb, .skills {
+    margin: 2% 2%;
+    max-width: 50ch;
+    line-height: 2rem;
+    /* font-size: large; */
+}
+
+.skillTb {
+    font-size: large;
+}
+
+.skillTb h2 {
+    font-size: x-large;
+    margin: 2ch auto;
+    text-align: center;
+}
+
+table, td, th {
+    border: 1px solid;
+    text-align: center;
+    padding: 3px;
+}
+
+col {
+    background-color: rgb(159, 231, 255, 0.884);
+}
+
+
+footer {
+    grid-area: footer;
+    padding: 20px;
+    text-align: right;
+}
