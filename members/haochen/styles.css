@@ -7,6 +7,10 @@ h1, h2, h3 {
     color: #333;
 }
 
+p {
+    margin: 0 0 1rem;
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -28,4 +32,8 @@ img.profile {
 
 .section-content {
     display: none;
+}
+
+.visible-section {
+    display: block;
 }
