@@ -27,6 +27,9 @@ print "<body>";
 
 print "<h1>Perl Sessions Page 2</h1>";
 
+if ($cookie) {
+    print "<p><b>CGISESSID:</b> $cookie</p>";
+}
 if ($name){
 	print("<p><b>Name:</b> $name");
 }else{
