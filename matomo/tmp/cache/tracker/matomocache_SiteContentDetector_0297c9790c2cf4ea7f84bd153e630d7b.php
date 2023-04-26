@@ -1,0 +1,1 @@
+<?php return unserialize('a:2:{s:8:"lifetime";i:1683079504;s:4:"data";a:4:{s:16:"consentManagerId";N;s:18:"consentManagerName";N;s:17:"consentManagerUrl";N;s:11:"isConnected";b:0;}}', ['allowed_classes' => false]);
