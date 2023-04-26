@@ -11,6 +11,7 @@ charset = "utf8mb4"
 
 [General]
 salt = "23fa3d1a49c0e966359c323d06bbcab2"
+installation_in_progress = 1
 trusted_hosts[] = "cse135.monster"
 
 [PluginsInstalled]
