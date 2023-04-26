@@ -1,4 +1,3 @@
-#!/usr/bin/env gorun
 package main
 
 import (
