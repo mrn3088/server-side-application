@@ -56,7 +56,7 @@ int main(int argc, char **argv, char **envp)
   printf("<br />");
   printf("<a href=\"/cgi-bin/c-sessions-2.cgi\">Session Page 2</a>");
   printf("<br />");
-  printf("<a href=\"/c-cgiform.html\">C CGI Form</a>");
+  printf("<a href=\"/cgi-form/c-cgiform.html\">C CGI Form</a>");
   printf("<br /><br />");
 
   // Destroy Cookie button
