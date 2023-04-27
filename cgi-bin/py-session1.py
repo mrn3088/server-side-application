@@ -23,9 +23,9 @@ else:
 
 # Output HTML body
 print("""<html>
-<head><title>C Sessions</title></head>
+<head><title>Python Sessions</title></head>
 <body>
-    <h1>C Sessions Page 1</h1>
+    <h1>Python Sessions Page 1</h1>
     <table>""")
 
 # First check for new Cookie, then Check for old Cookie
@@ -38,12 +38,12 @@ else:
 
 print("""</table>
 <br />
-<a href="/cgi-bin/c-sessions-2.cgi">Session Page 2</a>
+<a href="/cgi-bin/py-sessions-2.py">Session Page 2</a>
 <br />
-<a href="/cgi-form/c-cgiform.html">C CGI Form</a>
+<a href="/cgi-form/py-cgiform.html">Python CGI Form</a>
 <br /><br />
 
-<form action="/cgi-bin/c-destroy-session.cgi" method="get">
+<form action="/cgi-bin/py-destroy-session.py" method="get">
     <button type="submit">Destroy Session</button>
 </form>
 </body>

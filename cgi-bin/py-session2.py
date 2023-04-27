@@ -8,9 +8,9 @@ print("Content-type: text/html\n")
 
 # Output HTML body
 print("""<html>
-<head><title>C Sessions</title></head>
+<head><title>Python Sessions</title></head>
 <body>
-    <h1>C Sessions Page 2</h1>
+    <h1>Python Sessions Page 2</h1>
     <table>""")
 
 if os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
@@ -20,12 +20,12 @@ else:
 
 print("""</table>
 <br />
-<a href="/cgi-bin/c-sessions-1.cgi">Session Page 1</a>
+<a href="/cgi-bin/py-sessions-1.py">Session Page 1</a>
 <br />
-<a href="/cgi-form/c-cgiform.html">C CGI Form</a>
+<a href="/cgi-form/py-cgiform.html">Python CGI Form</a>
 <br /><br />
 
-<form action="/cgi-bin/c-destroy-session.cgi" method="get">
+<form action="/cgi-bin/py-destroy-session.py" method="get">
     <button type="submit">Destroy Session</button>
 </form>
 </body>

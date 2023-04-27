@@ -7,14 +7,14 @@ print("Content-type: text/html\n")
 
 # Output HTML body
 print("""<html>
-<head><title>C Session Destroyed</title></head>
+<head><title>Python Session Destroyed</title></head>
 <body>
-    <h1>C Session Destroyed</h1>
+    <h1>Python Session Destroyed</h1>
 
-    <a href="/cgi-bin/c-sessions-1.cgi">Back to Page 1</a>
+    <a href="/cgi-bin/py-sessions-1.py">Back to Page 1</a>
     <br />
-    <a href="/cgi-bin/c-sessions-2.cgi">Back to Page 2</a>
+    <a href="/cgi-bin/py-sessions-2.py">Back to Page 2</a>
     <br />
-    <a href="/cgi-form/c-cgiform.html">C CGI Form</a>
+    <a href="/cgi-form/c-cgiform.html">Python CGI Form</a>
 </body>
 </html>""")
