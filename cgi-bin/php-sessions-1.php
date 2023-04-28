@@ -1,25 +1,28 @@
-<!-- print "<html>";
-print "<head>";
-print "<title>Perl Sessions</title>";
-print "</head>";
-print "<body>";
+<html>
+    <head>
+        <title>PHP Sessions</title>
+    </head>
+    <body>
+        <h1>PHP Sessions Page 1</h1>
+        <?php
+        if (isset($_COOKIE['PHPSESSID'])) {
+            $cookie = $_COOKIE['PHPSESSID'];
+            echo "<p><b>PHPSESSID:</b> $cookie</p>";
+        } else {
+            echo "<p><b>PHPSESSID:</b> No session exists</p>";
+        }
 
-print "<h1>Perl Sessions Page 1</h1>";
-
-if ($cookie) {
-    print "<p><b>CGISESSID:</b> $cookie</p>";
-}
-if ($name){
-	print("<p><b>Name:</b> $name");
-}else{
-	print "<p><b>Name:</b> You do not have a name set</p>";
-}
-print "<br/><br/>";
-print "<a href=\"/cgi-bin/perl-sessions-2.pl\">Session Page 2</a><br/>";
-print "<a href=\"/perl-cgiform.html\">Perl CGI Form</a><br />";
-print "<form style=\"margin-top:30px\" action=\"/cgi-bin/perl-destroy-session.pl\" method=\"get\">";
-print "<button type=\"submit\">Destroy Session</button>";
-print "</form>";
-
-print "</body>";
-print "</html>"; -->
+        if ($_SESSION['username'] || $_CGI['username']) {
+            $name = $_SESSION['username'];
+            echo "<p><b>Name:</b> $name</p>";
+        } else {
+            echo "<p><b>Name:</b> You do not have a name set</p>";
+        }
+        ?>
+        <a href="/cgi-bin/php-sessions-2.php">Session Page 2</a>
+        <a href="/cgi-form/php-cgiform.html">PHP CGI Form</a>
+        <form style="margin-top:30px" action="/cgi-bin/php-destroy-session.php" method="get">
+            <button type="submit">Destroy Session</button>
+        </form>
+    </body>
+</html>

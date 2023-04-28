@@ -15,6 +15,6 @@ print("""<html>
     <br />
     <a href="/cgi-bin/py-sessions-2.py">Back to Page 2</a>
     <br />
-    <a href="/cgi-form/c-cgiform.html">Python CGI Form</a>
+    <a href="/cgi-form/py-cgiform.html">Python CGI Form</a>
 </body>
 </html>""")
