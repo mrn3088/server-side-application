@@ -9,11 +9,11 @@
 	<p>The following data was retrieved from the message body:</p>
 	<ul>
     <?php
-    $protocal = $_server['SERVER_PROTOCOL'];
-    $query = $_server['QUERY_STRING'];
+    $protocal = $_SERVER['SERVER_PROTOCOL'];
+    $query = $_SERVER['QUERY_STRING'];
     $method = $_SERVER['REQUEST_METHOD'];
     $payload = json_encode($_POST);
-    
+
     // // Get the request payload
     // if ($method == 'PUT' || $method == 'DELETE') {
     //     // Raw payload is only available for PUT and DELETE requests
