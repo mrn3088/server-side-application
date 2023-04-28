@@ -5,6 +5,7 @@
     <body>
         <h1>PHP Sessions Page 1</h1>
         <?php
+        session_start();
         if (isset($_COOKIE['PHPSESSID'])) {
             $cookie = $_COOKIE['PHPSESSID'];
             echo "<p><b>PHPSESSID:</b> $cookie</p>";
