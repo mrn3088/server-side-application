@@ -11,6 +11,7 @@
         <br />
         <a href="/cgi-form/php-cgiform.html">PHP CGI Form</a>
         <?php
+            session_start();
             session_destroy();
         ?>
     </body>
