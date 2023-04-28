@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 # Generate the HTTP header
 print("Cache-Control: no-cache")
