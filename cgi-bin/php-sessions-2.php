@@ -5,6 +5,9 @@
     <body>
         <h1>PHP Sessions Page 2</h1>
         <?php
+        session_start();
+        $_SESSION['username'] = $_POST['username'];
+
         if (isset($_COOKIE['PHPSESSID'])) {
             $cookie = $_COOKIE['PHPSESSID'];
             echo "<p><b>PHPSESSID:</b> $cookie</p>";
@@ -12,7 +15,7 @@
             echo "<p><b>PHPSESSID:</b> No session exists</p>";
         }
 
-        if ($_SESSION['username'] || $_CGI['username']) {
+        if ($_SESSION['username'] != "" || $_SESSION['username'] != null) {
             $name = $_SESSION['username'];
             echo "<p><b>Name:</b> $name</p>";
         } else {

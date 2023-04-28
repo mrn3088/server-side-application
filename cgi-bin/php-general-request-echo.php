@@ -4,7 +4,7 @@
 	<title>General Request</title>
 </head>
 <body>
-	<h1>POST Message Body</h1>
+	<h1>General Request Echo</h1>
     <hr>
 	<p>The following data was retrieved from the message body:</p>
 	<ul>
