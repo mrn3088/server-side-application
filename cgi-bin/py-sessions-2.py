@@ -13,9 +13,19 @@ print("""<html>
     <h1>Python Sessions Page 2</h1>
     <table>""")
 
+def parse_string(s):
+    first_semi = s.find(';')
+    if first_semi == -1:
+        return None  # ';' character not found
+
+    second_semi = s.find(';', first_semi + 1)
+    if second_semi == -1:
+        return None  # second ';' character not found
+
+    return s[first_semi + 1:second_semi]
 
 if os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
-    print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
+    print(f"<tr><td>Cookie:</td><td>{parse_string(os.environ['HTTP_COOKIE'])}</td></tr>")
 else:
     print("<tr><td>Cookie:</td><td>None</td></tr>")
 
