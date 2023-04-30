@@ -14,7 +14,7 @@
     <!-- Get the user's IP address -->
     <cfset userIP = cgi.REMOTE_ADDR>
 
-    <p>Current Time: #DateFormat(currentDateTime, "yyyy-mm-dd")# #TimeFormat(currentDateTime, "HH:nn:ss")#</p>
+    <p>Current Time: #DateFormat(currentDateTime, "yyyy-MM-dd")# #TimeFormat(currentDateTime, "HH:mm:ss")#</p>
     <p>Your IP Address: #userIP#</p>
 </body>
 </html>
