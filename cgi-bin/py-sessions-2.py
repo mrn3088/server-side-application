@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os
+from http.cookies import SimpleCookie
 
 # Generate the HTTP header
 print("Cache-Control: no-cache")
@@ -13,10 +14,21 @@ print("""<html>
     <h1>Python Sessions Page 2</h1>
     <table>""")
 
-if os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
-    print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
+cookie_string = os.environ.get('HTTP_COOKIE')
+cookie = SimpleCookie()
+cookie.load(cookie_string)
+
+if cookie.get('name'):
+    previous_name = cookie['name'].value
+    print(f"<tr><td>Previous Cookie Name:</td><td>{previous_name}</td></tr>")
 else:
-    print("<tr><td>Cookie:</td><td>None</td></tr>")
+    print("<tr><td>Previous Cookie Name:</td><td>None</td></tr>")
+
+
+# if os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
+#     print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
+# else:
+#     print("<tr><td>Cookie:</td><td>None</td></tr>")
 
 print("""</table>
 <br />
