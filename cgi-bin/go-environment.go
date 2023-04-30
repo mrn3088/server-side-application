@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/url"
 	"os"
 )
 
@@ -14,28 +13,19 @@ func main() {
 	// Generate the page body
 	// Output HTML header
 	fmt.Println(`<html>
-<head>
-    <title>GET query string</title>
-</head>
-<body>
-    <h1 align="center">GET query string</h1>
-    <hr/>`)
+	<head>
+		<title>Environment Variables</title>
+	</head>
+	<body>
+		<h1 align="center">Environment Variables</h1>
+		<hr/>`)
 
-	// Get the query string environment variable
-	queryString := os.Getenv("QUERY_STRING")
-	fmt.Printf("Query string: %s<br/>\n", queryString)
-	fmt.Println("<table> Formatted Query String:")
-
-	// Parse and display the query string
-	values, _ := url.ParseQuery(queryString)
-	for key, vals := range values {
-		for _, value := range vals {
-			fmt.Printf("<tr><td>%s:</td><td>%s</td></tr>\n", key, value)
-		}
+	// Iterate through environment variables and print them
+	for _, keyValuePair := range os.Environ() {
+		fmt.Printf("%s<br/>\n", keyValuePair)
 	}
-
+	
 	// Output HTML footer
-	fmt.Println("</table>")
 	fmt.Println("</body></html>")
 
 }
