@@ -13,4 +13,4 @@
     <cfset userIP = CGI.REMOTE_ADDR>
 </cfif>
 <cfset result.USERIP = userIP>
-<cfoutput>#SerializeJSON(result)#</cfoutput>
+<cfoutput>#trim(SerializeJSON(result))#</cfoutput>
