@@ -6,7 +6,10 @@
         <h1>PHP Sessions Page 1</h1>
         <?php
         session_start();
-        $_SESSION['username'] = $_POST['username'];
+        
+        if (isset($_POST['username'])) {
+            $_SESSION['username'] = $_POST['username'];
+        }
 
         if (isset($_COOKIE['PHPSESSID'])) {
             $cookie = $_COOKIE['PHPSESSID'];
