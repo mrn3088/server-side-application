@@ -1,7 +1,7 @@
-extern crate local_ip_address;
+// extern crate local_ip_address;
 use std::io::Write;
 use std::time::SystemTime;
-use local_ip_address::local_ip;
+// use local_ip_address::local_ip;
 
 fn main() {
 
@@ -16,7 +16,7 @@ fn main() {
     println!( "    <h1 align=center>Hello Rust CGI World</h1>\n" );
     println!( "    <hr/>\n" );
     println!( "    This progaram was generated at: {:?}", SystemTime::now() );
-    println!( "    Your current IP address is: {:?}", local_ip() );
+    // println!( "    Your current IP address is: {:?}", local_ip() );
     println!( "  </body>\n" );
     println!( "</html>\n" );
     
