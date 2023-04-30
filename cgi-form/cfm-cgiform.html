@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>CGI Form</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E424BQ3Z5T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-E424BQ3Z5T');
+  </script>
+
+  <script src="https://cdn.lr-ingest.com/LogRocket.min.js" crossorigin="anonymous"></script>
+  <script>window.LogRocket && window.LogRocket.init('uwaohc/cse135monster');</script>
+</head>
+
+<body>
+  <h1 align="center">Session Test</h1>
+  <hr>
+  <label for="cgi-lang">CGI using ColdFusion</label>
+  <form action="../cgi-bin/cfm-sessions-1.cfm" method="Post" id="form">
+    <label>What is your name? <input type="text" name="username" autocomplete="off"></label>
+    <br>
+    <input type="submit" value="Test Sessioning">
+  </form>
+
+  <a href="/" style="display:inline-block;margin-top:20px;">Home</a>
+
+</body>
+
+</html>
