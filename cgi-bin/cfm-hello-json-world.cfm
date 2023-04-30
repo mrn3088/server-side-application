@@ -1,4 +1,3 @@
-<cfsilent>
 <cfprocessingdirective pageEncoding="UTF-8">
 <cfcontent type="application/json">
 <cfset result = {}>
@@ -17,4 +16,3 @@
 <cfset result.message = "This page was generated with the ColdFusion programming language">
 <cfoutput>#trim(SerializeJSON(result))#</cfoutput>
 </cfprocessingdirective>
-</cfsilent>
