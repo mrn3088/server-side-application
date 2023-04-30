@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Environment Variables</title>
-</head>
-<body>
-    <h1 align="center">Environment Variables</h1>
-    <hr/>
-    
-    <cfheader name="Cache-Control" value="no-cache">
-    
-    <table>
+    <head>
+        <title>Environment Variables</title>
+    </head>
+    <body>
+        <h1 align="center">Environment Variables</h1>
+        <hr>
+
         <cfloop collection="#CGI#" item="key">
-            <tr>
-                <td>#key#</td>
-                <td>=</td>
-                <td>#CGI[key]#</td>
-            </tr>
+            <cfoutput>
+                #key#: #CGI[key]#<br>
+            </cfoutput>
         </cfloop>
-    </table>
-    
-</body>
+
+        <cfset headers = GetHttpRequestData().headers>
+        <cfloop collection="#headers#" item="key">
+            <cfoutput>
+                #key#: #headers[key]#<br>
+            </cfoutput>
+        </cfloop>
+    </body>
 </html>
