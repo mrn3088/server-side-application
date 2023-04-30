@@ -7,16 +7,17 @@
 <body>
     <h1>Monster Team was here - Hello, ColdFusion!</h1>
     <p>This page was generated with the ColdFusion programming language</p>
+    <cfset currentTime = DateFormat(Now(), "yyyy-mm-dd") & " " & TimeFormat(Now(), "HH:nn:ss")>
+    <p>Current Time: <cfoutput>#currentTime#</cfoutput></p>
+  
+    <cfif CGI.HTTP_X_FORWARDED_FOR NEQ "">
+        <cfset userIP = CGI.HTTP_X_FORWARDED_FOR>
+    <cfelse>
+        <cfset userIP = CGI.REMOTE_ADDR>
+    </cfif>
+    <p>Your IP Address: <cfoutput>#userIP#</cfoutput></p>
 
-    <!-- Get the current date and time -->
-    <cfset currentDateTime = now()>
-
-    <!-- Get the user's IP address -->
-    <cfset userIP = cgi.REMOTE_ADDR>
 
 
-    <p>Current Time: <cfoutput>#TimeFormat(Now(), "hh:mm:ss tt")#</cfoutput></p>
-    <p>Your IP Address: <cfoutput>#CGI.REMOTE_ADDR#</cfoutput></p>
-    
 </body>
 </html>
