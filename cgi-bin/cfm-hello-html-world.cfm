@@ -5,11 +5,15 @@
     <title>Hello, ColdFusion!</title>
 </head>
 <body>
-    <cfset currentDateTime = Now() />
-    <cfset userIP = CGI.REMOTE_ADDR />
-    
     <h1>Monster Team was here - Hello, ColdFusion!</h1>
     <p>This page was generated with the ColdFusion programming language</p>
+
+    <!-- Get the current date and time -->
+    <cfset currentDateTime = now()>
+
+    <!-- Get the user's IP address -->
+    <cfset userIP = cgi.REMOTE_ADDR>
+
     <p>Current Time: #DateFormat(currentDateTime, "yyyy-mm-dd")# #TimeFormat(currentDateTime, "HH:nn:ss")#</p>
     <p>Your IP Address: #userIP#</p>
 </body>
