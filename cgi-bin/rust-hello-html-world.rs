@@ -1,5 +1,5 @@
+extern crate local_ip_address;
 use std::io::Write;
-use std::env;
 use std::time::SystemTime;
 use local_ip_address::local_ip;
 
