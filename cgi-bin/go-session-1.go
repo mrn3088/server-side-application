@@ -23,9 +23,9 @@ func main() {
 <h1>Go Sessions Page 1</h1>
 <p><b>Username:</b> %s</p>
 <br/><br/>
-<a href="/cgi-bin/go-sessions-2?username=%s">Session Page 2</a><br/>
+<a href="/cgi-bin/go-sessions-2.cgi?username=%s">Session Page 2</a><br/>
 <a href="/go-cgiform.html">Go CGI Form</a><br />
-<form style="margin-top:30px" action="/cgi-bin/go-destroy-session" method="get">
+<form style="margin-top:30px" action="/cgi-bin/go-destroy-session.cgi" method="get">
 <button type="submit">Destroy Session</button>
 </form>
 </body>

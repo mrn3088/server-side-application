@@ -19,8 +19,8 @@ func main() {
 <body>
 <h1>Session Destroyed</h1>
 <a href="/cgi-form/go-cgiform.html">Back to the Go CGI Form</a><br />
-<a href="/cgi-bin/go-sessions-1">Back to Page 1</a><br />
-<a href="/cgi-bin/go-sessions-2">Back to Page 2</a>
+<a href="/cgi-bin/go-sessions-1.cgi">Back to Page 1</a><br />
+<a href="/cgi-bin/go-sessions-2.cgi">Back to Page 2</a>
 </body>
 </html>`)
 	}))
