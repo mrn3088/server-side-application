@@ -10,26 +10,24 @@ print("Content-type: text/html\n")
 print("""<html>
 <head><title>Python Sessions</title></head>
 <body>
-    <h1>Python Sessions Page 2</h1>""")
+    <h1>Python Sessions Page 2</h1>
+    <table>""")
 
-# Parse cookies
-cookie_str = os.environ.get("HTTP_COOKIE")
-if cookie_str:
-    cookies = dict(c.split('=') for c in cookie_str.split('; '))
-    if 'name' in cookies and cookies['name'] != "destroyed":
-        name = cookies['name']
-    else:
-        name = "You do not have a name set"
+
+if os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
+    print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
 else:
-    name = "You do not have a name set"
+    print("<tr><td>Cookie:</td><td>None</td></tr>")
 
-print(f"<p><b>Name:</b> {name}</p>")
-print("<br/><br/>")
-print("<a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a><br/>")
-print("<a href=\"/cgi-form/py-cgiform.html\">Python CGI Form</a><br />")
-print("""<form style="margin-top:30px" action="/cgi-bin/py-destroy-session.py" method="get">
+print("""</table>
+<br />
+<a href="/cgi-bin/py-sessions-1.py">Session Page 1</a>
+<br />
+<a href="/cgi-form/py-cgiform.html">Python CGI Form</a>
+<br /><br />
+
+<form action="/cgi-bin/py-destroy-session.py" method="get">
     <button type="submit">Destroy Session</button>
-</form>""")
-
-print("</body>")
-print("</html>")
+</form>
+</body>
+</html>""")

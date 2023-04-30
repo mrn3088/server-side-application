@@ -1,19 +1,23 @@
 #!/usr/bin/python3
 
 import os
-import cgi
+import sys
 
 # Generate the HTTP header
 print("Cache-Control: no-cache")
 
-# Get Name from form
-form = cgi.FieldStorage()
-username = form.getvalue('username')
+# Get Name from stdin
+username = sys.stdin.readline().strip()
+
+# Check to see if a proper name was sent
+name = ""
+if username.startswith('username='):
+    name = username[9:]
 
 # Set the cookie using a header, add extra newline to end headers
-if username:
+if len(name) > 0:
     print(f"Content-type: text/html")
-    print(f"Set-Cookie: name={username}\n")
+    print(f"Set-Cookie: {name}\n")
 else:
     print("Content-type: text/html\n")
 
@@ -24,14 +28,11 @@ print("""<html>
     <h1>Python Sessions Page 1</h1>
     <table>""")
 
-# Check for old Cookie and display the 'name' cookie value
-cookie_str = os.environ.get("HTTP_COOKIE")
-if cookie_str:
-    cookies = dict(c.split('=') for c in cookie_str.split('; '))
-    if 'name' in cookies and cookies['name'] != "destroyed":
-        print(f"<tr><td>Cookie:</td><td>{cookies['name']}</td></tr>")
-    else:
-        print("<tr><td>Cookie:</td><td>None</td></tr>")
+# First check for new Cookie, then Check for old Cookie
+if len(name) > 0:
+    print(f"<tr><td>Cookie:</td><td>{name}</td></tr>")
+elif os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
+    print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
 else:
     print("<tr><td>Cookie:</td><td>None</td></tr>")
 
