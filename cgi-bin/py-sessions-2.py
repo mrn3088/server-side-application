@@ -14,21 +14,16 @@ print("""<html>
     <h1>Python Sessions Page 2</h1>
     <table>""")
 
-cookie_string = os.environ.get('HTTP_COOKIE')
-cookie = SimpleCookie()
-cookie.load(cookie_string)
-
-if cookie.get('name'):
-    previous_name = cookie['name'].value
-    print(f"<tr><td>Previous Cookie Name:</td><td>{previous_name}</td></tr>")
+# Parse cookies
+cookie_str = os.environ.get("HTTP_COOKIE")
+if cookie_str:
+    cookies = SimpleCookie(cookie_str)
+    if 'name' in cookies and cookies['name'].value != "destroyed":
+        print(f"<tr><td>Cookie:</td><td>{cookies['name'].value}</td></tr>")
+    else:
+        print("<tr><td>Cookie:</td><td>None</td></tr>")
 else:
-    print("<tr><td>Previous Cookie Name:</td><td>None</td></tr>")
-
-
-# if os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
-#     print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
-# else:
-#     print("<tr><td>Cookie:</td><td>None</td></tr>")
+    print("<tr><td>Cookie:</td><td>None</td></tr>")
 
 print("""</table>
 <br />

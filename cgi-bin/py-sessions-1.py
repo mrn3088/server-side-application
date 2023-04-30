@@ -1,7 +1,7 @@
-#!/usr/bin/python3
 
 import os
 import sys
+from http.cookies import SimpleCookie
 
 # Generate the HTTP header
 print("Cache-Control: no-cache")
@@ -16,8 +16,10 @@ if username.startswith('username='):
 
 # Set the cookie using a header, add extra newline to end headers
 if len(name) > 0:
+    cookie = SimpleCookie()
+    cookie['name'] = name
     print(f"Content-type: text/html")
-    print(f"Set-Cookie: {name}\n")
+    print(f"{cookie}\n")
 else:
     print("Content-type: text/html\n")
 
