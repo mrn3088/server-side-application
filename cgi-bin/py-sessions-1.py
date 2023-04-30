@@ -1,23 +1,20 @@
+#!/usr/bin/python3
 
 import os
-import sys
+import cgi
 from http.cookies import SimpleCookie
 
 # Generate the HTTP header
 print("Cache-Control: no-cache")
 
-# Get Name from stdin
-username = sys.stdin.readline().strip()
-
-# Check to see if a proper name was sent
-name = ""
-if username.startswith('username='):
-    name = username[9:]
+# Get Name from form
+form = cgi.FieldStorage()
+username = form.getvalue('username')
 
 # Set the cookie using a header, add extra newline to end headers
-if len(name) > 0:
+if username:
     cookie = SimpleCookie()
-    cookie['name'] = name
+    cookie['name'] = username
     print(f"Content-type: text/html")
     print(f"{cookie}\n")
 else:
@@ -30,11 +27,14 @@ print("""<html>
     <h1>Python Sessions Page 1</h1>
     <table>""")
 
-# First check for new Cookie, then Check for old Cookie
-if len(name) > 0:
-    print(f"<tr><td>Cookie:</td><td>{name}</td></tr>")
-elif os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
-    print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
+# Check for old Cookie and display the 'name' cookie value
+cookie_str = os.environ.get("HTTP_COOKIE")
+if cookie_str:
+    cookies = SimpleCookie(cookie_str)
+    if 'name' in cookies and cookies['name'].value != "destroyed":
+        print(f"<tr><td>Cookie:</td><td>{cookies['name'].value}</td></tr>")
+    else:
+        print("<tr><td>Cookie:</td><td>None</td></tr>")
 else:
     print("<tr><td>Cookie:</td><td>None</td></tr>")
 
