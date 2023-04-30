@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import os
-from http.cookies import SimpleCookie
 
 # Generate the HTTP header
 print("Cache-Control: no-cache")
@@ -16,9 +15,9 @@ print("""<html>
 # Parse cookies
 cookie_str = os.environ.get("HTTP_COOKIE")
 if cookie_str:
-    cookies = SimpleCookie(cookie_str)
-    if 'name' in cookies and cookies['name'].value != "destroyed":
-        name = cookies['name'].value
+    cookies = dict(c.split('=') for c in cookie_str.split('; '))
+    if 'name' in cookies and cookies['name'] != "destroyed":
+        name = cookies['name']
     else:
         name = "You do not have a name set"
 else:
@@ -34,4 +33,3 @@ print("""<form style="margin-top:30px" action="/cgi-bin/py-destroy-session.py" m
 
 print("</body>")
 print("</html>")
-
