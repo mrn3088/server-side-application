@@ -42,11 +42,11 @@ def parse_string(s):
 
 # First check for new Cookie, then Check for old Cookie
 if len(name) > 0:
-    print(f"<tr><td>Cookie:</td><td>{name}</td></tr>")
+    print(f"<tr><td>Name:</td><td>{name}</td></tr>")
 elif os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
-    print(f"<tr><td>Cookie:</td><td>{parse_string(os.environ['HTTP_COOKIE'])}</td></tr>")
+    print(f"<tr><td>Name:</td><td>{parse_string(os.environ['HTTP_COOKIE'])}</td></tr>")
 else:
-    print("<tr><td>Cookie:</td><td>None</td></tr>")
+    print("<tr><td>Name:</td><td>None</td></tr>")
 
 print("""</table>
 <br />

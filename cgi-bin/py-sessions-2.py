@@ -25,9 +25,9 @@ def parse_string(s):
     return s[first_semi + 1:second_semi]
 
 if os.environ.get("HTTP_COOKIE") and os.environ.get("HTTP_COOKIE") != "destroyed":
-    print(f"<tr><td>Cookie:</td><td>{parse_string(os.environ['HTTP_COOKIE'])}</td></tr>")
+    print(f"<tr><td>Name:</td><td>{parse_string(os.environ['HTTP_COOKIE'])}</td></tr>")
 else:
-    print("<tr><td>Cookie:</td><td>None</td></tr>")
+    print("<tr><td>Name:</td><td>None</td></tr>")
 
 print("""</table>
 <br />
