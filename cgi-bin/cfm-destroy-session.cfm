@@ -9,6 +9,6 @@
 
     <a href="cfm-sessions-1.cfm">Back to Page 1</a><br/>
     <a href="cfm-sessions-2.cfm">Back to Page 2</a><br/>
-    <a href="cfm-cgiform.html">Back to CFM CGI Form</a>
+    <a href="../cgi-form/cfm-cgiform.html">Back to CFM CGI Form</a>
 </body>
 </html>
