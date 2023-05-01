@@ -1,17 +1,20 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>CF Sessions Page 1</title>
-</head>
-<body>
-    <h1>CF Sessions Page 1</h1>
-    <cfparam name="url.username" default="">
+    <head>
+        <title>CF Sessions</title>
+    </head>
+    <body>
+        <h1>CF Sessions Page 1</h1>
+        <cfif isDefined("url.username")>
+            <cfcookie name="username" value="#url.username#" />
+        </cfif>
+        
+        <cfif isDefined("cookie.username")>
+            <p><b>Username:</b> #cookie.username#</p>
+        <cfelse>
+            <p><b>Username:</b> No username set</p>
+        </cfif>
 
-    <cfoutput>
-        <p><b>Username:</b> #url.username#</p>
-        <br/><br/>
-        <a href="/cgi-bin/cfm-sessions-2.cfm?username=#urlEncodedFormat(url.username)#">Session Page 2</a><br/>
-        <a href="/cgi-form/cfm-cgiform.html">Back to CFM CGI Form</a><br/>
-    </cfoutput>
-</body>
+        <a href="/cgi-bin/cfm-sessions-2.cfm">Session Page 2</a><br />
+        <a href="/cfm-cgiform.html">Back to CFM CGI Form</a>
+    </body>
 </html>
