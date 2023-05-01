@@ -1,0 +1,8 @@
+[package]
+name = "rust-get-echo"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]]
+name = "rust-get-echo"
+path = "src/main.rs"
