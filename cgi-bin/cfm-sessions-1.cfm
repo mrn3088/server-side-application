@@ -5,19 +5,12 @@
 </head>
 <body>
     <h1>CF Sessions Page 1</h1>
-    <cfset cookieExists = false>
-    <cfif structKeyExists(cookie, "username")>
-        <cfset cookieExists = true>
-        <cfset username = cookie.username>
-    <cfelse>
-        <cfset username = "">
-    </cfif>
+    <cfparam name="url.username" default="">
 
     <cfoutput>
-        <p><b>Username:</b> #username#</p>
+        <p><b>Username:</b> #url.username#</p>
         <br/><br/>
-        <a href="/cfm-sessions-2.cfm">Session Page 2</a><br/>
-        <a href="/cfm-destroy-session.cfm">Destroy Session</a><br/>
+        <a href="/cgi-bin/cfm-sessions-2.cfm?username=#urlEncodedFormat(url.username)#">Session Page 2</a><br/>
     </cfoutput>
 </body>
 </html>
