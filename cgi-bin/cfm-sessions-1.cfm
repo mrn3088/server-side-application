@@ -10,4 +10,5 @@
     
     <p><a href="../cgi-form/cfm-cgiform.html">Back to CFM CGI Form</a></p>
     <p><a href="cfm-sessions-2.cfm?username=#url.username#">Session Page 2</a></p>
+    <p><a href="cfm-destroy-session.cfm">Destroy Session</a></p>
 </cfoutput>
