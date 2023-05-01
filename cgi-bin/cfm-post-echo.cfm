@@ -16,7 +16,7 @@
             <p>Message Body: #requestBody#</p>
         </cfoutput>
     <cfelse>
-        <p>Message Body: N/A</p>
+        <p>Message Body: </p>
     </cfif>
 </body>
 </html>
