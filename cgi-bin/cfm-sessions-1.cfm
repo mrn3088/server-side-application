@@ -11,6 +11,7 @@
         <p><b>Username:</b> #url.username#</p>
         <br/><br/>
         <a href="/cgi-bin/cfm-sessions-2.cfm?username=#urlEncodedFormat(url.username)#">Session Page 2</a><br/>
+        <a href="/cgi-form/cfm-cgiform.html">Back to CFM CGI Form</a><br/>
     </cfoutput>
 </body>
 </html>

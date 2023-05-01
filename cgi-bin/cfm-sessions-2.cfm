@@ -11,7 +11,7 @@
         <p><b>Username:</b> #url.username#</p>
         <br/><br/>
         <a href="/cgi-bin/cfm-sessions-1.cfm?username=#urlEncodedFormat(url.username)#">Session Page 1</a><br/>
-        <a href="/cgi-bin/cfm-destroy-session.cfm">Destroy Session</a><br/>
+        <a href="/cgi-form/cfm-cgiform.html">Back to CFM CGI Form</a><br/>
     </cfoutput>
 </body>
 </html>

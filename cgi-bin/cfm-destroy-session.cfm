@@ -10,6 +10,6 @@
     <br />
     <a href="/cgi-bin/cfm-sessions-2.cfm">Back to Page 2</a>
     <br />
-    <a href="/cgi-form/cgi-form.html">CFM CGI Form</a>
+    <a href="/cgi-form/cfm-cgiform.html">CFM CGI Form</a>
 </body>
 </html>
