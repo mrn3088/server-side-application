@@ -5,7 +5,11 @@
 </head>
 <body>
     <h1>CF Sessions Page 1</h1>
-    <cfset username = url.username>
+    <cfif structKeyExists(url, "username")>
+        <cfset username = url.username>
+    <cfelse>
+        <cfset username = "">
+    </cfif>
 
     <p><b>Username:</b> #username#</p>
     <br/><br/>
