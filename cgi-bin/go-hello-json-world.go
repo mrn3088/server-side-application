@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"net"
 	"os"
 	"time"
 )
@@ -23,7 +22,7 @@ func main() {
 
 	// Get the date and IP address
 	currentTime := time.Now().Format("2006-01-02 15:04:05")
-	ip, _, _ := net.SplitHostPort(os.Getenv("REMOTE_ADDR"))
+	ip := os.Getenv("REMOTE_ADDR")
 
 	// Create the message
 	msg := message{
