@@ -1,8 +1,0 @@
-[package]
-name = "rust-post"
-version = "0.1.0"
-edition = "2018"
-
-[[bin]]
-name = "rust-post"
-path = "src/main.rs"
