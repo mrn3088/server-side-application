@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>ColdFusion Sessions</title>
-</head>
-<body>
-    <h1>ColdFusion Sessions Page 2</h1>
-    <table>
-        <cfif IsDefined("Session.Name")>
-            <tr><td>Name:</td><td>#Session.Name#</td></tr>
-        <cfelse>
-            <tr><td>Name:</td><td>None</td></tr>
-        </cfif>
-    </table>
-    <br />
-    <a href="cfm-sessions-1.cfm">Session Page 1</a>
-    <br /><br />
+    <head>
+        <title>CF Sessions</title>
+    </head>
+    <body>
+        <h1>CF Sessions Page 2</h1>
+        <cfset sessionManagement = "true">
 
-    <form action="cfm-destroy_session.cfm" method="get">
-        <button type="submit">Destroy Session</button>
-    </form>
-</body>
+        <cfif IsDefined("Cookie.CFID") AND IsDefined("Cookie.CFTOKEN")>
+            <p><b>CFID:</b> #Cookie.CFID#</p>
+            <p><b>CFTOKEN:</b> #Cookie.CFTOKEN#</p>
+        <cfelse>
+            <p><b>CFID & CFTOKEN:</b> No session exists</p>
+        </cfif>
+
+        <cfif IsDefined("Session.username") AND Session.username NEQ "">
+            <p><b>Name:</b> #Session.username#</p>
+        <cfelse>
+            <p><b>Name:</b> You do not have a name set</p>
+        </cfif>
+
+        <a href="/cf-sessions-1.cfm">Session Page 1</a>
+        <a href="/cf-cgiform.cfm">CF CGI Form</a>
+        <form style="margin-top:30px" action="/cf-destroy-session.cfm" method="get">
+            <button type="submit">Destroy Session</button>
+        </form>
+    </body>
 </html>
