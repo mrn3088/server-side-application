@@ -22,9 +22,12 @@ const collectStatic = function (collectedData) {
     collectedData.static['screen-height'] = window.screen.height;
     collectedData.static['window-width'] = window.innerWidth;
     collectedData.static['window-height'] = window.innerHeight;
-    
-    collectedData.static['connection-type'] = navigator.connection.effectiveType;
 
+    if (navigator.connection) {
+        collectedData.static['connection-type'] = navigator.connection.effectiveType;
+    } else {
+        collectedData.static['connection-type'] = "unknown";
+    }
 };
 
 const collectPerformance = function (collectedData) {
