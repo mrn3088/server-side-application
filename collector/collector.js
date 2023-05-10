@@ -11,7 +11,7 @@ const collectStatic = function (collectedData) {
     };
     img.src = './images/testImage.png';
 
-    collectedData['css-enabled'] = false;
+    collectedData.static['css-enabled'] = false;
     let tmp = document.createElement('div');
     tmp.style.display = 'none';
     document.body.appendChild(tmp);
