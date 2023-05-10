@@ -23,11 +23,9 @@ const collectStatic = function (collectedData) {
     collectedData.static['window-width'] = window.innerWidth;
     collectedData.static['window-height'] = window.innerHeight;
 
-    if (navigator.connection) {
-        collectedData.static['connection-type'] = navigator.connection.effectiveType;
-    } else {
-        collectedData.static['connection-type'] = "unknown";
-    }
+
+    collectedData.static['connection-type'] = NetworkInformation.type;
+
 };
 
 const collectPerformance = function (collectedData) {
