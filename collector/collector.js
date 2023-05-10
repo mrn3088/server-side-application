@@ -9,7 +9,7 @@ const collectStatic = function (collectedData) {
     img.onload = function () {
         collectedData['image-enabled'] = true;
     };
-    img.src = '\images\testImage.png';
+    img.src = './images/testImage.png';
 
     collectedData['css-enabled'] = false;
     let tmp = document.createElement('div');
