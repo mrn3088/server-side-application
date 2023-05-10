@@ -32,13 +32,14 @@ const collectPerformance = function (collectedData) {
     const observer = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
             collectedData.performance['timing-object'] = entry.toJSON();
+            collectedData.performance['page-start-load'] = collectedData.performance['timing-object'].loadEventStart;
+            collectedData.performance['page-end-load'] = collectedData.performance['timing-object'].loadEventEnd;
+            collectedData.performance['total-load-time'] = collectedData.performance['timing-object'].duration;
         });
     });
 
     observer.observe({ entryTypes: ["navigation"] });
-    collectedData.performance['page-start-load'] = collectedData.performance['timing-object'].loadEventStart;
-    collectedData.performance['page-end-load'] = collectedData.performance['timing-object'].loadEventEnd;
-    collectedData.performance['total-load-time'] = collectedData.performance['timing-object'].duration;
+
 };
 
 window.addEventListener('load', function () {
