@@ -85,3 +85,20 @@
 	at lucee.loader.engine.CFMLEngineWrapper.serviceCFML(CFMLEngineWrapper.java:97)
 	at lucee.loader.servlet.CFMLServlet.service(CFMLServlet.java:51)
 ..."
+"ERROR","http-nio-8888-exec-5","05/01/2023","03:45:30","","invalid call of the function listGetAt, second Argument (posNumber) is invalid, invalid string list index [2];lucee.runtime.exp.FunctionException: invalid call of the function listGetAt, second Argument (posNumber) is invalid, invalid string list index [2]
+	at lucee.runtime.functions.list.ListGetAt.call(ListGetAt.java:46)
+	at lucee.runtime.functions.list.ListGetAt.call(ListGetAt.java:40)
+	at cgi_bin180.cfm_sessions_1_cfm765$cf$11.call(/cgi-bin/cfm-sessions-1.cfm:13)
+	at lucee.runtime.PageContextImpl._doInclude(PageContextImpl.java:1056)
+	at lucee.runtime.PageContextImpl._doInclude(PageContextImpl.java:948)
+	at lucee.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:65)
+	at lucee.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:45)
+	at lucee.runtime.PageContextImpl.execute(PageContextImpl.java:2493)
+	at lucee.runtime.PageContextImpl._execute(PageContextImpl.java:2478)
+	at lucee.runtime.PageContextImpl.executeCFML(PageContextImpl.java:2449)
+	at lucee.runtime.engine.Request.exe(Request.java:45)
+	at lucee.runtime.engine.CFMLEngineImpl._service(CFMLEngineImpl.java:1216)
+	at lucee.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:1162)
+	at lucee.loader.engine.CFMLEngineWrapper.serviceCFML(CFMLEngineWrapper.java:97)
+	at lucee.loader.servlet.CFMLServlet.service(CFMLServlet.java:51)
+..."
