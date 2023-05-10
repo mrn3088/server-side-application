@@ -4,10 +4,10 @@ const collectStatic = function (collectedData) {
     collectedData.static['cookie'] = navigator.cookieEnabled;
     collectedData.static['js-enabled'] = true;
 
-    collectedData['image-enabled'] = false;
+    collectedData.static['image-enabled'] = false;
     let img = new Image();
     img.onload = function () {
-        collectedData['image-enabled'] = true;
+        collectedData.static['image-enabled'] = true;
     };
     img.src = './images/testImage.png';
 
@@ -22,10 +22,9 @@ const collectStatic = function (collectedData) {
     collectedData.static['screen-height'] = window.screen.height;
     collectedData.static['window-width'] = window.innerWidth;
     collectedData.static['window-height'] = window.innerHeight;
+    
+    collectedData.static['connection-type'] = navigator.connection.effectiveType;
 
-    if (navigator.connection) {
-        collectedData.static['connection-type'] = navigator.connection.effectiveType;
-    }
 };
 
 const collectPerformance = function (collectedData) {
