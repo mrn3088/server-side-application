@@ -90,16 +90,20 @@ window.addEventListener('mousemove', function (event) {
     // console.log(collectedData);
 });
 
-window.addEventListener('keydown', function (event) {
+document.body.addEventListener('keydown', function (event) {
     updateEvent(event);
     console.log(collectedData);
 });
 
-window.addEventListener('keyup', function (event) {
+document.body.addEventListener('keyup', function (event) {
     updateEvent(event);
     console.log(collectedData);
 });
 
+document.body.addEventListener('click', function (event) {  
+    updateEvent(event);
+    console.log(collectedData);
+});
 
 window.addEventListener('unload', function () {
     collectedData.activity['time-left'] = new Date().toISOString();
