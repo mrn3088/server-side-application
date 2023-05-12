@@ -94,6 +94,7 @@ window.addEventListener('load', function () {
 window.addEventListener('error', function (event) {
     collectedData.activity.error = { 'message': event.message, stack: event.error.stack };
     console.log(collectedData);
+    console.log(collectedData.activity.events.type);
 });
 
 // window.addEventListener('mousemove', function (event) {
