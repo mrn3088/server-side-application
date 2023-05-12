@@ -64,19 +64,19 @@ const initActivity = function (collectedData) {
     collectedData.activity['page'] = window.location.href;
 };
 
-// const updateEvent = function (event) {
-//     attributes.forEach((attribute) => {
-//         collectedData.activity.events[attribute] = event[attribute];
-//     });
-// };
-
 const updateEvent = function (event) {
-    const eventData = {};
     attributes.forEach((attribute) => {
-        eventData[attribute] = event[attribute];
+        collectedData.activity.events[attribute] = event[attribute];
     });
-    collectedData.activity.events[event.type] = eventData;
 };
+
+// const updateEvent = function (event) {
+//     const eventData = {};
+//     attributes.forEach((attribute) => {
+//         eventData[attribute] = event[attribute];
+//     });
+//     collectedData.activity.events[event.type] = eventData;
+// };
 
 const throttle = (func, delay) => {
     let lastCall = 0;
