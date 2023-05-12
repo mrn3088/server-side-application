@@ -84,11 +84,11 @@ window.addEventListener('error', function (event) {
     console.log(collectedData);
 });
 
-window.addEventListener('mousemove', function (event) {
-    collectedData.activity.mouse = { 'x': event.clientX, 'y': event.clientY };
-    updateEvent(event);
-    // console.log(collectedData);
-});
+// window.addEventListener('mousemove', function (event) {
+//     collectedData.activity.mouse = { 'x': event.clientX, 'y': event.clientY };
+//     updateEvent(event);
+//     // console.log(collectedData);
+// });
 
 document.body.addEventListener('keydown', function (event) {
     updateEvent(event);
