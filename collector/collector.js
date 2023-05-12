@@ -70,6 +70,18 @@ const updateEvent = function (event) {
     });
 };
 
+const throttle = (func, delay) => {
+    let lastCall = 0;
+    return function(...args) {
+        const now = new Date().getTime();
+        if (now - lastCall < delay) {
+            return;
+        }
+        lastCall = now;
+        return func(...args);
+    }
+};
+
 
 window.addEventListener('load', function () {
     collectedData = { 'static': {}, 'performance': {}, 'activity': {} };
@@ -89,6 +101,13 @@ window.addEventListener('error', function (event) {
 //     updateEvent(event);
 //     // console.log(collectedData);
 // });
+
+window.addEventListener('mousemove', throttle(function (event) {
+    collectedData.activity.mouse = { 'x': event.clientX, 'y': event.clientY };
+    updateEvent(event);
+    console.log(collectedData);
+}, 1000)); // Adjust the delay as needed
+
 
 document.body.addEventListener('keydown', function (event) {
     updateEvent(event);
