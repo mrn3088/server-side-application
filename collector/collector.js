@@ -1,3 +1,10 @@
+let collectedData;
+const attributes = ["type", "srcElement", "currentTarget",
+    "clientX", "clientY", "offsetX", "offsetY",
+    "screenX", "screenY", "x", "y", "fromElement",
+    "toElement", "keyCode", "altKey", "ctrlKey",
+    "shiftKey", "button", "which"];
+
 const collectStatic = function (collectedData) {
     collectedData.static['userAgent'] = navigator.userAgent;
     collectedData.static['language'] = navigator.language;
@@ -23,7 +30,6 @@ const collectStatic = function (collectedData) {
     collectedData.static['window-width'] = window.innerWidth;
     collectedData.static['window-height'] = window.innerHeight;
 
-
     if (navigator.connection) {
         collectedData.static['connection-type'] = navigator.connection.effectiveType;
     } else {
@@ -45,10 +51,60 @@ const collectPerformance = function (collectedData) {
 
 };
 
+const initActivity = function (collectedData) {
+    collectedData.activity['events'] = {};
+    attributes.forEach((attribute) => {
+        collectedData.activity.events[attribute] = undefined;
+    });
+    collectedData.activity['error'] = undefined;
+    collectedData.activity['mouse'] = {};
+    collectedData.activity['idle'] = { 'time': undefined, 'start': undefined, 'end': undefined };
+    collectedData.activity['time-entered'] = new Date().toISOString();
+    collectedData.activity['time-left'] = undefined;
+    collectedData.activity['page'] = window.location.href;
+};
+
+const updateEvent = function (event) {
+    attributes.forEach((attribute) => {
+        collectedData.activity.events[attribute] = event[attribute];
+    });
+};
+
+
 window.addEventListener('load', function () {
-    let collectedData = { 'static': {}, 'performance': {}, 'activity': {} };
+    collectedData = { 'static': {}, 'performance': {}, 'activity': {} };
     collectStatic(collectedData);
     collectPerformance(collectedData);
+    initActivity(collectedData);
     console.log(collectedData);
 });
+
+window.addEventListener('error', function (event) {
+    collectedData.activity.error = { 'message': event.message, stack: event.error.stack };
+    console.log(collectedData);
+});
+
+window.addEventListener('mousemove', function (event) {
+    collectedData.activity.mouse = { 'x': event.clientX, 'y': event.clientY };
+    updateEvent(event);
+    console.log(collectedData);
+});
+
+window.addEventListener('keydown', function (event) {
+    updateEvent(event);
+    console.log(collectedData);
+});
+
+window.addEventListener('keyup', function (event) {
+    updateEvent(event);
+    console.log(collectedData);
+});
+
+
+window.addEventListener('unload', function () {
+    collectedData.activity['time-left'] = new Date().toISOString();
+    console.log(collectedData);
+});
+
+
 
