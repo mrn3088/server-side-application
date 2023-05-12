@@ -107,19 +107,22 @@ window.addEventListener('mousemove', throttle(function (event) {
     updateEvent(event);
     // console.log(collectedData);
     console.log(collectedData.activity.events.type);
+    console.log(collectedData);
+
 }, 1000)); // Adjust the delay as needed
 
 
 document.body.addEventListener('keydown', function (event) {
     updateEvent(event);
     console.log(collectedData.activity.events.type);
-
+    console.log(collectedData);
     // console.log(collectedData);
 });
 
 document.body.addEventListener('keyup', function (event) {
     updateEvent(event);
     console.log(collectedData.activity.events.type);
+    console.log(collectedData);
 
     // console.log(collectedData);
 });
@@ -127,6 +130,8 @@ document.body.addEventListener('keyup', function (event) {
 document.body.addEventListener('click', function (event) {  
     updateEvent(event);
     console.log(collectedData.activity.events.type);
+    console.log(collectedData);
+
 
     // console.log(collectedData);
 });
@@ -134,6 +139,9 @@ document.body.addEventListener('click', function (event) {
 window.addEventListener('unload', function () {
     collectedData.activity['time-left'] = new Date().toISOString();
     console.log(collectedData);
+    console.log(collectedData);
+
+    
 });
 
 
