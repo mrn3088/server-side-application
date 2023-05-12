@@ -94,7 +94,6 @@ window.addEventListener('load', function () {
 window.addEventListener('error', function (event) {
     collectedData.activity.error = { 'message': event.message, stack: event.error.stack };
     console.log(collectedData);
-    console.log(collectedData.activity.events.type);
 });
 
 // window.addEventListener('mousemove', function (event) {
@@ -106,23 +105,30 @@ window.addEventListener('error', function (event) {
 window.addEventListener('mousemove', throttle(function (event) {
     collectedData.activity.mouse = { 'x': event.clientX, 'y': event.clientY };
     updateEvent(event);
-    console.log(collectedData);
+    // console.log(collectedData);
+    console.log(collectedData.activity.events.type);
 }, 1000)); // Adjust the delay as needed
 
 
 document.body.addEventListener('keydown', function (event) {
     updateEvent(event);
-    console.log(collectedData);
+    console.log(collectedData.activity.events.type);
+
+    // console.log(collectedData);
 });
 
 document.body.addEventListener('keyup', function (event) {
     updateEvent(event);
-    console.log(collectedData);
+    console.log(collectedData.activity.events.type);
+
+    // console.log(collectedData);
 });
 
 document.body.addEventListener('click', function (event) {  
     updateEvent(event);
-    console.log(collectedData);
+    console.log(collectedData.activity.events.type);
+
+    // console.log(collectedData);
 });
 
 window.addEventListener('unload', function () {
