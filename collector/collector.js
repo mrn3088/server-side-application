@@ -11,12 +11,16 @@ const collectStatic = function (collectedData) {
     collectedData.static['cookie'] = navigator.cookieEnabled;
     collectedData.static['js-enabled'] = true;
 
-    collectedData.static['image-enabled'] = false;
-    let img = new Image();
-    img.onload = function () {
-        collectedData.static['image-enabled'] = true;
-    };
+    
+    // let img = new Image();
+    let img = document.createElement('img');
     img.src = './images/testImage.png';
+    document.body.appendChild(img);
+    // img.onload = function () {
+    //     collectedData.static['image-enabled'] = true;
+    // };
+    collectedData.static['image-enabled'] = !img.ariaDisabled;
+    document.body.removeChild(img);
 
     collectedData.static['css-enabled'] = false;
     let tmp = document.createElement('div');
