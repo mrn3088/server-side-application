@@ -1,9 +1,3 @@
-// const attributes = ["type", "srcElement", "currentTarget",
-//     "clientX", "clientY", "offsetX", "offsetY",
-//     "screenX", "screenY", "x", "y", "fromElement",
-//     "toElement", "keyCode", "altKey", "ctrlKey",
-//     "shiftKey", "button", "which"];
-
 const collectStatic = function () {
     let staticRecord = {};
     staticRecord['userAgent'] = navigator.userAgent;
@@ -38,20 +32,6 @@ const collectStatic = function () {
     localStorage.setItem('staticRecord', JSON.stringify(staticRecord));
 };
 
-// const collectPerformance = function (collectedData) {
-//     let performanceRecord = {};
-    
-//     const observer = new PerformanceObserver((list) => {
-//         list.getEntries().forEach((entry) => {
-//             collectedData.performance['timing-object'] = entry.toJSON();
-//             collectedData.performance['page-start-load'] = collectedData.performance['timing-object'].loadEventStart;
-//             collectedData.performance['page-end-load'] = collectedData.performance['timing-object'].loadEventEnd;
-//             collectedData.performance['total-load-time'] = collectedData.performance['timing-object'].duration;
-//         });
-//     });
-
-//     observer.observe({ entryTypes: ["navigation"] });
-// };
 
 const collectActivity = function () {
     let idleList = undefined;
@@ -62,12 +42,13 @@ const collectActivity = function () {
 
     const idleCallback = function () {
         idle = true;
-        idleStart = new Date().getTime();
+        idleStart = lastActivityTime;
     }
 
     let idleCheck = setTimeout(idleCallback, 2000);
 
     const activeCallback = function () {
+        const now = Date.now();
         if (idle) {
             idleEnd = new Date().getTime();
             idleTime = idleEnd - idleStart;
@@ -81,9 +62,9 @@ const collectActivity = function () {
             }
             idle = false;
         }
+        idleStart = now;
         clearTimeout(idleCheck);
         idleCheck = setTimeout(idleCallback, 2000);
-        
     }
 
     activeCallback(); // initialize
@@ -92,20 +73,29 @@ const collectActivity = function () {
     let clickRecords = {};
     let scrollRecords = {};
     let keyRecords = {};
+    let lastRecordTime = Date.now();
+    let lastActivityTime = Date.now();
+    const recordInterval = 100; // 100 ms
 
 
     // mouse
     document.addEventListener('mousemove', function (event) {
-        moveRecords[new Date().getTime()] = { 'x': event.clientX, 'y': event.clientY };
-        window.localStorage.setItem('moveRecords', JSON.stringify(moveRecords));
-        activeCallback();
-        console.log('move');
+        const now = Date.now();
+        lastActivityTime = now;
+        if (now - lastRecordTime > recordInterval) {
+            moveRecords[new Date().getTime()] = { 'x': event.clientX, 'y': event.clientY };
+            window.localStorage.setItem('moveRecords', JSON.stringify(moveRecords));
+            activeCallback();
+            console.log('move');
+            lastRecordTime = now;
+        }
     });
 
     // click
     document.addEventListener('click', function (event) {
         clickRecords[new Date().getTime()] = { 'x': event.clientX, 'y': event.clientY };
         window.localStorage.setItem('clickRecords', JSON.stringify(clickRecords));
+        lastActivityTime = Date.now();
         activeCallback();
         console.log('click');
     });
@@ -114,6 +104,7 @@ const collectActivity = function () {
     document.addEventListener('scroll', function (event) {
         scrollRecords[new Date().getTime()] = { 'x': window.scrollX, 'y': window.scrollY };
         window.localStorage.setItem('scrollRecords', JSON.stringify(scrollRecords));
+        lastActivityTime = Date.now();
         activeCallback();
         console.log('scroll');
     });
@@ -122,6 +113,7 @@ const collectActivity = function () {
     document.addEventListener('keydown', function (event) {
         keyRecords[new Date().getTime()] = event.code;
         window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
+        lastActivityTime = Date.now();
         activeCallback();
         console.log('keydown');
     });
@@ -130,6 +122,7 @@ const collectActivity = function () {
     document.addEventListener('keyup', function (event) {
         keyRecords[new Date().getTime()] = event.code;
         window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
+        lastActivityTime = Date.now();
         activeCallback();
         console.log('keyup');
     });
@@ -137,6 +130,7 @@ const collectActivity = function () {
     // error
     window.addEventListener('error', function (event) {
         collectedData.activity['error'] = event.message;
+        lastActivityTime = Date.now();
         activeCallback();
         console.log('error');
     });
@@ -170,99 +164,3 @@ window.addEventListener('load', function () {
     collectStatic();
     initActivity();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const updateEvent = function (event) {
-//     attributes.forEach((attribute) => {
-//         collectedData.activity.events[attribute] = event[attribute];
-//     });
-// };
-
-// const updateEvent = function (event) {
-//     const eventData = {};
-//     attributes.forEach((attribute) => {
-//         eventData[attribute] = event[attribute];
-//     });
-//     collectedData.activity.events[event.type] = eventData;
-// };
-
-// const throttle = (func, delay) => {
-//     let lastCall = 0;
-//     return function (...args) {
-//         const now = new Date().getTime();
-//         if (now - lastCall < delay) {
-//             return;
-//         }
-//         lastCall = now;
-//         return func(...args);
-//     }
-// };
-
-
-// window.addEventListener('load', function () {
-//     collectedData = { 'static': {}, 'performance': {}, 'activity': {} };
-//     collectStatic(collectedData);
-//     collectPerformance(collectedData);
-//     initActivity(collectedData);
-//     console.log(collectedData);
-// });
-
-// window.addEventListener('error', function (event) {
-//     collectedData.activity.error = { 'message': event.message, stack: event.error.stack };
-//     console.log(collectedData);
-// });
-
-// window.addEventListener('mousemove', function (event) {
-//     collectedData.activity.mouse = { 'x': event.clientX, 'y': event.clientY };
-//     updateEvent(event);
-//     // console.log(collectedData);
-// });
-
-// window.addEventListener('mousemove', throttle(function (event) {
-//     collectedData.activity.mouse = { 'x': event.clientX, 'y': event.clientY };
-//     updateEvent(event);
-//     // console.log(collectedData);
-//     console.log(collectedData.activity.events.type);
-//     console.log(collectedData);
-
-// }, 1000)); // Adjust the delay as needed
-
-
-// document.body.addEventListener('keydown', function (event) {
-//     updateEvent(event);
-//     console.log(collectedData.activity.events.type);
-//     console.log(collectedData);
-//     // console.log(collectedData);
-// });
-
-// document.body.addEventListener('keyup', function (event) {
-//     updateEvent(event);
-//     console.log(collectedData.activity.events.type);
-//     console.log(collectedData);
-
-//     // console.log(collectedData);
-// });
-
-// document.body.addEventListener('click', function (event) {
-//     updateEvent(event);
-//     console.log(collectedData.activity.events.type);
-//     console.log(collectedData);
-
-
-//     // console.log(collectedData);
-// });
-
-
