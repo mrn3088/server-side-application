@@ -143,8 +143,8 @@ const collectActivity = function () {
 };
 
 const initActivity = function () {
-    this.document.localStorage.setItem('time-entered', new Date().toISOString());
-    this.document.localStorage.setItem('page', window.location.href);
+    this.window.localStorage.setItem('time-entered', new Date().toISOString());
+    this.window.localStorage.setItem('page', window.location.href);
     collectActivity();
 };
 
@@ -152,7 +152,7 @@ const initActivity = function () {
 
 
 document.addEventListener('beforeunload', function () {
-    this.document.localStorage.setItem('time-left', new Date().toISOString());
+    this.window.localStorage.setItem('time-left', new Date().toISOString());
     // send data
 });
 
