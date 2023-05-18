@@ -35,6 +35,7 @@ const collectStatic = function () {
     } else {
         staticRecord['connection-type'] = 'unknown';
     }
+    localStorage.setItem('staticRecord', JSON.stringify(staticRecord));
 };
 
 // const collectPerformance = function (collectedData) {
@@ -82,6 +83,7 @@ const collectActivity = function () {
         }
         clearTimeout(idleCheck);
         idleCheck = setTimeout(idleCallback, 2000);
+        
     }
 
     activeCallback(); // initialize
@@ -151,6 +153,7 @@ document.addEventListener('beforeunload', function () {
 
 window.addEventListener('load', function () {
     let performanceRecord = {};
+    console.log('load');
     let timingObject = performance.getEntriesByType("navigation")[0];
     performanceRecord['timing-object'] = timingObject;
     performanceRecord['page-start-load'] = timingObject.domContentLoadedEventStart;
