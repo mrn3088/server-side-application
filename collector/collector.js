@@ -65,7 +65,7 @@ const collectActivity = function () {
         idleStart = new Date().getTime();
     }
 
-    let idleCheck = setTimeout(idleCallback, 2000);;
+    let idleCheck = setTimeout(idleCallback, 2000);
 
     const activeCallback = function () {
         if (idle) {
@@ -99,6 +99,7 @@ const collectActivity = function () {
         moveRecords[new Date().getTime()] = { 'x': event.clientX, 'y': event.clientY };
         window.localStorage.setItem('moveRecords', JSON.stringify(moveRecords));
         activeCallback();
+        console.log('move');
     });
 
     // click
@@ -106,6 +107,7 @@ const collectActivity = function () {
         clickRecords[new Date().getTime()] = { 'x': event.clientX, 'y': event.clientY };
         window.localStorage.setItem('clickRecords', JSON.stringify(clickRecords));
         activeCallback();
+        console.log('click');
     });
 
     // scroll
@@ -113,6 +115,7 @@ const collectActivity = function () {
         scrollRecords[new Date().getTime()] = { 'x': window.scrollX, 'y': window.scrollY };
         window.localStorage.setItem('scrollRecords', JSON.stringify(scrollRecords));
         activeCallback();
+        console.log('scroll');
     });
 
     // keydown
@@ -120,6 +123,7 @@ const collectActivity = function () {
         keyRecords[new Date().getTime()] = event.code;
         window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
         activeCallback();
+        console.log('keydown');
     });
 
     // keyup
@@ -127,12 +131,14 @@ const collectActivity = function () {
         keyRecords[new Date().getTime()] = event.code;
         window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
         activeCallback();
+        console.log('keyup');
     });
 
     // error
     window.addEventListener('error', function (event) {
         collectedData.activity['error'] = event.message;
         activeCallback();
+        console.log('error');
     });
 };
 
