@@ -35,24 +35,14 @@ const collectStatic = function () {
 
 const collectActivity = function () {
     let idleList = undefined;
-    let idle = false;
     let idleStart = 0;
-    let idleEnd = undefined;
-    let idleTime = undefined;
 
-    const idleCallback = function () {
-        idle = true;
-        idleStart = lastActivityTime;
-    }
-
-    let idleCheck = setTimeout(idleCallback, 2000);
 
     const activeCallback = function () {
         const now = Date.now();
-        if (idle) {
-            idleEnd = new Date().getTime();
-            idleTime = idleEnd - idleStart;
-            idleList = [idleTime, idleStart, idleEnd];
+        idleTime = now - idleStart;
+        if (idleTime >= 2000) {
+            idleList = [idleTime, idleStart, now];
             if (window.localStorage.getItem('idleList') !== null) {
                 let tmp = JSON.parse(window.localStorage.getItem('idleList'));
                 tmp.push(idleList);
@@ -60,11 +50,8 @@ const collectActivity = function () {
             } else {
                 window.localStorage.setItem('idleList', JSON.stringify([idleList]));
             }
-            idle = false;
         }
         idleStart = now;
-        clearTimeout(idleCheck);
-        idleCheck = setTimeout(idleCallback, 2000);
     }
 
     activeCallback(); // initialize
@@ -74,18 +61,17 @@ const collectActivity = function () {
     let scrollRecords = {};
     let keyRecords = {};
     let lastRecordTime = Date.now();
-    let lastActivityTime = Date.now();
     const recordInterval = 100; // 100 ms
 
 
     // mouse
     document.addEventListener('mousemove', function (event) {
         const now = Date.now();
-        lastActivityTime = now;
+        activeCallback();
+
         if (now - lastRecordTime > recordInterval) {
-            moveRecords[new Date().getTime()] = { 'x': event.clientX, 'y': event.clientY };
+            moveRecords[Date.now()] = { 'x': event.clientX, 'y': event.clientY };
             window.localStorage.setItem('moveRecords', JSON.stringify(moveRecords));
-            activeCallback();
             console.log('move');
             lastRecordTime = now;
         }
@@ -93,36 +79,32 @@ const collectActivity = function () {
 
     // click
     document.addEventListener('click', function (event) {
-        clickRecords[new Date().getTime()] = { 'x': event.clientX, 'y': event.clientY };
+        clickRecords[Date.now()] = { 'x': event.clientX, 'y': event.clientY };
         window.localStorage.setItem('clickRecords', JSON.stringify(clickRecords));
-        lastActivityTime = Date.now();
         activeCallback();
         console.log('click');
     });
 
     // scroll
     document.addEventListener('scroll', function (event) {
-        scrollRecords[new Date().getTime()] = { 'x': window.scrollX, 'y': window.scrollY };
+        scrollRecords[Date.now()] = { 'x': window.scrollX, 'y': window.scrollY };
         window.localStorage.setItem('scrollRecords', JSON.stringify(scrollRecords));
-        lastActivityTime = Date.now();
         activeCallback();
         console.log('scroll');
     });
 
     // keydown
     document.addEventListener('keydown', function (event) {
-        keyRecords[new Date().getTime()] = event.code;
+        keyRecords[Date.now()] = event.code;
         window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
-        lastActivityTime = Date.now();
         activeCallback();
         console.log('keydown');
     });
 
     // keyup
     document.addEventListener('keyup', function (event) {
-        keyRecords[new Date().getTime()] = event.code;
+        keyRecords[Date.now()] = event.code;
         window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
-        lastActivityTime = Date.now();
         activeCallback();
         console.log('keyup');
     });
@@ -130,7 +112,6 @@ const collectActivity = function () {
     // error
     window.addEventListener('error', function (event) {
         collectedData.activity['error'] = event.message;
-        lastActivityTime = Date.now();
         activeCallback();
         console.log('error');
     });
