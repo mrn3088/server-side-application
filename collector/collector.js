@@ -83,7 +83,9 @@ const collectActivity = function () {
         moveRecords: {},
         clickRecords: {},
         scrollRecords: {},
-        keyRecords: {}
+        keyRecords: {},
+        timeEntered: window.localStorage.getItem('time-entered'), // time when the user enters the page
+        page: window.localStorage.getItem('page') // URL of the page
     };
 
     let idleStart = 0;
@@ -164,8 +166,11 @@ const initActivity = function () {
 
 
 document.addEventListener('beforeunload', function () {
-    this.window.localStorage.setItem('time-left', new Date().toISOString());
-    // send data
+    let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
+    activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
+    localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
+    // send data, TBD
+    
 });
 
 
