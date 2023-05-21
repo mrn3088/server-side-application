@@ -172,55 +172,23 @@ document.addEventListener('beforeunload', function () {
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     // Send activity data
-    fetch('/api/activity', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(activityRecord),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    let headers = {
+        type: 'application/json'
+    };
+    let blob = new Blob([JSON.stringify(activityRecord)], headers);
+    navigator.sendBeacon('/api/activity', blob);
 
     // Send static data
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
-    fetch('/api/static', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(staticRecord),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    blob = new Blob([JSON.stringify(staticRecord)], headers);
+    navigator.sendBeacon('/api/static', blob);
 
     // Send performance data
     let performanceRecord = JSON.parse(localStorage.getItem('performanceRecord'));
-    fetch('/api/performance', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(performanceRecord),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    blob = new Blob([JSON.stringify(performanceRecord)], headers);
+    navigator.sendBeacon('/api/performance', blob);
 });
+
 
 
 window.addEventListener('load', function () {
