@@ -1,3 +1,47 @@
+// Function to set a cookie
+function setCookie(name, value, days) {
+    let date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    let expires = "; expires=" + date.toUTCString();
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+// Function to get a cookie
+function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Function to generate a UUID
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+// Set userId cookie if not present
+if (!getCookie('userId')) {
+    setCookie('userId', uuidv4(), 365);
+}
+
+// Initialize a new session with unique sessionId
+let sessionId = uuidv4();
+setCookie('sessionId', sessionId, 1); // SessionId expires in 1 day
+
+let sessionRecord = {};
+sessionRecord['userId'] = getCookie('userId');
+sessionRecord['sessionId'] = sessionId;
+sessionRecord['time-start'] = new Date().toISOString();
+
+localStorage.setItem('sessionRecord', JSON.stringify(sessionRecord));
+
 const collectStatic = function () {
     let staticRecord = {};
     staticRecord['userAgent'] = navigator.userAgent;
@@ -92,7 +136,7 @@ const collectActivity = function () {
         activeCallback();
         console.log('scroll');
     });
-
+    
     // keydown
     document.addEventListener('keydown', function (event) {
         keyRecords[Date.now()] = event.code;
@@ -145,3 +189,4 @@ window.addEventListener('load', function () {
     collectStatic();
     initActivity();
 });
+
