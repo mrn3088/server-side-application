@@ -216,7 +216,7 @@ function sendData() {
     let performanceRecord = JSON.parse(localStorage.getItem('performanceRecord'));
 
     // check if the user has already been recorded
-    axios.get(`/api/static/${staticRecord.id}/exists`)
+    axios.get(`/api/static/exists/${staticRecord.id}`)
         .then(response => {
             if (response.data.exists) {
                 // if the user has already been recorded, use PUT to update the record
@@ -243,7 +243,7 @@ function sendData() {
         });
 
     // check if the user has already been recorded
-    axios.get(`/api/performance/${performanceRecord.id}/exists`)
+    axios.get(`/api/performance/exists/${performanceRecord.id}`)
         .then(response => {
             if (response.data.exists) {
                 // if the user has already been recorded, use PUT to update the record
@@ -272,7 +272,7 @@ function sendData() {
 
 
     // check if the user has already been recorded
-    axios.get(`/api/activity/${activityRecord.id}/exists`)
+    axios.get(`/api/activity/exists/${activityRecord.id}`)
         .then(response => {
             if (response.data.exists) {
                 // if the user has already been recorded, use PUT to update the record
