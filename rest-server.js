@@ -30,7 +30,7 @@ const pool = mysql.createPool({
 // Enable "promise" for mysql2
 const promisePool = pool.promise();
 
-app.get('/api/static', async (req, res) => {
+app.get('/static', async (req, res) => {
     try {
         // Execute SQL query
         const [rows, fields] = await promisePool.query('SELECT * FROM StaticRecords');
@@ -43,7 +43,7 @@ app.get('/api/static', async (req, res) => {
     }
 });
 
-app.get('/api/static/:id', async (req, res) => {
+app.get('/static/:id', async (req, res) => {
     try {
         id = req.params.id;
         // Execute SQL query
@@ -57,7 +57,7 @@ app.get('/api/static/:id', async (req, res) => {
     }
 });
 
-app.post('/api/static', async (req, res) => {
+app.post('/static', async (req, res) => {
     try {
         const { id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType } = req.body;
 
@@ -74,7 +74,7 @@ app.post('/api/static', async (req, res) => {
 });
 
 
-app.put('/api/static/:id', async (req, res) => {
+app.put('/static/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -95,7 +95,7 @@ app.put('/api/static/:id', async (req, res) => {
 });
 
 
-app.delete('/api/static/:id', async (req, res) => {
+app.delete('/static/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -118,7 +118,7 @@ app.delete('/api/static/:id', async (req, res) => {
 
 
 
-app.get('/api/performance', async (req, res) => {
+app.get('/performance', async (req, res) => {
     try {
         // Execute SQL query
         const [rows, fields] = await promisePool.query('SELECT * FROM PerformanceRecords');
@@ -131,7 +131,7 @@ app.get('/api/performance', async (req, res) => {
     }
 });
 
-app.get('/api/performance/:id', async (req, res) => {
+app.get('/performance/:id', async (req, res) => {
     try {
         id = req.params.id;
         // Execute SQL query
@@ -147,7 +147,7 @@ app.get('/api/performance/:id', async (req, res) => {
 
 
 
-app.post('/api/performance', async (req, res) => {
+app.post('/performance', async (req, res) => {
     try {
         const { id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = req.body;
 
@@ -163,7 +163,7 @@ app.post('/api/performance', async (req, res) => {
     }
 });
 
-app.put('/api/performance/:id', async (req, res) => {
+app.put('/performance/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -183,7 +183,7 @@ app.put('/api/performance/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/performance/:id', async (req, res) => {
+app.delete('/performance/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -201,7 +201,7 @@ app.delete('/api/performance/:id', async (req, res) => {
 });
 
 
-app.get('/api/activity', async (req, res) => {
+app.get('/activity', async (req, res) => {
     try {
         const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords');
         res.json(rows);
@@ -210,7 +210,7 @@ app.get('/api/activity', async (req, res) => {
     }
 });
 
-app.get('/api/activity/:userId', async (req, res) => {
+app.get('/activity/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
         const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords WHERE userId = ?', [userId]);
@@ -220,7 +220,7 @@ app.get('/api/activity/:userId', async (req, res) => {
     }
 });
 
-app.post('/api/activity', async (req, res) => {
+app.post('/activity', async (req, res) => {
     try {
         const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = req.body;
 
@@ -236,7 +236,7 @@ app.post('/api/activity', async (req, res) => {
     }
 });
 
-app.patch('/api/activity/:userId', async (req, res) => {
+app.patch('/activity/:userId', async (req, res) => {
     const userId = req.params.userId;
 
     if (!userId) {
@@ -256,7 +256,7 @@ app.patch('/api/activity/:userId', async (req, res) => {
     }
 });
 
-app.put('/api/activity/:userId', async (req, res) => {
+app.put('/activity/:userId', async (req, res) => {
     const userId = req.params.userId;
 
     if (!userId) {
@@ -275,7 +275,7 @@ app.put('/api/activity/:userId', async (req, res) => {
 });
 
 
-app.delete('/api/activity/:userId', async (req, res) => {
+app.delete('/activity/:userId', async (req, res) => {
     const userId = req.params.userId;
 
     if (!userId) {
