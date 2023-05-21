@@ -299,7 +299,7 @@ app.get('/activity/:userId', async (req, res) => {
 app.get('/activity/exists/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords WHERE id = ?', [id]);
+        const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords WHERE userId = ?', [id]);
         if (rows.length > 0) {
             res.status(200).json({exists: true});
         } else {
