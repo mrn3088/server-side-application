@@ -63,7 +63,7 @@ app.get('/static/:id', async (req, res) => {
     }
 });
 
-app.get('/static/:id/exists', async (req, res) => {
+app.get('/static/exists/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const [rows, fields] = await promisePool.query('SELECT * FROM StaticRecords WHERE id = ?', [id]);
@@ -183,7 +183,7 @@ app.get('/performance/:id', async (req, res) => {
     }
 });
 
-app.get('/performance/:id/exists', async (req, res) => {
+app.get('/performance/exists/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const [rows, fields] = await promisePool.query('SELECT * FROM PerformanceRecords WHERE id = ?', [id]);
@@ -296,7 +296,7 @@ app.get('/activity/:userId', async (req, res) => {
     }
 });
 
-app.get('/activity/:id/exists', async (req, res) => {
+app.get('/activity/exists/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords WHERE id = ?', [id]);
