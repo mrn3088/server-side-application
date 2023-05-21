@@ -37,7 +37,7 @@ setCookie('sessionId', sessionId, 1); // SessionId expires in 1 day
 let sessionRecord = {};
 sessionRecord['userId'] = getCookie('userId');
 sessionRecord['sessionId'] = sessionId;
-sessionRecord['time-start'] = new Date().toISOString();
+sessionRecord['timeStart'] = new Date().toISOString();
 
 localStorage.setItem('sessionRecord', JSON.stringify(sessionRecord));
 
@@ -45,32 +45,32 @@ const collectStatic = function () {
     let staticRecord = {};
     staticRecord['userAgent'] = navigator.userAgent;
     staticRecord['language'] = navigator.language;
-    staticRecord['cookie'] = navigator.cookieEnabled;
-    staticRecord['js-enabled'] = true;
+    staticRecord['cookieEnabled'] = navigator.cookieEnabled;
+    staticRecord['jsEnabled'] = true;
 
     
     let img = document.createElement('img');
     img.src = './images/testImage.png';
     document.body.appendChild(img);
-    staticRecord['image-enabled'] = !img.ariaDisabled;
+    staticRecord['imageEnabled'] = !img.ariaDisabled;
     document.body.removeChild(img);
 
-    staticRecord['css-enabled'] = false;
+    staticRecord['cssEnabled'] = false;
     let tmp = document.createElement('div');
     tmp.style.display = 'none';
     document.body.appendChild(tmp);
-    staticRecord['css-enabled'] = (window.getComputedStyle(tmp).display === 'none');
+    staticRecord['cssEnabled'] = (window.getComputedStyle(tmp).display === 'none');
     document.body.removeChild(tmp);
 
-    staticRecord['screen-width'] = window.screen.width;
-    staticRecord['screen-height'] = window.screen.height;
-    staticRecord['window-width'] = window.innerWidth;
-    staticRecord['window-height'] = window.innerHeight;
+    staticRecord['screenWidth'] = window.screen.width;
+    staticRecord['screenHeight'] = window.screen.height;
+    staticRecord['windowWidth'] = window.innerWidth;
+    staticRecord['windowHeight'] = window.innerHeight;
 
     if (navigator.connection) {
-        staticRecord['connection-type'] = navigator.connection.effectiveType;
+        staticRecord['connectionType'] = navigator.connection.effectiveType;
     } else {
-        staticRecord['connection-type'] = 'unknown';
+        staticRecord['connectionType'] = 'unknown';
     }
     localStorage.setItem('staticRecord', JSON.stringify(staticRecord));
 };
@@ -83,7 +83,7 @@ const collectActivity = function () {
         clickRecords: {},
         scrollRecords: {},
         keyRecords: {},
-        timeEntered: window.localStorage.getItem('time-entered'), // time when the user enters the page
+        timeEntered: window.localStorage.getItem('timeEntered'), // time when the user enters the page
         page: window.localStorage.getItem('page') // URL of the page
     };
 
@@ -156,7 +156,7 @@ const collectActivity = function () {
 
 
 const initActivity = function () {
-    this.window.localStorage.setItem('time-entered', new Date().toISOString());
+    this.window.localStorage.setItem('timeEntered', new Date().toISOString());
     this.window.localStorage.setItem('page', window.location.href);
     collectActivity();
 };
@@ -225,10 +225,10 @@ window.addEventListener('load', function () {
     let performanceRecord = {};
     console.log('load');
     let timingObject = performance.getEntriesByType("navigation")[0];
-    performanceRecord['timing-object'] = timingObject;
-    performanceRecord['page-start-load'] = timingObject.domContentLoadedEventStart;
-    performanceRecord['page-end-load'] = timingObject.domComplete;
-    performanceRecord['total-load-time'] = timingObject.domComplete - timingObject.domContentLoadedEventStart;
+    performanceRecord['timingObject'] = timingObject;
+    performanceRecord['pageStartLoad'] = timingObject.domContentLoadedEventStart;
+    performanceRecord['pageEndLoad'] = timingObject.domComplete;
+    performanceRecord['totalLoadTime'] = timingObject.domComplete - timingObject.domContentLoadedEventStart;
 
     this.window.localStorage.setItem('performanceRecord', JSON.stringify(performanceRecord));
     collectStatic();
