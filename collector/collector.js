@@ -211,20 +211,93 @@ function sendData() {
     activityRecord['id'] = getCookie('sessionId'); // add id field
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
-    // Send activity data
-    let headers = {
-        type: 'application/json'
-    };
-    let blob = new Blob([JSON.stringify(activityRecord)], headers);
-    navigator.sendBeacon('/api/activity', blob);
-
-    // Send static data
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
-    blob = new Blob([JSON.stringify(staticRecord)], headers);
-    navigator.sendBeacon('/api/static', blob);
 
-    // Send performance data
     let performanceRecord = JSON.parse(localStorage.getItem('performanceRecord'));
-    blob = new Blob([JSON.stringify(performanceRecord)], headers);
-    navigator.sendBeacon('/api/performance', blob);
+
+    // check if the user has already been recorded
+    axios.get(`/api/static/${staticRecord.id}/exists`)
+        .then(response => {
+            if (response.data.exists) {
+                // if the user has already been recorded, use PUT to update the record
+                axios.put(`/api/static/${staticRecord.id}`, staticRecord)
+                    .then(response => {
+                        console.log('Record updated successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error updating record:', error);
+                    });
+            } else {
+                // if the user has not been recorded, use POST to create a new record
+                axios.post(`/api/static`, staticRecord)
+                    .then(response => {
+                        console.log('Record created successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error creating record:', error);
+                    });
+            }
+        })
+        .catch(error => {
+            console.error('Error checking if record exists:', error);
+        });
+
+    // check if the user has already been recorded
+    axios.get(`/api/performance/${performanceRecord.id}/exists`)
+        .then(response => {
+            if (response.data.exists) {
+                // if the user has already been recorded, use PUT to update the record
+                axios.put(`/api/performance/${performanceRecord.id}`, performanceRecord)
+                    .then(response => {
+                        console.log('Record updated successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error updating record:', error);
+                    });
+            } else {
+                // if the user has not been recorded, use POST to create a new record
+                axios.post(`/api/performance`, performanceRecord)
+                    .then(response => {
+                        console.log('Record created successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error creating record:', error);
+                    });
+            }
+        })
+        .catch(error => {
+            console.error('Error checking if record exists:', error);
+        });
+
+
+
+    // check if the user has already been recorded
+    axios.get(`/api/activity/${activityRecord.id}/exists`)
+        .then(response => {
+            if (response.data.exists) {
+                // if the user has already been recorded, use PUT to update the record
+                axios.put(`/api/activity/${activityRecord.id}`, activityRecord)
+                    .then(response => {
+                        console.log('Record updated successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error updating record:', error);
+                    });
+            } else {
+                // if the user has not been recorded, use POST to create a new record
+                axios.post(`/api/activity`, activityRecord)
+                    .then(response => {
+                        console.log('Record created successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error creating record:', error);
+                    });
+            }
+        })
+        .catch(error => {
+            console.error('Error checking if record exists:', error);
+        });
 }
+
+sendData();
+setInterval(sendData, 60000);
