@@ -70,7 +70,7 @@ app.get('/static/exists/:id', async (req, res) => {
         if (rows.length > 0) {
             res.status(200).json({exists: true});
         } else {
-            res.status(404).json({exists: false});
+            res.status(200).json({exists: false});
         }
     } catch (error) {
         res.status(500).send(error);
@@ -190,7 +190,7 @@ app.get('/performance/exists/:id', async (req, res) => {
         if (rows.length > 0) {
             res.status(200).json({exists: true});
         } else {
-            res.status(404).json({exists: false});
+            res.status(200).json({exists: false});
         }
     } catch (error) {
         res.status(500).send(error);
@@ -303,7 +303,7 @@ app.get('/activity/exists/:id', async (req, res) => {
         if (rows.length > 0) {
             res.status(200).json({exists: true});
         } else {
-            res.status(404).json({exists: false});
+            res.status(200).json({exists: false});
         }
     } catch (error) {
         res.status(500).send(error);
