@@ -48,7 +48,7 @@ const collectStatic = function () {
     staticRecord['cookieEnabled'] = navigator.cookieEnabled;
     staticRecord['jsEnabled'] = true;
 
-    
+
     let img = document.createElement('img');
     img.src = './images/testImage.png';
     document.body.appendChild(img);
@@ -163,8 +163,6 @@ const initActivity = function () {
 };
 
 
-
-
 document.addEventListener('beforeunload', function () {
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
@@ -191,6 +189,7 @@ document.addEventListener('beforeunload', function () {
 
 
 
+
 window.addEventListener('load', function () {
     let performanceRecord = {};
     console.log('load');
@@ -206,3 +205,26 @@ window.addEventListener('load', function () {
     initActivity();
 });
 
+function sendData() {
+    let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
+    activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
+    activityRecord['id'] = getCookie('sessionId'); // add id field
+    localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
+
+    // Send activity data
+    let headers = {
+        type: 'application/json'
+    };
+    let blob = new Blob([JSON.stringify(activityRecord)], headers);
+    navigator.sendBeacon('/api/activity', blob);
+
+    // Send static data
+    let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
+    blob = new Blob([JSON.stringify(staticRecord)], headers);
+    navigator.sendBeacon('/api/static', blob);
+
+    // Send performance data
+    let performanceRecord = JSON.parse(localStorage.getItem('performanceRecord'));
+    blob = new Blob([JSON.stringify(performanceRecord)], headers);
+    navigator.sendBeacon('/api/performance', blob);
+}

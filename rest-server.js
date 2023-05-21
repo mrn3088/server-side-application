@@ -4,6 +4,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const axios = require('axios');
 
 // Create express app
 const app = express();
@@ -47,6 +48,8 @@ app.get('/static', async (req, res) => {
     }
 });
 
+
+
 app.get('/static/:id', async (req, res) => {
     try {
         id = req.params.id;
@@ -57,6 +60,20 @@ app.get('/static/:id', async (req, res) => {
         res.json(rows);
     } catch (error) {
         // Handle error
+        res.status(500).send(error);
+    }
+});
+
+app.get('/static/:id/exists', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const [rows, fields] = await promisePool.query('SELECT * FROM StaticRecords WHERE id = ?', [id]);
+        if (rows.length > 0) {
+            res.status(200).json({exists: true});
+        } else {
+            res.status(404).json({exists: false});
+        }
+    } catch (error) {
         res.status(500).send(error);
     }
 });
@@ -167,6 +184,20 @@ app.get('/performance/:id', async (req, res) => {
     }
 });
 
+app.get('/performance/:id/exists', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const [rows, fields] = await promisePool.query('SELECT * FROM PerformanceRecords WHERE id = ?', [id]);
+        if (rows.length > 0) {
+            res.status(200).json({exists: true});
+        } else {
+            res.status(404).json({exists: false});
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 
 app.post('/performance', async (req, res) => {
     try {
@@ -265,6 +296,21 @@ app.get('/activity/:userId', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+app.get('/activity/:id/exists', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords WHERE id = ?', [id]);
+        if (rows.length > 0) {
+            res.status(200).json({exists: true});
+        } else {
+            res.status(404).json({exists: false});
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 
 app.post('/activity', async (req, res) => {
     try {
