@@ -72,6 +72,7 @@ const collectStatic = function () {
     } else {
         staticRecord['connectionType'] = 'unknown';
     }
+    staticRecord['id'] = getCookie('sessionId'); // add id field
     localStorage.setItem('staticRecord', JSON.stringify(staticRecord));
 };
 
@@ -167,6 +168,7 @@ const initActivity = function () {
 document.addEventListener('beforeunload', function () {
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
+    activityRecord['id'] = getCookie('sessionId'); // add id field
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     // Send activity data
@@ -229,6 +231,7 @@ window.addEventListener('load', function () {
     performanceRecord['pageStartLoad'] = timingObject.domContentLoadedEventStart;
     performanceRecord['pageEndLoad'] = timingObject.domComplete;
     performanceRecord['totalLoadTime'] = timingObject.domComplete - timingObject.domContentLoadedEventStart;
+    performanceRecord['id'] = getCookie('sessionId'); // add id field
 
     this.window.localStorage.setItem('performanceRecord', JSON.stringify(performanceRecord));
     collectStatic();
