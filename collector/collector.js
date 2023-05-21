@@ -78,35 +78,29 @@ const collectStatic = function () {
 
 
 const collectActivity = function () {
-    let idleList = undefined;
-    let idleStart = 0;
+    let activityRecord = {
+        idleList: [],
+        moveRecords: {},
+        clickRecords: {},
+        scrollRecords: {},
+        keyRecords: {}
+    };
 
+    let idleStart = 0;
 
     const activeCallback = function () {
         const now = Date.now();
-        idleTime = now - idleStart;
+        let idleTime = now - idleStart;
         if (idleTime >= 2000) {
-            idleList = [idleTime, idleStart, now];
-            if (window.localStorage.getItem('idleList') !== null) {
-                let tmp = JSON.parse(window.localStorage.getItem('idleList'));
-                tmp.push(idleList);
-                window.localStorage.setItem('idleList', JSON.stringify(tmp));
-            } else {
-                window.localStorage.setItem('idleList', JSON.stringify([idleList]));
-            }
+            activityRecord.idleList.push([idleTime, idleStart, now]);
         }
         idleStart = now;
     }
 
     activeCallback(); // initialize
 
-    let moveRecords = {};
-    let clickRecords = {};
-    let scrollRecords = {};
-    let keyRecords = {};
     let lastRecordTime = Date.now();
     const recordInterval = 100; // 100 ms
-
 
     // mouse
     document.addEventListener('mousemove', function (event) {
@@ -114,8 +108,7 @@ const collectActivity = function () {
         activeCallback();
 
         if (now - lastRecordTime > recordInterval) {
-            moveRecords[Date.now()] = { 'x': event.clientX, 'y': event.clientY };
-            window.localStorage.setItem('moveRecords', JSON.stringify(moveRecords));
+            activityRecord.moveRecords[Date.now()] = { 'x': event.clientX, 'y': event.clientY };
             console.log('move');
             lastRecordTime = now;
         }
@@ -123,43 +116,43 @@ const collectActivity = function () {
 
     // click
     document.addEventListener('click', function (event) {
-        clickRecords[Date.now()] = { 'x': event.clientX, 'y': event.clientY };
-        window.localStorage.setItem('clickRecords', JSON.stringify(clickRecords));
+        activityRecord.clickRecords[Date.now()] = { 'x': event.clientX, 'y': event.clientY };
         activeCallback();
         console.log('click');
     });
 
     // scroll
     document.addEventListener('scroll', function (event) {
-        scrollRecords[Date.now()] = { 'x': window.scrollX, 'y': window.scrollY };
-        window.localStorage.setItem('scrollRecords', JSON.stringify(scrollRecords));
+        activityRecord.scrollRecords[Date.now()] = { 'x': window.scrollX, 'y': window.scrollY };
         activeCallback();
         console.log('scroll');
     });
-    
+
     // keydown
     document.addEventListener('keydown', function (event) {
-        keyRecords[Date.now()] = event.code;
-        window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
+        activityRecord.keyRecords[Date.now()] = event.code;
         activeCallback();
         console.log('keydown');
     });
 
     // keyup
     document.addEventListener('keyup', function (event) {
-        keyRecords[Date.now()] = event.code;
-        window.localStorage.setItem('keyRecords', JSON.stringify(keyRecords));
+        activityRecord.keyRecords[Date.now()] = event.code;
         activeCallback();
         console.log('keyup');
     });
 
     // error
     window.addEventListener('error', function (event) {
-        collectedData.activity['error'] = event.message;
+        activityRecord['error'] = event.message;
         activeCallback();
         console.log('error');
     });
+
+    // Store activityRecord to localStorage
+    localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 };
+
 
 const initActivity = function () {
     this.window.localStorage.setItem('time-entered', new Date().toISOString());
