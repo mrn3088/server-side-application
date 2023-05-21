@@ -115,6 +115,93 @@ app.delete('/api/static/:id', async (req, res) => {
 });
 
 
+
+
+
+app.get('/api/performance', async (req, res) => {
+    try {
+        // Execute SQL query
+        const [rows, fields] = await promisePool.query('SELECT * FROM PerformanceRecords');
+
+        // Send response
+        res.json(rows);
+    } catch (error) {
+        // Handle error
+        res.status(500).send(error);
+    }
+});
+
+app.get('/api/performance/:id', async (req, res) => {
+    try {
+        id = req.params.id;
+        // Execute SQL query
+        const [rows, fields] = await promisePool.query('SELECT * FROM PerformanceRecords WHERE id = ?', [id]);
+
+        // Send response
+        res.json(rows);
+    } catch (error) {
+        // Handle error
+        res.status(500).send(error);
+    }
+});
+
+
+
+app.post('/api/performance', async (req, res) => {
+    try {
+        const { id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = req.body;
+
+        if (!id) {
+            return res.status(400).send('Missing id');
+        }
+
+        const [result] = await promisePool.query('INSERT INTO PerformanceRecords (id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime) VALUES (?, ?, ?, ?, ?)', [id, JSON.stringify(timingObject), pageStartLoad, pageEndLoad, totalLoadTime]);
+
+        res.status(201).send(`PerformanceRecord added with ID: ${id}`);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+app.put('/api/performance/:id', async (req, res) => {
+    const id = req.params.id;
+
+    if (!id) {
+        return res.status(400).send('Missing id');
+    }
+
+    const fieldsToUpdate = ['timingObject', 'pageStartLoad', 'pageEndLoad', 'totalLoadTime'].filter(field => req.body.hasOwnProperty(field));
+    const valuesToUpdate = fieldsToUpdate.map(field => field === 'timingObject' ? JSON.stringify(req.body[field]) : req.body[field]);
+    const sqlSetValues = fieldsToUpdate.map(field => `${field} = ?`).join(', ');
+
+    try {
+        const [result] = await promisePool.query(`UPDATE PerformanceRecords SET ${sqlSetValues} WHERE id = ?`, [...valuesToUpdate, id]);
+
+        res.status(200).send(true);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+app.delete('/api/performance/:id', async (req, res) => {
+    const id = req.params.id;
+
+    if (!id) {
+        return res.status(400).send('Missing id');
+    }
+
+    try {
+        const [result] = await promisePool.query('DELETE FROM PerformanceRecords WHERE id = ?', [id]);
+
+        res.status(200).send(true);
+
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
