@@ -30,7 +30,6 @@ function uuidv4() {
 if (!getCookie('userId')) {
     setCookie('userId', uuidv4(), 365);
 }
-
 // Initialize a new session with unique sessionId
 let sessionId = uuidv4();
 setCookie('sessionId', sessionId, 1); // SessionId expires in 1 day
@@ -49,7 +48,7 @@ const collectStatic = function () {
     staticRecord['cookie'] = navigator.cookieEnabled;
     staticRecord['js-enabled'] = true;
 
-
+    
     let img = document.createElement('img');
     img.src = './images/testImage.png';
     document.body.appendChild(img);
@@ -170,7 +169,7 @@ document.addEventListener('beforeunload', function () {
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
     // send data, TBD
-    
+
 });
 
 

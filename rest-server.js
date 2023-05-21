@@ -201,6 +201,98 @@ app.delete('/api/performance/:id', async (req, res) => {
 });
 
 
+app.get('/api/activity', async (req, res) => {
+    try {
+        const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords');
+        res.json(rows);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+app.get('/api/activity/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords WHERE userId = ?', [userId]);
+        res.json(rows);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+app.post('/api/activity', async (req, res) => {
+    try {
+        const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = req.body;
+
+        if (!userId) {
+            return res.status(400).send('Missing userId');
+        }
+
+        const [result] = await promisePool.query('INSERT INTO ActivityRecords (userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [userId, sessionId, timeEntered, timeLeft, page, JSON.stringify(idleList), JSON.stringify(moveRecords), JSON.stringify(clickRecords), JSON.stringify(scrollRecords), JSON.stringify(keyRecords), error]);
+
+        res.status(201).send(`ActivityRecord added with UserId: ${userId}`);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+app.patch('/api/activity/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    if (!userId) {
+        return res.status(400).send('Missing userId');
+    }
+
+    const fieldsToUpdate = ['sessionId', 'timeEntered', 'timeLeft', 'page', 'idleList', 'moveRecords', 'clickRecords', 'scrollRecords', 'keyRecords', 'error'].filter(field => req.body.hasOwnProperty(field));
+    const valuesToUpdate = fieldsToUpdate.map(field => req.body[field]);
+    const sqlSetValues = fieldsToUpdate.map(field => `${field} = ?`).join(', ');
+
+    try {
+        const [result] = await promisePool.query(`UPDATE ActivityRecords SET ${sqlSetValues} WHERE userId = ?`, [...valuesToUpdate, userId]);
+
+        res.status(200).send(true);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+app.put('/api/activity/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    if (!userId) {
+        return res.status(400).send('Missing userId');
+    }
+
+    const { sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = req.body;
+
+    try {
+        const [result] = await promisePool.query('UPDATE ActivityRecords SET sessionId = ?, timeEntered = ?, timeLeft = ?, page = ?, idleList = ?, moveRecords = ?, clickRecords = ?, scrollRecords = ?, keyRecords = ?, error = ? WHERE userId = ?', [sessionId, timeEntered, timeLeft, page, JSON.stringify(idleList), JSON.stringify(moveRecords), JSON.stringify(clickRecords), JSON.stringify(scrollRecords), JSON.stringify(keyRecords), error, userId]);
+
+        res.status(200).send(true);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
+app.delete('/api/activity/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    if (!userId) {
+        return res.status(400).send('Missing userId');
+    }
+
+    try {
+        const [result] = await promisePool.query('DELETE FROM ActivityRecords WHERE userId = ?', [userId]);
+
+        res.status(200).send(true);
+
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
 
 // Start server
 app.listen(PORT, () => {
