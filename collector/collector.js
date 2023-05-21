@@ -168,8 +168,56 @@ document.addEventListener('beforeunload', function () {
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
-    // send data, TBD
 
+    // Send activity data
+    fetch('/api/activity', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(activityRecord),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+    // Send static data
+    let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
+    fetch('/api/static', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(staticRecord),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+    // Send performance data
+    let performanceRecord = JSON.parse(localStorage.getItem('performanceRecord'));
+    fetch('/api/performance', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(performanceRecord),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 });
 
 

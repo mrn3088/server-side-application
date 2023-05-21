@@ -30,6 +30,10 @@ const pool = mysql.createPool({
 // Enable "promise" for mysql2
 const promisePool = pool.promise();
 
+///////////////////////////
+// static records routes //
+///////////////////////////
+
 app.get('/static', async (req, res) => {
     try {
         // Execute SQL query
@@ -74,7 +78,7 @@ app.post('/static', async (req, res) => {
 });
 
 
-app.put('/static/:id', async (req, res) => {
+app.patch('/api/static/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -94,6 +98,23 @@ app.put('/static/:id', async (req, res) => {
     }
 });
 
+app.put('/api/static/:id', async (req, res) => {
+    const id = req.params.id;
+
+    if (!id) {
+        return res.status(400).send('Missing id');
+    }
+
+    const { userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType } = req.body;
+
+    try {
+        const [result] = await promisePool.query('UPDATE StaticRecords SET userAgent = ?, language = ?, cookieEnabled = ?, jsEnabled = ?, imageEnabled = ?, cssEnabled = ?, screenWidth = ?, screenHeight = ?, windowWidth = ?, windowHeight = ?, connectionType = ? WHERE id = ?', [userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType, id]);
+
+        res.status(200).send(true);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
 
 app.delete('/static/:id', async (req, res) => {
     const id = req.params.id;
@@ -114,8 +135,9 @@ app.delete('/static/:id', async (req, res) => {
 
 });
 
-
-
+////////////////////////////////
+// performance records routes //
+////////////////////////////////
 
 
 app.get('/performance', async (req, res) => {
@@ -146,7 +168,6 @@ app.get('/performance/:id', async (req, res) => {
 });
 
 
-
 app.post('/performance', async (req, res) => {
     try {
         const { id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = req.body;
@@ -163,7 +184,7 @@ app.post('/performance', async (req, res) => {
     }
 });
 
-app.put('/performance/:id', async (req, res) => {
+app.patch('/api/performance/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -183,6 +204,25 @@ app.put('/performance/:id', async (req, res) => {
     }
 });
 
+app.put('/api/performance/:id', async (req, res) => {
+    const id = req.params.id;
+
+    if (!id) {
+        return res.status(400).send('Missing id');
+    }
+
+    const { timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = req.body;
+
+    try {
+        const [result] = await promisePool.query('UPDATE PerformanceRecords SET timingObject = ?, pageStartLoad = ?, pageEndLoad = ?, totalLoadTime = ? WHERE id = ?', [JSON.stringify(timingObject), pageStartLoad, pageEndLoad, totalLoadTime, id]);
+
+        res.status(200).send(true);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
 app.delete('/performance/:id', async (req, res) => {
     const id = req.params.id;
 
@@ -199,6 +239,12 @@ app.delete('/performance/:id', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+
+
+///////////////////////////////
+// activity records routes ////
+///////////////////////////////
 
 
 app.get('/activity', async (req, res) => {
