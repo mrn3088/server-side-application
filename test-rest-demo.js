@@ -24,7 +24,7 @@ const pool = mysql.createPool({
     port: '/var/run/mysqld/mysqld.sock',
     user: 'root',
     password: 'Cse135monster%',
-    database: 'users'
+    database: 'collector'
 });
 
 // Enable "promise" for mysql2
@@ -33,7 +33,7 @@ const promisePool = pool.promise();
 app.get('/api/static', async (req, res) => {
     try {
         // Execute SQL query
-        const [rows, fields] = await promisePool.query('SELECT * FROM users');
+        const [rows, fields] = await promisePool.query('SELECT * FROM StaticRecords');
 
         // Send response
         res.json(rows);
@@ -47,7 +47,7 @@ app.get('/api/static/:id', async (req, res) => {
     try {
         id = req.params.id;
         // Execute SQL query
-        const [rows, fields] = await promisePool.query('SELECT * FROM users WHERE id = ?', [id]);
+        const [rows, fields] = await promisePool.query('SELECT * FROM StaticRecords WHERE id = ?', [id]);
 
         // Send response
         res.json(rows);
@@ -59,48 +59,43 @@ app.get('/api/static/:id', async (req, res) => {
 
 app.post('/api/static', async (req, res) => {
     try {
-        const { name, email } = req.body;
+        const { id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType } = req.body;
 
-        if (!name || !email) {
-            return res.status(400).send('Missing name or email');
+        if (!id) {
+            return res.status(400).send('Missing id');
         }
 
-        // ZOMG on the way to SQL INJECTION if you don't watch out!
+        const [result] = await promisePool.query('INSERT INTO StaticRecords (id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType]);
 
-        // Execute SQL query
-        const [result] = await promisePool.query('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
-
-        // Send response
-        res.status(201).send(`User added with ID: ${result.insertId}`);
+        res.status(201).send(`StaticRecord added with ID: ${id}`);
     } catch (error) {
-        // Handle error
         res.status(500).send(error);
     }
 });
 
+
 app.put('/api/static/:id', async (req, res) => {
-
     const id = req.params.id;
-    const { name, email } = req.body;
 
-    if (!id || !name || !email) {
-        return res.status(400).send('Missing id, name, or email');
+    if (!id) {
+        return res.status(400).send('Missing id');
     }
+
+    const fieldsToUpdate = ['userAgent', 'language', 'cookieEnabled', 'jsEnabled', 'imageEnabled', 'cssEnabled', 'screenWidth', 'screenHeight', 'windowWidth', 'windowHeight', 'connectionType'].filter(field => req.body.hasOwnProperty(field));
+    const valuesToUpdate = fieldsToUpdate.map(field => req.body[field]);
+    const sqlSetValues = fieldsToUpdate.map(field => `${field} = ?`).join(', ');
 
     try {
-        // Execute SQL query
-        const [result] = await promisePool.query('UPDATE users SET name = ?, email = ? WHERE id = ?', [name, email, id]);
+        const [result] = await promisePool.query(`UPDATE StaticRecords SET ${sqlSetValues} WHERE id = ?`, [...valuesToUpdate, id]);
 
-        // Send response
         res.status(200).send(true);
     } catch (error) {
-        // Handle error
         res.status(500).send(error);
     }
-})
+});
+
 
 app.delete('/api/static/:id', async (req, res) => {
-    // delete the user with the given id from the mySQL database
     const id = req.params.id;
 
     if (!id) {
@@ -108,16 +103,17 @@ app.delete('/api/static/:id', async (req, res) => {
     }
 
     try {
-        const [result] = await promisePool.query('DELETE FROM users WHERE id = ?', [id]);
+        const [result] = await promisePool.query('DELETE FROM StaticRecords WHERE id = ?', [id]);
 
         // Send response
         res.status(200).send(true);
 
-    } catch(error) {
+    } catch (error) {
         res.status(500).send(error);
     }
 
 });
+
 
 // Start server
 app.listen(PORT, () => {
