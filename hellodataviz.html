@@ -9,7 +9,7 @@
     <title>Data Visualization</title>
 </head>
 <body>
-    <div>
+    <div id="static">
         <h1>Static Data Record</h1>
         <div id="userAgent"></div>
         <div id="language"></div>
@@ -753,13 +753,140 @@
     
     <div id="activity">
         <h1>Activity Data Record</h1>
-        
+        <div id="mouse-keyboard"></div>
+        <script>
+            ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+            var myConfig = {
+              "graphset": [{
+                "type": "bar",
+                "background-color": "white",
+                "title": {
+                  "text": "Mouse and Keyboard Activity",
+                  "font-color": "#7E7E7E",
+                  "backgroundColor": "none",
+                  "font-size": "22px",
+                  "alpha": 1,
+                  "adjust-layout": true,
+                },
+                "plotarea": {
+                  "margin": "dynamic"
+                },
+                "legend": {
+                  "layout": "x3",
+                  "overflow": "page",
+                  "alpha": 0.05,
+                  "shadow": false,
+                  "align": "center",
+                  "adjust-layout": true,
+                  "marker": {
+                    "type": "circle",
+                    "border-color": "none",
+                    "size": "10px"
+                  },
+                  "border-width": 0,
+                  "maxItems": 3,
+                  "toggle-action": "hide",
+                  "pageOn": {
+                    "backgroundColor": "#000",
+                    "size": "10px",
+                    "alpha": 0.65
+                  },
+                  "pageOff": {
+                    "backgroundColor": "#7E7E7E",
+                    "size": "10px",
+                    "alpha": 0.65
+                  },
+                  "pageStatus": {
+                    "color": "black"
+                  }
+                },
+                "plot": {
+                  "bars-space-left": 0.15,
+                  "bars-space-right": 0.15,
+                  "animation": {
+                    "effect": "ANIMATION_SLIDE_BOTTOM",
+                    "sequence": 0,
+                    "speed": 800,
+                    "delay": 800
+                  }
+                },
+                "scale-y": {
+                  "line-color": "#7E7E7E",
+                  "item": {
+                    "font-color": "#7e7e7e"
+                  },
+                  "values": "0:60:10",
+                  "guide": {
+                    "visible": true
+                  },
+                  "label": {
+                    "text": "# of Times",
+                    "font-family": "arial",
+                    "bold": true,
+                    "font-size": "14px",
+                    "font-color": "#7E7E7E",
+                  },
+                },
+                "scaleX": {
+                  "values": [
+                    "Keyboard Clicks",
+                    "Mouse Moves",
+                  ],
+                  "placement": "default",
+                  "tick": {
+                    "size": 58,
+                    "placement": "cross"
+                  },
+                  "itemsOverlap": true,
+                  "item": {
+                    "offsetY": -55
+                  }
+                },
+                "tooltip": {
+                  "visible": false
+                },
+                "crosshair-x": {
+                  "line-width": "100%",
+                  "alpha": 0.18,
+                  "plot-label": {
+                    "header-text": "%kv Sales"
+                  }
+                },
+                "series": [{
+                    "values": [
+                      37.47,
+                      57.59,
+                    ],
+                    "alpha": 0.95,
+                    "borderRadiusTopLeft": 7,
+                    "background-color": "purple",
+                    "text": "User Session 1",
+                  },
+                  {
+                    "values": [
+                      2.02,
+                      2.59,
+                    ],
+                    "borderRadiusTopLeft": 7,
+                    "alpha": 0.95,
+                    "background-color": "orange",
+                    "text": "User Session 2"
+                  },
+                ]
+              }]
+            };
+         
+            zingchart.render({
+              id: 'mouse-keyboard',
+              data: myConfig
+            });
+          </script>
     </div>
 
 
 
 
-    <div id="myChart"></div>
+    <!-- <div id="myChart"></div>
     <script>
         zingchart.render({
           id: 'myChart',
@@ -859,6 +986,6 @@
           id: 'myPieChart',
           data: myConfig,
         });
-      </script>
+      </script> -->
 </body>
 </html>
