@@ -273,34 +273,34 @@ function sendData() {
 
 
 
-    // check if the user has already been recorded
-    axios.get(`/api/activity/exists/${activityRecord.userId}`)
-        .then(response => {
-            if (response.data.exists) {
-                // if the user has already been recorded, use PUT to update the record
-                axios.put(`/api/activity/${activityRecord.userId}`, activityRecord)
-                    .then(response => {
-                        console.log('Record updated successfully');
-                    })
-                    .catch(error => {
-                        console.error('Error updating record:', error);
-                    });
-            } else {
-                // if the user has not been recorded, use POST to create a new record
+    // // check if the user has already been recorded
+    // axios.get(`/api/activity/exists/${activityRecord.userId}`)
+    //     .then(response => {
+    //         if (response.data.exists) {
+    //             // if the user has already been recorded, use PUT to update the record
+    //             axios.put(`/api/activity/${activityRecord.userId}`, activityRecord)
+    //                 .then(response => {
+    //                     console.log('Record updated successfully');
+    //                 })
+    //                 .catch(error => {
+    //                     console.error('Error updating record:', error);
+    //                 });
+    //         } else {
+    //             // if the user has not been recorded, use POST to create a new record
                 
-                axios.post(`/api/activity`, activityRecord)
-                    .then(response => {
-                        console.log('Record created successfully');
-                    })
-                    .catch(error => {
-                        console.error('Error creating record:', error);
-                    });
-            }
-        })
-        .catch(error => {
-            // console.error('Error checking if record exists:', activityRecord);
-            console.log(activityRecord);
-        });
+    //             axios.post(`/api/activity`, activityRecord)
+    //                 .then(response => {
+    //                     console.log('Record created successfully');
+    //                 })
+    //                 .catch(error => {
+    //                     console.error('Error creating record:', error);
+    //                 });
+    //         }
+    //     })
+    //     .catch(error => {
+    //         // console.error('Error checking if record exists:', activityRecord);
+    //         console.log(activityRecord);
+    //     });
 }
 
 sendData();
