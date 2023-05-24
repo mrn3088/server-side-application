@@ -306,10 +306,10 @@ function sendData() {
     // check if the user has already been recorded
     axios.get(`/api/activity/exists/${activityRecord.userId}`)
         .then(response => {
-            if (resp.data.exists) {
+            if (response.data.exists) {
                 axios.get(`/api/activity/${activityRecord.userId}`)
                     .then(resp => {
-                        let prevIdleList = response.data.idleList ? response.data.idleList : '[]';
+                        let prevIdleList = resp.data.idleList ? resp.data.idleList : '[]';
                         activityRecord.idleList = JSON.stringify(JSON.parse(prevIdleList).concat(JSON.parse(activityRecord.idleList)));
                     })
                     .catch(error => {
