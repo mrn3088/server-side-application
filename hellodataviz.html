@@ -25,6 +25,8 @@
                     let data = response.data;
                     for(let i = 0; i < data.length; i++) {
                         let value = data[i];
+                        console.log("value" + value)
+                        console.log("value['userAgent']" + value['userAgent']);
                         if(value['userAgent'].includes('Chrome')) {
                             chrome_num++;
                         } else if(value['userAgent'].includes('Firefox')) {
