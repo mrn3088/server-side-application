@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Send request to Webhook URL
         run: |
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://134.209.213.47:8080 -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}')
+          RESPONSE=$(curl -k -s -o /dev/null -w "%{http_code}" ${{ secrets.WEBHOOK_URL }} -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}')
           echo "Response code: $RESPONSE"
