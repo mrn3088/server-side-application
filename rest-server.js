@@ -105,12 +105,12 @@ app.post('/static', async (req, res) => {
 app.post('/noscript', async (req, res) => {
     try {
         let serverGeneratedId = uuidv4();
+        let dummy = {};
         {
-            const { id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType } = req.body;
-
-            if (jsEnabled !== false) {
-                return res.status(400).send('Wrong endpoint');
-            }
+            const { id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType } = dummy;
+            
+            jsEnabled = false;
+        
 
             id = serverGeneratedId;
             userAgent = req.headers['user-agent'];
@@ -120,14 +120,14 @@ app.post('/noscript', async (req, res) => {
         }
 
         {
-            const { id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = req.body;
+            const { id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = dummy;
             
             id = serverGeneratedId;
             const [result] = await promisePool.query('INSERT INTO PerformanceRecords (id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime) VALUES (?, ?, ?, ?, ?)', [id, JSON.stringify(timingObject), pageStartLoad, pageEndLoad, totalLoadTime]);
         }
 
         {
-            const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = req.body;
+            const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = dummy;
             userId = serverGeneratedId;
             sessionId = uuidv4();
             idleList = '[]';
@@ -136,7 +136,6 @@ app.post('/noscript', async (req, res) => {
         }
 
         res.status(201).send(`Records added with ID: ${serverGeneratedId} (noscript)`);
-        
     } catch (error) {
         res.status(500).send(error);
     }
