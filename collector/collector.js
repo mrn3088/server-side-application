@@ -240,6 +240,7 @@ function sendData() {
     activityRecord['idleList'] = localStorage.getItem('idleList');
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
     console.log("activityRecord['idleList']");
+    console.log(typeof activityRecord['idleList']);
     console.log(activityRecord['idleList']);
 
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
