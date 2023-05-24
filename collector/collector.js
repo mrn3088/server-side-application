@@ -116,7 +116,11 @@ const collectActivity = function () {
         const now = Date.now();
         let idleTime = now - idleStart;
         if (idleTime >= 2000) {
-            activityRecord.idleList.push([idleTime, idleStart, now]);
+            console.log('idle');
+            let idleList = localStorage.getItem('idleList');
+            idleList = idleList ? JSON.parse(idleList) : [];
+            idleList.push([idleTime, idleStart, now]);
+            localStorage.setItem('idleList', JSON.stringify(idleList));
         }
         idleStart = now;
     }
@@ -233,7 +237,7 @@ function sendData() {
     activityRecord['timeLeft'] = formatISODateToMySQLDateTime(new Date().toISOString()); // time when the user leaves the page
     activityRecord['userId'] = getCookie('sessionId'); // add id field
     activityRecord['sessionId'] = getCookie('userId'); // seems odd, but this is how it is
-    activityRecord['idleList'] = JSON.stringify(localStorage.getItem('idleList'));
+    activityRecord['idleList'] = localStorage.getItem('idleList');
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
