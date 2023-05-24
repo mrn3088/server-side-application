@@ -306,7 +306,15 @@ function sendData() {
     // check if the user has already been recorded
     axios.get(`/api/activity/exists/${activityRecord.userId}`)
         .then(response => {
-            if (response.data.exists) {
+            if (resp.data.exists) {
+                axios.get(`/api/activity/${activityRecord.userId}`)
+                    .then(resp => {
+                        let prevIdleList = response.data.idleList ? response.data.idleList : '[]';
+                        activityRecord.idleList = JSON.stringify(JSON.parse(prevIdleList).concat(JSON.parse(activityRecord.idleList)));
+                    })
+                    .catch(error => {
+                        console.error('Error getting previous record:', error);
+                    });
                 // if the user has already been recorded, use PUT to update the record
                 axios.put(`/api/activity/${activityRecord.userId}`, activityRecord)
                     .then(response => {
