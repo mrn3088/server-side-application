@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Data Grid</title>
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+</head>
+<body>
+    <zing-grid id="myGrid" pager page-size="5" page-size-options="5 10 15 20"></zing-grid>
+
+    <script>
+        const zgRef = document.querySelector('zing-grid');
+        fetch('/api/static/') 
+            .then(response => response.json())
+            .then(data => {
+                zgRef.data = data;
+            });
+    </script>
+</body>
+</html>
