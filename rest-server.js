@@ -106,32 +106,25 @@ app.post('/noscript', async (req, res) => {
     try {
         let serverGeneratedId = uuidv4();
         let dummy = {};
-        {
-            const { id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType } = dummy;
-            
-            jsEnabled = false;
-        
 
+        {
+            jsEnabled = false;
             id = serverGeneratedId;
             userAgent = req.headers['user-agent'];
             language = req.headers['accept-language'];
-            const [result] = await promisePool.query('INSERT INTO StaticRecords (id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType]);
+            const [result] = await promisePool.query('INSERT INTO StaticRecords (id, userAgent, language, jsEnabled) VALUES (?, ?, ?, ?)', [id, userAgent, language, jsEnabled]);
 
         }
 
-        {
-            const { id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = dummy;
-            
+        {            
             id = serverGeneratedId;
-            const [result] = await promisePool.query('INSERT INTO PerformanceRecords (id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime) VALUES (?, ?, ?, ?, ?)', [id, JSON.stringify(timingObject), pageStartLoad, pageEndLoad, totalLoadTime]);
+            const [result] = await promisePool.query('INSERT INTO PerformanceRecords (id) VALUES (?)', [id]);
         }
 
         {
-            const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = dummy;
             userId = serverGeneratedId;
             sessionId = uuidv4();
-            idleList = '[]';
-            const [result] = await promisePool.query('INSERT INTO ActivityRecords (userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [userId, sessionId, timeEntered, timeLeft, page, JSON.stringify(idleList), JSON.stringify(moveRecords), JSON.stringify(clickRecords), JSON.stringify(scrollRecords), JSON.stringify(keyRecords), error]);
+            const [result] = await promisePool.query('INSERT INTO ActivityRecords (userId, sessionId) VALUES (?, ?)', [userId, sessionId]);
 
         }
 
