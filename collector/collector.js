@@ -285,6 +285,7 @@ function sendData() {
                     });
             } else {
                 // if the user has not been recorded, use POST to create a new record
+                console.log(activityRecord);
                 axios.post(`/api/activity`, activityRecord)
                     .then(response => {
                         console.log('Record created successfully');

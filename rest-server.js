@@ -313,7 +313,7 @@ app.get('/activity/exists/:id', async (req, res) => {
 app.post('/activity', async (req, res) => {
     try {
         const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = req.body;
-
+        
         if (!userId) {
             return res.status(400).send('Missing userId');
         }
