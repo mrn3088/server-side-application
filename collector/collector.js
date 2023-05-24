@@ -233,6 +233,7 @@ function sendData() {
     activityRecord['timeLeft'] = formatISODateToMySQLDateTime(new Date().toISOString()); // time when the user leaves the page
     activityRecord['userId'] = getCookie('sessionId'); // add id field
     activityRecord['sessionId'] = getCookie('userId'); // seems odd, but this is how it is
+    activityRecord['idleList'] = JSON.stringify(localStorage.getItem('idleList'));
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
