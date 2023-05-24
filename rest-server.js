@@ -5,6 +5,15 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// Function to generate a UUID
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+
 // Create express app
 const app = express();
 
@@ -67,9 +76,9 @@ app.get('/static/exists/:id', async (req, res) => {
         const id = req.params.id;
         const [rows, fields] = await promisePool.query('SELECT * FROM StaticRecords WHERE id = ?', [id]);
         if (rows.length > 0) {
-            res.status(200).json({exists: true});
+            res.status(200).json({ exists: true });
         } else {
-            res.status(200).json({exists: false});
+            res.status(200).json({ exists: false });
         }
     } catch (error) {
         res.status(500).send(error);
@@ -87,6 +96,47 @@ app.post('/static', async (req, res) => {
         const [result] = await promisePool.query('INSERT INTO StaticRecords (id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType]);
 
         res.status(201).send(`StaticRecord added with ID: ${id}`);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
+app.post('/noscript', async (req, res) => {
+    try {
+        let serverGeneratedId = uuidv4();
+        {
+            const { id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType } = req.body;
+
+            if (jsEnabled !== false) {
+                return res.status(400).send('Wrong endpoint');
+            }
+
+            id = serverGeneratedId;
+            userAgent = req.headers['user-agent'];
+            language = req.headers['accept-language'];
+            const [result] = await promisePool.query('INSERT INTO StaticRecords (id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [id, userAgent, language, cookieEnabled, jsEnabled, imageEnabled, cssEnabled, screenWidth, screenHeight, windowWidth, windowHeight, connectionType]);
+
+        }
+
+        {
+            const { id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime } = req.body;
+            
+            id = serverGeneratedId;
+            const [result] = await promisePool.query('INSERT INTO PerformanceRecords (id, timingObject, pageStartLoad, pageEndLoad, totalLoadTime) VALUES (?, ?, ?, ?, ?)', [id, JSON.stringify(timingObject), pageStartLoad, pageEndLoad, totalLoadTime]);
+        }
+
+        {
+            const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = req.body;
+            userId = serverGeneratedId;
+            sessionId = uuidv4();
+            idleList = '[]';
+            const [result] = await promisePool.query('INSERT INTO ActivityRecords (userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [userId, sessionId, timeEntered, timeLeft, page, JSON.stringify(idleList), JSON.stringify(moveRecords), JSON.stringify(clickRecords), JSON.stringify(scrollRecords), JSON.stringify(keyRecords), error]);
+
+        }
+
+        res.status(201).send(`Records added with ID: ${serverGeneratedId} (noscript)`);
+        
     } catch (error) {
         res.status(500).send(error);
     }
@@ -187,9 +237,9 @@ app.get('/performance/exists/:id', async (req, res) => {
         const id = req.params.id;
         const [rows, fields] = await promisePool.query('SELECT * FROM PerformanceRecords WHERE id = ?', [id]);
         if (rows.length > 0) {
-            res.status(200).json({exists: true});
+            res.status(200).json({ exists: true });
         } else {
-            res.status(200).json({exists: false});
+            res.status(200).json({ exists: false });
         }
     } catch (error) {
         res.status(500).send(error);
@@ -212,6 +262,7 @@ app.post('/performance', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
 
 app.patch('/performance/:id', async (req, res) => {
     const id = req.params.id;
@@ -300,9 +351,9 @@ app.get('/activity/exists/:id', async (req, res) => {
         const id = req.params.id;
         const [rows, fields] = await promisePool.query('SELECT * FROM ActivityRecords WHERE userId = ?', [id]);
         if (rows.length > 0) {
-            res.status(200).json({exists: true});
+            res.status(200).json({ exists: true });
         } else {
-            res.status(200).json({exists: false});
+            res.status(200).json({ exists: false });
         }
     } catch (error) {
         res.status(500).send(error);
@@ -313,7 +364,7 @@ app.get('/activity/exists/:id', async (req, res) => {
 app.post('/activity', async (req, res) => {
     try {
         const { userId, sessionId, timeEntered, timeLeft, page, idleList, moveRecords, clickRecords, scrollRecords, keyRecords, error } = req.body;
-        
+
         if (!userId) {
             return res.status(400).send('Missing userId');
         }

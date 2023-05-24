@@ -302,7 +302,6 @@ function sendData() {
         });
 
 
-
     // check if the user has already been recorded
     axios.get(`/api/activity/exists/${activityRecord.userId}`)
         .then(response => {
@@ -341,4 +340,4 @@ function sendData() {
 }
 
 sendData();
-setInterval(sendData, 60000);
+setInterval(sendData, 60000); // send data every minute
