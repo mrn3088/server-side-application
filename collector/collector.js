@@ -206,6 +206,7 @@ window.addEventListener('load', function () {
 });
 
 function sendData() {
+    console.log('sendData');
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
     activityRecord['userId'] = getCookie('sessionId'); // add id field
