@@ -29,10 +29,10 @@ app.use(cors({
 // note my non-standard port number and very poor user name and password choices here
 
 const pool = mysql.createPool({
-    host: '127.0.0.1',
-    port: '/var/run/mysqld/mysqld.sock',
-    user: 'root',
-    password: 'Cse135monster%',
+    host: 'db-mysql-cse135-monster-do-user-13928624-0.b.db.ondigitalocean.com',
+    port: '25060',
+    user: 'doadmin',
+    password: 'AVNS_bqxqJL1DWue3xadCli8',
     database: 'collector'
 });
 
