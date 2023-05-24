@@ -18,13 +18,30 @@
         <div id="js-enabled"></div>
         <div id="image-enabled"></div> -->
         <script>
+            let chrome_num = 0, firefox_num = 0, safari_num = 0, ie_num = 0, other_num = 0;
             axios.get(`/api/static/`)
                 .then(response => {
                     console.log(response.data);
+                    let data = response.data[1];
+                    for(let i = 0; i < data.length; i++) {
+                        let value = data[i];
+                        if(value['userAgent'].includes('Chrome')) {
+                            chrome_num++;
+                        } else if(value['userAgent'].includes('Firefox')) {
+                            firefox_num++;
+                        } else if(value['userAgent'].includes('Safari')) {
+                            safari_num++;
+                        } else if(value['userAgent'].includes('Internet Explorer')) {
+                            ie_num++;
+                        } else {
+                            other_num++;
+                        }
+                    }
                 })
                 .catch(error => {
                     console.error('Error checking if record exists:', error);
                 });
+            let total_num = chrome_num + firefox_num + safari_num + ie_num + other_num;
 
             var myConfig = {
                 type: "pie",
@@ -77,30 +94,30 @@
                   margin: "20 0 0 0"
                 },
                 series: [{
-                    values: [11.38],
+                    values: [ie_num/total_num*100],
                     text: "Internet Explorer",
                     backgroundColor: '#50ADF5',
                   },
                   {
-                    values: [56.94],
+                    values: [chrome_num/total_num*100],
                     text: "Chrome",
                     backgroundColor: '#FF7965',
                     detached: true
                   },
                   {
-                    values: [14.52],
+                    values: [firefox_num/total_num*100],
                     text: 'Firefox',
                     backgroundColor: '#FFCB45',
                     detached: true
                   },
                   {
                     text: 'Safari',
-                    values: [9.69],
+                    values: [safari_num/total_num*100],
                     backgroundColor: '#6877e5'
                   },
                   {
                     text: 'Other',
-                    values: [7.48],
+                    values: [other_num/total_num*100],
                     backgroundColor: '#6FB07F'
                   }
                 ]
