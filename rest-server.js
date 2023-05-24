@@ -38,7 +38,6 @@ app.get('/static', async (req, res) => {
     try {
         // Execute SQL query
         const [rows, fields] = await promisePool.query('SELECT * FROM StaticRecords');
-
         // Send response
         res.json(rows);
     } catch (error) {
@@ -114,7 +113,7 @@ app.patch('/api/static/:id', async (req, res) => {
     }
 });
 
-app.put('/api/static/:id', async (req, res) => {
+app.put('/static/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -214,7 +213,7 @@ app.post('/performance', async (req, res) => {
     }
 });
 
-app.patch('/api/performance/:id', async (req, res) => {
+app.patch('/performance/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
@@ -234,7 +233,7 @@ app.patch('/api/performance/:id', async (req, res) => {
     }
 });
 
-app.put('/api/performance/:id', async (req, res) => {
+app.put('/performance/:id', async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
