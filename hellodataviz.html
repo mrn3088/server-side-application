@@ -19,7 +19,7 @@
         <div id="image-enabled"></div> -->
         <script>
             var chrome_num = 0, firefox_num = 0, safari_num = 0, ie_num = 0, other_num = 0;
-            await axios.get(`/api/static/`)
+            axios.get(`/api/static/`)
                 .then(response => {
                     console.log(response.data);
                     let data = response.data;
@@ -39,103 +39,109 @@
                             other_num++;
                         }
                     }
+
+                    var total_num = chrome_num + firefox_num + safari_num + ie_num + other_num;
+
+                    var myConfig = {
+                        type: "pie",
+                        plot: {
+                          borderColor: "#2B313B",
+                          borderWidth: 5,
+                          // slice: 90,
+                          valueBox: {
+                            placement: 'out',
+                            text: '%t\n%npv%',
+                            fontFamily: "Open Sans"
+                          },
+                          tooltip: {
+                            fontSize: '18',
+                            fontFamily: "Open Sans",
+                            padding: "5 10",
+                            text: "%npv%"
+                          },
+                          animation: {
+                            effect: 2,
+                            method: 5,
+                            speed: 900,
+                            sequence: 1,
+                            delay: 3000
+                          }
+                        },
+                        source: {
+                          text: 'gs.statcounter.com',
+                          fontColor: "#8e99a9",
+                          fontFamily: "Open Sans"
+                        },
+                        title: {
+                          fontColor: "#8e99a9",
+                          text: 'User Agent Usage',
+                          align: "left",
+                          offsetX: 10,
+                          fontFamily: "Open Sans",
+                          fontSize: 25
+                        },
+                        subtitle: {
+                          offsetX: 10,
+                          offsetY: 10,
+                          fontColor: "#8e99a9",
+                          fontFamily: "Open Sans",
+                          fontSize: "16",
+                          text: 'May 2016',
+                          align: "left"
+                        },
+                        plotarea: {
+                          margin: "20 0 0 0"
+                        },
+                        series: [{
+                            values: [ie_num/total_num*100],
+                            text: "Internet Explorer",
+                            backgroundColor: '#50ADF5',
+                          },
+                          {
+                            values: [chrome_num/total_num*100],
+                            text: "Chrome",
+                            backgroundColor: '#FF7965',
+                            detached: true
+                          },
+                          {
+                            values: [firefox_num/total_num*100],
+                            text: 'Firefox',
+                            backgroundColor: '#FFCB45',
+                            detached: true
+                          },
+                          {
+                            text: 'Safari',
+                            values: [safari_num/total_num*100],
+                            backgroundColor: '#6877e5'
+                          },
+                          {
+                            text: 'Other',
+                            values: [other_num/total_num*100],
+                            backgroundColor: '#6FB07F'
+                          }
+                        ]
+                      };
+                   
+                    zingchart.render({
+                    id: 'userAgent',
+                    data: myConfig,
+                    });
+    
+                    console.log("chrome_num: " + chrome_num);
+                    console.log("firefox_num: " + firefox_num);
+                    console.log("safari_num: " + safari_num);
+                    console.log("ie_num: " + ie_num);
+                    console.log("other_num: " + other_num);
+                    console.log("total_num: " + total_num);
+
+
                 })
                 .catch(error => {
                     console.error('Error checking if record exists:', error);
                 });
-            var total_num = chrome_num + firefox_num + safari_num + ie_num + other_num;
+            
 
-            var myConfig = {
-                type: "pie",
-                plot: {
-                  borderColor: "#2B313B",
-                  borderWidth: 5,
-                  // slice: 90,
-                  valueBox: {
-                    placement: 'out',
-                    text: '%t\n%npv%',
-                    fontFamily: "Open Sans"
-                  },
-                  tooltip: {
-                    fontSize: '18',
-                    fontFamily: "Open Sans",
-                    padding: "5 10",
-                    text: "%npv%"
-                  },
-                  animation: {
-                    effect: 2,
-                    method: 5,
-                    speed: 900,
-                    sequence: 1,
-                    delay: 3000
-                  }
-                },
-                source: {
-                  text: 'gs.statcounter.com',
-                  fontColor: "#8e99a9",
-                  fontFamily: "Open Sans"
-                },
-                title: {
-                  fontColor: "#8e99a9",
-                  text: 'User Agent Usage',
-                  align: "left",
-                  offsetX: 10,
-                  fontFamily: "Open Sans",
-                  fontSize: 25
-                },
-                subtitle: {
-                  offsetX: 10,
-                  offsetY: 10,
-                  fontColor: "#8e99a9",
-                  fontFamily: "Open Sans",
-                  fontSize: "16",
-                  text: 'May 2016',
-                  align: "left"
-                },
-                plotarea: {
-                  margin: "20 0 0 0"
-                },
-                series: [{
-                    values: [ie_num/total_num*100],
-                    text: "Internet Explorer",
-                    backgroundColor: '#50ADF5',
-                  },
-                  {
-                    values: [chrome_num/total_num*100],
-                    text: "Chrome",
-                    backgroundColor: '#FF7965',
-                    detached: true
-                  },
-                  {
-                    values: [firefox_num/total_num*100],
-                    text: 'Firefox',
-                    backgroundColor: '#FFCB45',
-                    detached: true
-                  },
-                  {
-                    text: 'Safari',
-                    values: [safari_num/total_num*100],
-                    backgroundColor: '#6877e5'
-                  },
-                  {
-                    text: 'Other',
-                    values: [other_num/total_num*100],
-                    backgroundColor: '#6FB07F'
-                  }
-                ]
-              };
-           
-              zingchart.render({
-                id: 'userAgent',
-                data: myConfig,
-              });
-
-              console.log("chrome_num: " + chrome_num);
-              console.log("firefox_num: " + firefox_num);
-              console.log("safari_num: " + safari_num);
-              console.log("ie_num: " + ie_num);
-              console.log("other_num: " + other_num);
-              console.log("total_num: " + total_num);
+            
         </script>
         <!-- <script>
             var myConfig = {
