@@ -540,7 +540,7 @@
                           }
                         },
                         "scale-x": {
-                          "min-value": 1684962000011,
+                          "min-value": 1684566000000,
                           "shadow": 0,
                           "step": 3600000,
                           "transform": {
@@ -691,237 +691,156 @@
         <h1>Activity Data Record</h1>
         <div id="mouse-keyboard"></div>
         <script>
-            ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-            var myConfig = {
-              "graphset": [{
-                "type": "bar",
-                "background-color": "white",
-                "title": {
-                  "text": "Mouse and Keyboard Activity",
-                  "font-color": "#7E7E7E",
-                  "backgroundColor": "none",
-                  "font-size": "22px",
-                  "alpha": 1,
-                  "adjust-layout": true,
-                },
-                "plotarea": {
-                  "margin": "dynamic"
-                },
-                "legend": {
-                  "layout": "x3",
-                  "overflow": "page",
-                  "alpha": 0.05,
-                  "shadow": false,
-                  "align": "center",
-                  "adjust-layout": true,
-                  "marker": {
-                    "type": "circle",
-                    "border-color": "none",
-                    "size": "10px"
-                  },
-                  "border-width": 0,
-                  "maxItems": 3,
-                  "toggle-action": "hide",
-                  "pageOn": {
-                    "backgroundColor": "#000",
-                    "size": "10px",
-                    "alpha": 0.65
-                  },
-                  "pageOff": {
-                    "backgroundColor": "#7E7E7E",
-                    "size": "10px",
-                    "alpha": 0.65
-                  },
-                  "pageStatus": {
-                    "color": "black"
-                  }
-                },
-                "plot": {
-                  "bars-space-left": 0.15,
-                  "bars-space-right": 0.15,
-                  "animation": {
-                    "effect": "ANIMATION_SLIDE_BOTTOM",
-                    "sequence": 0,
-                    "speed": 800,
-                    "delay": 800
-                  }
-                },
-                "scale-y": {
-                  "line-color": "#7E7E7E",
-                  "item": {
-                    "font-color": "#7e7e7e"
-                  },
-                  "values": "0:60:10",
-                  "guide": {
-                    "visible": true
-                  },
-                  "label": {
-                    "text": "# of Times",
-                    "font-family": "arial",
-                    "bold": true,
-                    "font-size": "14px",
-                    "font-color": "#7E7E7E",
-                  },
-                },
-                "scaleX": {
-                  "values": [
-                    "Keyboard Clicks",
-                    "Mouse Moves",
-                  ],
-                  "placement": "default",
-                  "tick": {
-                    "size": 58,
-                    "placement": "cross"
-                  },
-                  "itemsOverlap": true,
-                  "item": {
-                    "offsetY": -55
-                  }
-                },
-                "tooltip": {
-                  "visible": false
-                },
-                "crosshair-x": {
-                  "line-width": "100%",
-                  "alpha": 0.18,
-                  "plot-label": {
-                    "header-text": "%kv Sales"
-                  }
-                },
-                "series": [{
-                    "values": [
-                      37.47,
-                      57.59,
-                    ],
-                    "alpha": 0.95,
-                    "borderRadiusTopLeft": 7,
-                    "background-color": "purple",
-                    "text": "User Session 1",
-                  },
-                  {
-                    "values": [
-                      2.02,
-                      2.59,
-                    ],
-                    "borderRadiusTopLeft": 7,
-                    "alpha": 0.95,
-                    "background-color": "orange",
-                    "text": "User Session 2"
-                  },
-                ]
-              }]
-            };
-         
-            zingchart.render({
-              id: 'mouse-keyboard',
-              data: myConfig
-            });
+            axios.get(`/api/activity/`)
+                .then(response => {
+                    let start_load = [], end_load = [], total_time = [];
+                    let data = response.data;
+                    console.log(data);
+                    for(let i = 0; i < data.length; i++) {
+                        let value = data[i];
+                        // console.log("value" + value)
+                        // console.log("value['userAgent']" + value['userAgent']);
+                        start_load.push(value['pageStartLoad']);
+                        end_load.push(value['pageEndLoad']);
+                        total_time.push(value['totalLoadTime']);
+                    }
+
+
+                    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+                    var myConfig = {
+                    "graphset": [{
+                        "type": "bar",
+                        "background-color": "white",
+                        "title": {
+                        "text": "Mouse and Keyboard Activity",
+                        "font-color": "#7E7E7E",
+                        "backgroundColor": "none",
+                        "font-size": "22px",
+                        "alpha": 1,
+                        "adjust-layout": true,
+                        },
+                        "plotarea": {
+                        "margin": "dynamic"
+                        },
+                        "legend": {
+                        "layout": "x3",
+                        "overflow": "page",
+                        "alpha": 0.05,
+                        "shadow": false,
+                        "align": "center",
+                        "adjust-layout": true,
+                        "marker": {
+                            "type": "circle",
+                            "border-color": "none",
+                            "size": "10px"
+                        },
+                        "border-width": 0,
+                        "maxItems": 3,
+                        "toggle-action": "hide",
+                        "pageOn": {
+                            "backgroundColor": "#000",
+                            "size": "10px",
+                            "alpha": 0.65
+                        },
+                        "pageOff": {
+                            "backgroundColor": "#7E7E7E",
+                            "size": "10px",
+                            "alpha": 0.65
+                        },
+                        "pageStatus": {
+                            "color": "black"
+                        }
+                        },
+                        "plot": {
+                        "bars-space-left": 0.15,
+                        "bars-space-right": 0.15,
+                        "animation": {
+                            "effect": "ANIMATION_SLIDE_BOTTOM",
+                            "sequence": 0,
+                            "speed": 800,
+                            "delay": 800
+                        }
+                        },
+                        "scale-y": {
+                        "line-color": "#7E7E7E",
+                        "item": {
+                            "font-color": "#7e7e7e"
+                        },
+                        "values": "0:60:10",
+                        "guide": {
+                            "visible": true
+                        },
+                        "label": {
+                            "text": "# of Times",
+                            "font-family": "arial",
+                            "bold": true,
+                            "font-size": "14px",
+                            "font-color": "#7E7E7E",
+                        },
+                        },
+                        "scaleX": {
+                        "values": [
+                            "Keyboard Clicks",
+                            "Mouse Moves",
+                        ],
+                        "placement": "default",
+                        "tick": {
+                            "size": 58,
+                            "placement": "cross"
+                        },
+                        "itemsOverlap": true,
+                        "item": {
+                            "offsetY": -55
+                        }
+                        },
+                        "tooltip": {
+                        "visible": false
+                        },
+                        "crosshair-x": {
+                        "line-width": "100%",
+                        "alpha": 0.18,
+                        "plot-label": {
+                            "header-text": "%kv Sales"
+                        }
+                        },
+                        "series": [{
+                            "values": [
+                            37.47,
+                            57.59,
+                            ],
+                            "alpha": 0.95,
+                            "borderRadiusTopLeft": 7,
+                            "background-color": "purple",
+                            "text": "User Session 1",
+                        },
+                        {
+                            "values": [
+                            2.02,
+                            2.59,
+                            ],
+                            "borderRadiusTopLeft": 7,
+                            "alpha": 0.95,
+                            "background-color": "orange",
+                            "text": "User Session 2"
+                        },
+                        ]
+                    }]
+                    };
+                
+                    zingchart.render({
+                    id: 'mouse-keyboard',
+                    data: myConfig
+                    });
+                })
+                .catch(error => {
+                    console.error('Error checking if record exists:', error);
+                });
           </script>
     </div>
 
 
 
 
-    <!-- <div id="myChart"></div>
-    <script>
-        zingchart.render({
-          id: 'myChart',
-          data: {
-            type: 'line',
-            series: [
-              { values: [54,23,34,23,43] },
-              { values: [10,15,16,20,40] }
-            ]
-          }
-        });
-    </script>
-    <div id="myPieChart">Pie Chart</div>
-    <script>
-        // ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-        var myConfig = {
-          type: "pie",
-          plot: {
-            borderColor: "#2B313B",
-            borderWidth: 5,
-            // slice: 90,
-            valueBox: {
-              placement: 'out',
-              text: '%t\n%npv%',
-              fontFamily: "Open Sans"
-            },
-            tooltip: {
-              fontSize: '18',
-              fontFamily: "Open Sans",
-              padding: "5 10",
-              text: "%npv%"
-            },
-            animation: {
-              effect: 2,
-              method: 5,
-              speed: 900,
-              sequence: 1,
-              delay: 3000
-            }
-          },
-          source: {
-            text: 'gs.statcounter.com',
-            fontColor: "#8e99a9",
-            fontFamily: "Open Sans"
-          },
-          title: {
-            fontColor: "#8e99a9",
-            text: 'Global Browser Usage',
-            align: "left",
-            offsetX: 10,
-            fontFamily: "Open Sans",
-            fontSize: 25
-          },
-          subtitle: {
-            offsetX: 10,
-            offsetY: 10,
-            fontColor: "#8e99a9",
-            fontFamily: "Open Sans",
-            fontSize: "16",
-            text: 'May 2016',
-            align: "left"
-          },
-          plotarea: {
-            margin: "20 0 0 0"
-          },
-          series: [{
-              values: [11.38],
-              text: "Internet Explorer",
-              backgroundColor: '#50ADF5',
-            },
-            {
-              values: [56.94],
-              text: "Chrome",
-              backgroundColor: '#FF7965',
-              detached: true
-            },
-            {
-              values: [14.52],
-              text: 'Firefox',
-              backgroundColor: '#FFCB45',
-              detached: true
-            },
-            {
-              text: 'Safari',
-              values: [9.69],
-              backgroundColor: '#6877e5'
-            },
-            {
-              text: 'Other',
-              values: [7.48],
-              backgroundColor: '#6FB07F'
-            }
-          ]
-        };
-     
-        zingchart.render({
-          id: 'myPieChart',
-          data: myConfig,
-        });
-      </script> -->
+    
 </body>
 </html>
