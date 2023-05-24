@@ -343,19 +343,19 @@
                     let en_JS = 0, zh_JS = 0;
                     let en_cookie = 0, zh_cookie = 0;
                     let data = response.data;
-                    // console.log(data);
+                    console.log(data);
                     for(let i = 0; i < data.length; i++) {
                         let value = data[i];
                         // console.log("value" + value)
                         // console.log("value['userAgent']" + value['userAgent']);
-                        if (value["language"] == "en-US") {
+                        if (value["language"] === "en-US") {
                             if (value["jsEnabled"] == 1) {
                                 en_JS++;
                             }
                             if (value["cookieEnabled"] == 1) {
                                 en_cookie++;
                             }
-                        } else if (value["language"] == "zh-CN") {
+                        } else if (value["language"] === "zh-CN") {
                             if (value["jsEnabled"] == 1) {
                                 zh_JS++;
                             }
