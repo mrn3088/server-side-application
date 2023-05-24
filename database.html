@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Database Data Grid</title>
     <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
 </head>
+
 <body>
-    <zing-grid id="myGrid" pager page-size="5" page-size-options="5 10 15 20"></zing-grid>
+    <zing-grid id="zing-grid-static-data" pager page-size="5" page-size-options="5 10 15 20">
+        <zg-caption>
+            <h1>Static Records</h1>
+        </zg-caption>
+    </zing-grid>
+    <zing-grid id="zing-grid-performance-data" pager page-size="5" page-size-options="5 10 15 20">
+        <zg-caption>
+            <h1>Performance Records</h1>
+        </zg-caption>
+    </zing-grid>
+    <zing-grid id="zing-grid-activity-data" pager page-size="5" page-size-options="5 10 15 20">
+        <zg-caption>
+            <h1>Activity Records</h1>
+        </zg-caption>
+    </zing-grid>
 
     <script>
-        const zgRef = document.querySelector('zing-grid');
-        fetch('/api/static/') 
+        const zgRefStatic = document.querySelector('#zing-grid-static-data');
+        fetch('/api/static/')
             .then(response => response.json())
             .then(data => {
-                zgRef.data = data;
+                zgRefStatic.data = data;
             });
+
+        const zgRefPerformance = document.querySelector('#zing-grid-performance-data');
+        fetch('/api/performance/')
+            .then(response => response.json())
+            .then(data => {
+                zgRefPerformance.data = data;
+            });
+
+        const zgRefActivity = document.querySelector('#zing-grid-activity-data');
+        fetch('/api/activity/')
+            .then(response => response.json())
+            .then(data => {
+                zgRefActivity.data = data;
+            });
+
     </script>
 </body>
+
 </html>
