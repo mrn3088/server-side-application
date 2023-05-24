@@ -239,6 +239,8 @@ function sendData() {
     activityRecord['sessionId'] = getCookie('userId'); // seems odd, but this is how it is
     activityRecord['idleList'] = localStorage.getItem('idleList');
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
+    console.log("activityRecord['idleList']");
+    console.log(activityRecord['idleList']);
 
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
 
@@ -325,8 +327,7 @@ function sendData() {
             }
         })
         .catch(error => {
-            // console.error('Error checking if record exists:', activityRecord);
-            console.log(activityRecord);
+            console.error('Error checking if record exists:', error);
         });
 }
 
