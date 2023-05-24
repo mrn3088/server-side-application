@@ -1,3 +1,4 @@
+console.log('collector.js loaded');
 // Function to set a cookie
 function setCookie(name, value, days) {
     let date = new Date();
