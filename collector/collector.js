@@ -1,4 +1,19 @@
 console.log('collector.js loaded');
+
+function formatISODateToMySQLDateTime(isoDate) {
+    let dt = new Date(isoDate);
+
+    let year = dt.getFullYear();
+    let month = String(dt.getMonth() + 1).padStart(2, '0');
+    let day = String(dt.getDate()).padStart(2, '0');
+    let hours = String(dt.getUTCHours()).padStart(2, '0');
+    let minutes = String(dt.getUTCMinutes()).padStart(2, '0');
+    let seconds = String(dt.getUTCSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+
 // Function to set a cookie
 function setCookie(name, value, days) {
     let date = new Date();
@@ -85,7 +100,7 @@ const collectActivity = function () {
         clickRecords: {},
         scrollRecords: {},
         keyRecords: {},
-        timeEntered: window.localStorage.getItem('timeEntered'), // time when the user enters the page
+        timeEntered: formatISODateToMySQLDateTime(window.localStorage.getItem('timeEntered')), // time when the user enters the page
         page: window.localStorage.getItem('page') // URL of the page
     };
 
@@ -209,7 +224,7 @@ window.addEventListener('load', function () {
 function sendData() {
     console.log('sendData');
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
-    activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
+    activityRecord['timeLeft'] = formatISODateToMySQLDateTime(new Date().toISOString()); // time when the user leaves the page
     activityRecord['userId'] = getCookie('sessionId'); // add id field
     activityRecord['sessionId'] = getCookie('sessionId');
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
