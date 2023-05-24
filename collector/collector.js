@@ -110,7 +110,7 @@ const collectActivity = function () {
         page: window.localStorage.getItem('page') // URL of the page
     };
 
-    let idleStart = 0;
+    let idleStart = Date.now();
 
     const activeCallback = function () {
         const now = Date.now();
