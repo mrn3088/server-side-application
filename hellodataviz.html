@@ -5,19 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Data Visualization</title>
 </head>
 <body>
     <div id="static">
         <h1>Static Data Record</h1>
         <div id="userAgent"></div>
-        <div id="language"></div>
+        <!-- <div id="language"></div>
         <div id="css-enabled"></div>
         <div id="cookies-enabled"></div>
         <div id="js-enabled"></div>
-        <div id="image-enabled"></div>
+        <div id="image-enabled"></div> -->
         <script>
+            axios.get(`/api/static/`)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error('Error checking if record exists:', error);
+                });
+
             var myConfig = {
                 type: "pie",
                 plot: {
@@ -103,7 +111,7 @@
                 data: myConfig,
               });
         </script>
-        <script>
+        <!-- <script>
             var myConfig = {
                 type: "pie",
                 plot: {
@@ -452,7 +460,7 @@
                 id: 'image-enabled',
                 data: myConfig,
               });
-        </script>
+        </script> -->
     </div>
     
 
