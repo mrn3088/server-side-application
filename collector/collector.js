@@ -44,16 +44,22 @@ function uuidv4() {
 
 // Set userId cookie if not present
 if (!getCookie('userId')) {
-    setCookie('userId', uuidv4(), 365);
+    console.log('userId cookie not found. Generating a new one.');
+    setCookie('userId', uuidv4(), 365);  // SessionId expires in 1 year
 }
+
 // Initialize a new session with unique sessionId
-let sessionId = uuidv4();
-setCookie('sessionId', sessionId, 1); // SessionId expires in 1 day
+if (!getCookie('sessionId')) {
+    console.log('sessionId cookie not found. Generating a new one.');
+    setCookie('sessionId', uuidv4(), 1);  // SessionId expires in 1 day
+}
+
+let sessionId = getCookie('sessionId');
 
 let sessionRecord = {};
 sessionRecord['userId'] = getCookie('userId');
 sessionRecord['sessionId'] = sessionId;
-sessionRecord['timeStart'] = new Date().toISOString();
+sessionRecord['timeStart'] = formatISODateToMySQLDateTime(new Date().toISOString());
 
 localStorage.setItem('sessionRecord', JSON.stringify(sessionRecord));
 
@@ -226,7 +232,7 @@ function sendData() {
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = formatISODateToMySQLDateTime(new Date().toISOString()); // time when the user leaves the page
     activityRecord['userId'] = getCookie('sessionId'); // add id field
-    activityRecord['sessionId'] = getCookie('sessionId');
+    activityRecord['sessionId'] = getCookie('userId'); // seems odd, but this is how it is
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
