@@ -211,6 +211,7 @@ function sendData() {
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
     activityRecord['userId'] = getCookie('sessionId'); // add id field
+    activityRecord['sessionId'] = getCookie('sessionId');
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
