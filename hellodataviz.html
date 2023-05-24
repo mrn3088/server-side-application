@@ -507,9 +507,9 @@
                         let value = data[i];
                         // console.log("value" + value)
                         // console.log("value['userAgent']" + value['userAgent']);
-                        start_load.append(value['pageStartLoad']);
-                        end_load.append(value['pageEndLoad']);
-                        total_time.append(value['totalLoadTime']);
+                        start_load.push(value['pageStartLoad']);
+                        end_load.push(value['pageEndLoad']);
+                        total_time.push(value['totalLoadTime']);
                     }
 
 
