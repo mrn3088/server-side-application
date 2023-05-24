@@ -166,7 +166,7 @@ const initActivity = function () {
 document.addEventListener('beforeunload', function () {
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
-    activityRecord['id'] = getCookie('sessionId'); // add id field
+    activityRecord['userID'] = getCookie('sessionId'); // add id field
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     // Send activity data
@@ -208,7 +208,7 @@ window.addEventListener('load', function () {
 function sendData() {
     let activityRecord = JSON.parse(localStorage.getItem('activityRecord'));
     activityRecord['timeLeft'] = new Date().toISOString(); // time when the user leaves the page
-    activityRecord['id'] = getCookie('sessionId'); // add id field
+    activityRecord['userID'] = getCookie('sessionId'); // add id field
     localStorage.setItem('activityRecord', JSON.stringify(activityRecord));
 
     let staticRecord = JSON.parse(localStorage.getItem('staticRecord'));
@@ -272,11 +272,11 @@ function sendData() {
 
 
     // check if the user has already been recorded
-    axios.get(`/api/activity/exists/${activityRecord.id}`)
+    axios.get(`/api/activity/exists/${activityRecord.userID}`)
         .then(response => {
             if (response.data.exists) {
                 // if the user has already been recorded, use PUT to update the record
-                axios.put(`/api/activity/${activityRecord.id}`, activityRecord)
+                axios.put(`/api/activity/${activityRecord.userID}`, activityRecord)
                     .then(response => {
                         console.log('Record updated successfully');
                     })
