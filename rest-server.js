@@ -105,7 +105,6 @@ app.post('/static', async (req, res) => {
 app.post('/noscript', async (req, res) => {
     try {
         let serverGeneratedId = uuidv4();
-        let dummy = {};
 
         {
             jsEnabled = false;
@@ -128,7 +127,7 @@ app.post('/noscript', async (req, res) => {
 
         }
 
-        res.status(201).send(`Records added with ID: ${serverGeneratedId} (noscript)`);
+        res.status(201).send(`<h1>Thanks for your feedback!</h1><p>Records added with ID: ${serverGeneratedId} (noscript)</p>`);
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
