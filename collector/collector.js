@@ -298,8 +298,8 @@ function sendData() {
             }
         })
         .catch(error => {
-            console.error('Error checking if record exists:', activityRecord);
-            // console.log(activityRecord);
+            // console.error('Error checking if record exists:', activityRecord);
+            console.log(activityRecord);
         });
 }
 
